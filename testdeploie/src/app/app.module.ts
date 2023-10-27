@@ -49,8 +49,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CarousselComponent } from './caroussel/caroussel.component';
 
-import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast';
+// import { ButtonModule } from 'primeng/button';
+// import { ToastModule } from 'primeng/toast';
 const storage: any | null = sessionStorage.getItem('TOKEN');
 const accessToken = JSON.parse(storage);
 const authToken = accessToken;
@@ -89,12 +89,7 @@ const authToken = accessToken;
     AjoutannonceComponent,
     AnnonceComponent,
     SlideComponent,
-
-    CarousselComponent,
-  
-
-
- 
+    CarousselComponent
   ],
   imports: [
     BrowserModule,
@@ -102,10 +97,10 @@ const authToken = accessToken;
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    ToastModule,
+    // ToastModule,
     ReactiveFormsModule,
     CarouselModule.forRoot(),
-    ButtonModule,
+    // ButtonModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
