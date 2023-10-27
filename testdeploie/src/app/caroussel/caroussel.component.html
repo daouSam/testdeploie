@@ -1,0 +1,8 @@
+<carousel >
+    <slide  *ngFor="let slide of slides" >
+      <img [src]="slide.src" [alt]="slide.title" class="d-block w-100" height="400px" style="object-fit: cover;" loading="lazy" />
+      <div class="carousel-caption d-none d-md-block">
+        <h4 style="color: white; font-weight: bold;">{{ slide.title }}</h4>
+      </div>
+    </slide>
+<carousel>

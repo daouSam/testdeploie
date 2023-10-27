@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <h5 class="card-title">Utilisateur <span class="text-muted fw-normal ms-2">({{taille}})</span></h5>
+            </div>
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="">
+                <div class="table-responsive">
+                    <table class="table project-list-table table-nowrap align-middle table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="ps-4" style="width: 50px;">
+                                    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck" /><label class="form-check-label" for="contacusercheck"></label></div>
+                                </th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Projects</th>
+                                <th scope="col" style="width: 200px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                         
+                            <tr *ngFor="let item of list">
+                                <th scope="row" class="ps-4">
+                                    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck3" /><label class="form-check-label" for="contacusercheck3"></label></div>
+                                </th>
+                                <td>
+                                    <div class="avatar-sm d-inline-block me-2">
+                                        <div class="avatar-title bg-soft-primary rounded-circle text-primary"><i class="mdi mdi-account-circle m-0"></i></div>
+                                    </div>
+                                    <a href="#" class="text-body">{{item.nom}}</a>
+                                </td>
+                                <td *ngFor="let role of item.roles"><span class="badge badge-soft-danger mb-0">{{role.name}}</span></td>
+                                <td>{{item.email}}</td>
+                                <td>112</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+                                        </li>
+                                      
+                                    </ul>
+                                </td>
+                            </tr>
+                         
+                      
+                     
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-0 align-items-center pb-4">
+       
+        <div class="col-sm-6">
+            <div class="float-sm-end">
+                <ul class="pagination mb-sm-0">
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item">
+                        <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

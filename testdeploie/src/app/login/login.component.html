@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="con">
+</div>
+<div class="body">
+    <section class="wrapper">
+      <div class="form signup">
+        <header>Connectez-vous</header>
+        <form #loginForm="ngForm"  (ngSubmit)="connexion(loginForm)">
+          <input type="text" name="login" ngModel
+          placeholder="Identifiant"  pattern="[a-z0-9._%+-]{2,20}" #login="ngModel" required />
+          <div *ngIf="login.invalid && (login.dirty || login.touched)"
+          class="text-danger">
+
+              <div style="font-size: 12px;" *ngIf="login.errors?.['required']">
+                Identifiant est obligatoire
+              </div>
+
+            </div>
+          <input type="password" placeholder="Password" name="password" ngModel placeholder="Mot de passe" pattern="[a-z0-9._%+-]{2,20}" #password="ngModel" required/>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="text-danger">
+
+              <div style="font-size: 12px;" *ngIf="password.errors?.['required']">
+                Mot de passe est obligatoire
+              </div>
+
+            </div>
+          <a href="#">Forgot password?</a>
+          <button type="submit" style="padding: 5px; border-radius: 5px;" class="btn btn-danger">Connexion</button>
+        </form>
+      </div>
+
+      <div class="form login">
+        <header routerLink="/inscription">Inscrivez-vous</header>
+      </div>
+
+      
+    </section>
+</div>
+<app-footer></app-footer>

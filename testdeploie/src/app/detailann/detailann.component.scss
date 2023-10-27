@@ -1,0 +1,39 @@
+.p {
+    margin-bottom: 20px;
+}
+.p {
+    margin: 0 0 15px;
+}
+.p{
+    box-sizing: inherit;
+}
+user agent stylesheet
+.p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.h6{
+    border-top: 2px solid rgb(177, 169, 169);
+    border-bottom: 2px solid rgb(177, 169, 169);
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.con{
+    width: 100%;
+    height: 200px;
+    background: url("/../assets/img/recherche-d-emploi-1140x400.jpg") no-repeat center / cover;
+    position: relative;
+}
+.bt{
+    background-color: #ED1C24 ; 
+    border: none; 
+    color: aliceblue; 
+    border-radius: 3px;
+}
+.bt:hover{
+    color:black;
+    font-weight: bold;
+}

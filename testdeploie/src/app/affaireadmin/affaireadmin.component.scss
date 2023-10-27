@@ -1,0 +1,45 @@
+body{background:#eee}
+.ratings i{font-size: 16px;color: red}
+.strike-text{color: red;text-decoration: line-through}
+.product-image{width: 100%}
+.dot{height: 7px;width: 7px;margin-left: 6px;margin-right: 6px;margin-top: 3px;background-color: blue;border-radius: 50%;display: inline-block}
+.spec-1{color: #938787;font-size: 15px}
+h5{font-weight: 400}
+.para{font-size: 16px}
+#select{
+    width: 200px; padding: 5px; border-radius: 5px; border: 1px solid rgb(122, 120, 120);
+}
+
+@media (max-width: 750px) {
+    #select{
+        width: 120px; 
+    }
+    #h3{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    #select{
+        width: 120px; 
+    }
+    #h3{
+        font-size: 15px;
+    }
+}
+@media (max-width: 300px) {
+    #select{
+        width: 60px; 
+    }
+    #h3{
+        font-size: 10px;
+    }
+}
+@media (max-width: 200px) {
+    #select{
+        width: 50px; 
+    }
+    #h3{
+        font-size: 10px;
+    }
+}

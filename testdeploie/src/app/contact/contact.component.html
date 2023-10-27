@@ -1,0 +1,75 @@
+<app-header></app-header>
+<app-caroussel></app-caroussel>
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="bg-light py-2 px-4 mb-3">
+            <h3 class="m-0">N'hésitez pas à nous contacter si vous avez des questions.</h3>
+        </div>
+       
+        <div class="row">
+            <div class="col-md-5">
+                <div class="bg-light mb-3" style="padding: 30px;">
+                    <h6 class="font-weight-bold">Entrer en contact</h6>
+                    <p>
+                        
+                    </p>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+                        <div class="d-flex flex-column">
+                            <h6 class="font-weight-bold">Notre bureau</h6>
+                            <p class="m-0">Sotuba ACI, Bamako, MALI</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-2x fa-envelope-open text-primary mr-3"></i>
+                        <div class="d-flex flex-column">
+                            <h6 class="font-weight-bold">Notre e-mail</h6>
+                            <p class="m-0">dounkafa@dounkafa.fr</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-2x fa-phone-alt text-primary mr-3"></i>
+                        <div class="d-flex flex-column">
+                            <h6 class="font-weight-bold">telephone</h6>
+                            <p class="m-0">+223 94 12 14 15</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="contact-form bg-light mb-3" style="padding: 30px;">
+                    <div id="success"></div>
+                    <form  [formGroup]="formgroup" (ngSubmit)="contacter(formgroup)">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <input type="text" class="form-control p-4" formControlName="nom" [value]="formgroup.get('nom').value" id="name" placeholder="Votre nom" required="required" data-validation-required-message="Please enter your name" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <input type="email" class="form-control p-4" id="email" formControlName="email" [value]="formgroup.get('email').value" placeholder="Votre Email" required="required" data-validation-required-message="Please enter your email" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" id="subject" placeholder="Objet" formControlName="objet" required="required" data-validation-required-message="Please enter a subject" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" rows="4" id="message" placeholder="Message" formControlName="body" required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;" type="submit" >Envoyer Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<app-footer></app-footer>

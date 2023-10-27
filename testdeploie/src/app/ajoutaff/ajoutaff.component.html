@@ -1,0 +1,164 @@
+<app-header></app-header>
+<div class="con">
+</div>
+<div class="body">
+<div class="container">
+    <header>Publier une opportunité d'affaire</header>
+    <p> Avez-vous déja un compte ?<span style="color:rgb(59, 59, 218)"> <a routerLink="/inscription"> Connectez-vous</a> </span> pour publier.</p>
+    <form [formGroup]="formgroup" (ngSubmit)="ajouterOffre(formgroup)">
+           
+        <div >
+            
+            <div class="details personal">            
+
+                <div class="fields1">
+                    <div class="input-field">
+                        <label>opportunite d'affaire</label>
+                        <input type="text" formControlName="opportunite" placeholder="Entrer le nom de l'entreprise" required>
+                        <div *ngIf="formgroup.controls.opportunite.invalid && (formgroup.controls.opportunite.dirty || formgroup.controls.opportunite.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.opportunite.errors?.['required']">
+                                opportunite est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Ville</label>
+                        <input type="text" formControlName="ville" placeholder="Par exemple Bamako" required>
+                        <div *ngIf="formgroup.controls.ville.invalid && (formgroup.controls.ville.dirty || formgroup.controls.ville.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.ville.errors?.['required']">
+                                ville est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Adresse</label>
+                        <input type="text" formControlName="adresse" placeholder="Par exemple Bamako" required>
+                        <div *ngIf="formgroup.controls.adresse.invalid && (formgroup.controls.adresse.dirty || formgroup.controls.adresse.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.adresse.errors?.['required']">
+                                Adresse est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Categorie</label>
+                        <select required formControlName="categorieAffaire">
+                            <option value="">Choisir la categorie</option>
+                            
+                            <option *ngFor="let item of listCategorie"[ngValue]="item">{{item.nom}}</option>
+
+                        </select>
+                        <div *ngIf="formgroup.controls.categorieAffaire.invalid && (formgroup.controls.categorieAffaire.dirty || formgroup.controls.categorieAffaire.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.categorieAffaire.errors?.['required']">
+                              categorie est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                   
+               
+                    
+                    <div class="input-field1">
+                        <label>Contenu de l'offre</label>
+                        
+                        <textarea id="mytextarea" formControlName="contenu" class="form-control"  rows="3"></textarea>
+                        <div *ngIf="formgroup.controls.contenu.invalid && (formgroup.controls.contenu.dirty || formgroup.controls.contenu.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.contenu.errors?.['required']">
+                                description de l'offre est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div class="details ID">
+              
+
+                <div class="fields1">
+                    <div class="input-field">
+                        <label>Votre nom</label>
+                        <input formControlName="nom" type="text" placeholder="Saisir votre nom" required>
+                        <div *ngIf="formgroup.controls.nom.invalid && (formgroup.controls.nom.dirty || formgroup.controls.nom.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.nom.errors?.['required']">
+                                Le nom  est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    
+
+                    <div class="input-field">
+                        <label>E-mail </label>
+                        <input formControlName="email" type="text" placeholder="diawara@gmail.com" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <div *ngIf="formgroup.controls.email.invalid && (formgroup.controls.email.dirty || formgroup.controls.email.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.email.errors?.['required']">
+                                E-mail est obligatoire
+                            </div>
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('email').hasError('pattern')">
+                                Le format de l'email est incorrect.
+                            </div>
+
+                    </div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label>Numero de telephone </label>
+                        <input formControlName="telephone" type="number" placeholder="Saisir le numero de telephone" required>
+                        <div *ngIf="formgroup.controls.telephone.invalid && (formgroup.controls.telephone.dirty || formgroup.controls.telephone.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.telephone.errors?.['required']">
+                                Le numero de telephone est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                 
+                    <div class="input-field">
+                        <label>Logo de l'entreprise</label>
+                        <input formControlName="logo" type="file" size="20" (change)="uploadimg($event)" >
+                        
+                    </div>
+                    
+                </div>
+            </div> 
+        </div>
+
+        <div >
+           
+
+            <div class="details family">
+               
+
+                <div class="buttons">
+                
+                    <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
+                        <span class="btnText"> <img *ngIf="loading===true" src="assets/img/Spinner-1s-200px (2).svg" width="40px" alt=""> Publier</span>
+                    </button>
+                </div>
+                
+            </div> 
+        </div>
+    </form>
+</div>
+</div>
+<app-footer></app-footer>
