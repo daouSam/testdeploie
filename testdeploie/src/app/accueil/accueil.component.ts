@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MessageService } from 'primeng/api';
 
 
-
-
-interface Rating {
-  id: number;
-  stars: number;
-}
 interface OffreEmploi {
   id: number;
   nomOffre: string;
@@ -20,8 +12,7 @@ interface OffreEmploi {
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.scss'],
-  providers: [MessageService]
+  styleUrls: ['./accueil.component.scss']
 })
 
 export class AccueilComponent implements OnInit {
@@ -51,8 +42,8 @@ export class AccueilComponent implements OnInit {
   ra :any
   currentImage: string = 'assets/img/Group 15.png';
   constructor(private fb: FormBuilder,private service : ServiceService,
-    private messageService: MessageService) { }
-    
+    ) { }
+
   transform(value: any, ...args: any[]) {
     throw new Error('Method not implemented.');
   }
@@ -77,8 +68,8 @@ export class AccueilComponent implements OnInit {
   }
 
   showSuccess() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-}
+    alert('en cours succès alert')
+ }
   startCarousel() {
     let index = 0;
     setInterval(() => {
