@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from '../service.service';
 import { NgForm } from '@angular/forms';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -13,15 +14,18 @@ export class HeaderComponent implements OnInit {
   texts: string[] = ['Barragnini', 'Warrignini'];
   currentText: string = '';
   title = "D'Coders Angular Tutorials";
-  isLoading = false;
-  
+  isLoading = false;  
   user: any;
   loginData: any;
   role: any;
   donne: any;
   user1 :any | null
   prendre : any
-constructor(private service : ServiceService,private router: Router,) { }
+
+constructor(
+  private service : ServiceService,
+  private router: Router,
+  protected _notificationSvc: NotificationService) { }
 
   ngOnInit(): void {
     this.currentText=this.texts[1]
@@ -40,18 +44,18 @@ constructor(private service : ServiceService,private router: Router,) { }
  
   connexion(form: NgForm){
     if(form.status=="INVALID"){
-      this.service.presentToastError("merci de renseigner tous les champs")
+      this._notificationSvc.error('Erreur','merci de renseigner tous les champs !')
     }else{
-    this.service.login(form.value).subscribe({
-      next : (user)=>{
-        sessionStorage.setItem('isLogin', JSON.stringify(user));
+      this.service.login(form.value).subscribe({
+        next : (user)=>{
+          sessionStorage.setItem('isLogin', JSON.stringify(user));
           sessionStorage.setItem('TOKEN', JSON.stringify(user.accessToken));
           location.replace("/accueil");
-      }, error: (error: any) => {
-        if (error.status === 0) {
-          this.service.presentToastError("Impossible de se connecter au server, veuillez réessayer plus tard");
+        }, error: (error: any) => {
+          if (error.status === 0) {
+          this._notificationSvc.error('Erreur','Impossible de se connecter au server, veuillez réessayer plus tard !')
         } else {
-          this.service.presentToastError(error?.error?.message);
+          this._notificationSvc.error('Erreur',`${error?.error?.message} !`)
         }
       }
     

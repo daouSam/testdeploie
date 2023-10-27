@@ -3,6 +3,7 @@ import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
+import { NotificationService } from '../notifications/notification.service';
 declare var tinymce: any;
 @Component({
   selector: 'app-ajoutaff',
@@ -20,8 +21,11 @@ export class AjoutaffComponent implements OnInit {
   public imgfile : any = File;
   listCategorie: any;
   path : any
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage) { }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    protected _notificationSvc: NotificationService) { }
     fields: any[] = []; // Tableau pour stocker les champs
 
   
@@ -66,8 +70,8 @@ export class AjoutaffComponent implements OnInit {
     if (this.imgfile.type !== undefined && this.imgfile.type.startsWith('image/')) {
     }else{
       this.imgfile = undefined;
-      this.service.presentToastError("Erreur :  Le fichier photo doit être une image.")
-      }
+      this._notificationSvc.error("Erreur","Le fichier photo doit être une image.")
+    }
   }
 
   async uploadSave(file1: any){
@@ -103,27 +107,27 @@ export class AjoutaffComponent implements OnInit {
           fg.value.path = this.path
         this.service.addAffaire(fg.value).subscribe((data)=>{
           if(data){
-            this.service.presentToast("Entreprise ajouter avec succès")
+            this._notificationSvc.success("succès","Entreprise ajouter avec succès")
             location.replace("/ajoutaffaire")
             this.loading =false
-        }else{ 
-          this.loading =false
-        }
+          }else{ 
+            this.loading =false
+          }
         }, err => {
-          this.service.presentToastError(err.error.message);
+          this._notificationSvc.error("Erreur",`${err.error.message} !`)
           this.loading =false
         })
       }, err => {
-        this.service.presentToastError("Erreur image")
+        this._notificationSvc.error("Erreur","Erreur image")
         this.loading =false
       }
       )
     }else{
-      this.service.presentToastError("merci de vous connecter")
+      this._notificationSvc.error("Erreur","merci de vous connecter !")
       this.loading =false
     }
-    }else{
-      this.service.presentToastError("merci de renseigner les champs obligatoire")
+  }else{
+      this._notificationSvc.error("Erreur","merci de renseigner les champs obligatoire !")
       this.loading =false
     }
 

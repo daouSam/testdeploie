@@ -44,13 +44,16 @@ import { DetailaffComponent } from './detailaff/detailaff.component';
 import { DetailannComponent } from './detailann/detailann.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SlideComponent } from './slide/slide.component';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CarousselComponent } from './caroussel/caroussel.component';
+import { MatToolbarModule} from "@angular/material/toolbar";
+import { MatButtonModule} from "@angular/material/button";
+import { MatIconModule} from "@angular/material/icon";
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NotificationService } from './notifications/notification.service';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
-// import { ButtonModule } from 'primeng/button';
-// import { ToastModule } from 'primeng/toast';
 const storage: any | null = sessionStorage.getItem('TOKEN');
 const accessToken = JSON.parse(storage);
 const authToken = accessToken;
@@ -93,18 +96,16 @@ const authToken = accessToken;
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    // ToastModule,
     ReactiveFormsModule,
     CarouselModule.forRoot(),
-    // ButtonModule,
-    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
-    SweetAlert2Module.forRoot(),
+    SimpleNotificationsModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
@@ -112,9 +113,13 @@ const authToken = accessToken;
         }
       }
     }),
-
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
+    NotificationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

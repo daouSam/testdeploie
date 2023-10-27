@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-updateappel',
@@ -21,8 +22,12 @@ export class UpdateappelComponent implements OnInit {
   path : any
   listCategorieAppel: any;
   listoffre: any;
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage,private route: ActivatedRoute) { }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    private route: ActivatedRoute,
+    protected _notificationSvc: NotificationService) { }
 
   ngOnInit(): void {
    this.GetCategorieAppel()
@@ -84,15 +89,15 @@ export class UpdateappelComponent implements OnInit {
       this.listoffre.logo=this.stringl
     this.service.UpdateAppelOffre(this.listoffre.id,this.listoffre).subscribe((data)=>{
        if(data){
-        this.service.presentToast("Appel offres modifier avec succès")       
-       }
+        this._notificationSvc.success("succès","Appel offres modifier avec succès")       
+      }
     }, err => {
-      this.service.presentToastError(err.error.message);
+      this._notificationSvc.error("Erreur",`${err.error.message}`)
     })
     
   })
-    } else{
-      this.service.presentToastError("merci de renseigner les champs obligatoire")
+} else{
+      this._notificationSvc.error("Erreur","merci de renseigner les champs obligatoire")
     }
   }
   get registerFormControl() {

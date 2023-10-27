@@ -3,6 +3,7 @@ import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NotificationService } from '../notifications/notification.service';
 declare var tinymce: any;
 
 @Component({
@@ -28,8 +29,12 @@ export class FormulaireComponent implements OnInit {
   donne: any;
   minDate: string;
   user1 :any | null
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage) {this.minDate = new Date().toISOString().split('T')[0]; }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    protected _notificationSvc: NotificationService
+    ) {this.minDate = new Date().toISOString().split('T')[0]; }
 
   ngOnInit(): void {
     tinymce.init({
@@ -119,22 +124,22 @@ export class FormulaireComponent implements OnInit {
         this.service.addOffreEmploi(fg.value).subscribe((data)=>{
           if(data){           
            this.loading=false
-            this.service.presentToast("Offre ajouter avec succès")
+            this._notificationSvc.success("succès","Offre ajouter avec succès !")
             location.replace("/formulaire")
-        }else{
- 
-        }
+          }else{
+            
+          }
         }, err => {
-          this.service.presentToastError(err.error.message);
+          this._notificationSvc.error("Erreur", `${err.error.message} !`)
           this.loading=false
         })
       }, err => {
-        this.service.presentToastError("Erreur image")
+        this._notificationSvc.error("Erreur", "Erreur image !")
         this.loading=false
       }
       )
     }else{
-      this.service.presentToastError("merci de renseigner les champs obligatoire")
+      this._notificationSvc.error("Erreur", "merci de renseigner les champs obligatoire !")
       this.loading=false
     }
   }

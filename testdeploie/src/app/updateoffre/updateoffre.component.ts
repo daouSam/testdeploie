@@ -3,6 +3,7 @@ import { ServiceService } from '../service.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-updateoffre',
@@ -20,8 +21,12 @@ export class UpdateoffreComponent implements OnInit {
   listCategorie: any;
   listoffre: any;
   path :any
-  constructor(private service : ServiceService,private router: Router,
-    private storage: AngularFireStorage,public formBuilder: FormBuilder,private route: ActivatedRoute) { }
+  constructor(
+    private service : ServiceService,
+    private storage: AngularFireStorage,
+    public formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    protected _notificationSvc: NotificationService) { }
 
 
   ngOnInit(): void {
@@ -88,15 +93,15 @@ export class UpdateoffreComponent implements OnInit {
       this.listoffre.logo=this.stringl
     this.service.UpdateOffreEmploi(this.listoffre.id,this.listoffre).subscribe((data)=>{
        if(data){
-        this.service.presentToast("offre d'emploi modifier avec succès")        
-       }
+        this._notificationSvc.success("succès","offre d'emploi modifier avec succès !")        
+      }
     })
     
   })
-  }else{
-    this.service.presentToastError("merci de renseigner les champs obligatoire")
+}else{
+    this._notificationSvc.error("Erreur","merci de renseigner les champs obligatoire !")        
   }
-  }
+}
   GetCategorie(){
     this.service.getCategorie().subscribe((data)=>{
       this.listCategorie=data

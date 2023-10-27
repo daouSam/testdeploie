@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,8 +15,11 @@ export class ContactComponent implements OnInit {
   loading : boolean=false
   formgroup: any;
   submitted: boolean=false;
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage) { }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    protected _notificationSvc: NotificationService
+    ) { }
 
     ngOnInit(): void {
  
@@ -50,17 +52,17 @@ export class ContactComponent implements OnInit {
       this.loading = true
         if (this.formgroup.get('objet').valid && this.formgroup.get('email').valid && this.formgroup.get('body').valid 
         && this.formgroup.get('nom').valid ) {        
-          this.service.Contacter(fg.value).subscribe((data)=>{            
-              this.service.presentToast("Message envoyer avec succès")
-              fg.reset()
-              this.loading=false
+          this.service.Contacter(fg.value).subscribe((data)=>{  
+            this._notificationSvc.success('succès','Message envoyer avec succès !')          
+            fg.reset()
+            this.loading=false
           }, err => {
-            this.service.presentToastError("erreur de connexion");
+            this._notificationSvc.error('Erreur','erreur de connexion !')          
             this.loading=false
           })
-       
-      }else{
-        this.service.presentToastError("merci de renseigner les champs obligatoire")
+          
+        }else{
+        this._notificationSvc.error('Erreur','merci de renseigner les champs obligatoire !')
         this.loading=false
       }
     }

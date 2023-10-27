@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NotificationService } from '../notifications/notification.service';
 declare var tinymce: any;
 @Component({
   selector: 'app-ajoutappel',
@@ -21,8 +21,12 @@ export class AjoutappelComponent implements OnInit {
   listCategorie: any;
   path : any
   minDate: string;
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage) {this.minDate = new Date().toISOString().split('T')[0]; }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    protected _notificationSvc: NotificationService
+    ) {this.minDate = new Date().toISOString().split('T')[0]; }
     fields: any[] = []; // Tableau pour stocker les champs
 
   
@@ -43,9 +47,6 @@ export class AjoutappelComponent implements OnInit {
       console.log(this.loginData)
     }
    this.id=this.loginData?.id;
-  //   if(localStorage["loginStatus"]){
-  //     this.loginStatus=JSON.parse(localStorage["loginStatus"]);
-  //   }
     this.formgroup = this.formBuilder.group({
 
       titre: ['', [Validators.required,]],
@@ -58,9 +59,7 @@ export class AjoutappelComponent implements OnInit {
       site: ['',[Validators.pattern('^(https?|ftp):\\/\\/[\\w\\d.-]+\\.[a-zA-Z]{2,}(\\S*)$')] ],
       telephone: ['', [Validators.required,]],
       categorieAppel: ['', [Validators.required,]],
-      logo: ['', Validators.required],
-      //confirmPassword: ['', Validators.required],
-      //acceptTerms: [false, Validators.requiredTrue] //Checkbox For accept conditions 
+      logo: ['', Validators.required]
   },);
   this.formgroup.patchValue({
     courrier: this.user?.email
@@ -68,7 +67,7 @@ export class AjoutappelComponent implements OnInit {
   }
   
   moi(){
-    console.log("moi")
+
   }
 
   async uploadimg(event: any){
@@ -80,8 +79,6 @@ export class AjoutappelComponent implements OnInit {
       this.path = `appelOffre/${file1.name}`
       const uploadTask = await this.storage.upload(this.path, file1)
        this.stringl = await uploadTask.ref.getDownloadURL()
-      // this.gerant.photo = stringl
-      // console.log(this.gerant.photo);
     }
   }
   get registerFormControl() {
@@ -96,16 +93,11 @@ export class AjoutappelComponent implements OnInit {
        const descriptionValue = descriptionEditor.getContent(); // Contenu HTML complet
        this.formgroup.get('description').setValue(descriptionValue.trim());
     }
-    console.log(this.formgroup)
-    // if (this.formgroup.valid) {
     
     fg.value.utilisateur={
       "id": this.id,
  
     };
-      // fg.value.categorieAppel={
-      //   "id": fg.value['categorieAppel'], 
-      // }
       if (this.formgroup.get('titre').valid && this.formgroup.get('ville').valid && this.formgroup.get('courrier').valid 
       && this.formgroup.get('description').valid && this.formgroup.get('nomPersonne').valid && this.formgroup.get('dateLimite').valid 
       && this.formgroup.get('nomEntreprise').valid && this.formgroup.get('telephone').valid && this.formgroup.get('categorieAppel').valid
@@ -119,41 +111,35 @@ export class AjoutappelComponent implements OnInit {
           if(data){
             console.log("bien")
             this.loading=false
-            this.service.presentToast("Offre ajouter avec succès")
+            this._notificationSvc.success("succès","Offre ajouter avec succès")
             location.replace("/Ajoutappel")
-        }else{
-          console.log("probleme image") 
-          this.loading=false
-        }
+          }else{
+            console.log("probleme image") 
+            this.loading=false
+          }
         }, err => {
-          // this.errorMessage = err.error.message
-          // console.log("Selectionné une image")
-          this.service.presentToastError(err.error.message);
+          this._notificationSvc.error("Erreur",`${err.error.message} !`)
           this.loading=false
         })
       }, err => {
-        // this.errorMessage = err.error.message
-        console.log("Erreur image")
-        this.service.presentToastError("Erreur image")
+        this._notificationSvc.error("Erreur","Erreur image")
         this.loading=false
-        // this.toast.error("Selectionné une image");
       }
       )
     }else{
-      this.service.presentToastError("merci de vous connecter")
+      this._notificationSvc.error("Erreur","merci de vous connecter")
       this.loading=false
     }
-    }else{
-      this.service.presentToastError("merci de renseigner les champs obligatoire")
+  }else{
+      this._notificationSvc.error("Erreur","merci de renseigner les champs obligatoire")
       this.loading=false
     }
-  // }
+
   }
 
   GetCategorie(){
     this.service.getCategorieAppel().subscribe((data)=>{
       this.listCategorie=data
-      console.log(this.listCategorie)
     })
   }
 }

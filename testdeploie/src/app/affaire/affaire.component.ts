@@ -70,8 +70,6 @@ export class AffaireComponent implements OnInit {
      })
    }
    
- 
-   
  }
 
  GetCategorie(){

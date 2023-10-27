@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   private user: any;
   title = "D'Coders Angular Tutorials";
   isLoading = false;
-  constructor(private service : ServiceService,private router: Router,) { }
+  constructor(
+    private service : ServiceService,
+    private router: Router,
+    protected _notificationSvc: NotificationService) { }
 
   ngOnInit(): void {
     const user: any | null = sessionStorage.getItem('isLogin');
@@ -24,19 +28,20 @@ export class LoginComponent implements OnInit {
   }
 
   connexion(form: NgForm){
+    this._notificationSvc.error("Erreur","merci de renseigner tous les champs")
     if(form.status=="INVALID"){
-      this.service.presentToastError("merci de renseigner tous les champs")
+      this._notificationSvc.error("Erreur","merci de renseigner tous les champs")
     }else{
-    this.service.login(form.value).subscribe({
-      next : (user)=>{
-        sessionStorage.setItem('isLogin', JSON.stringify(user));
+      this.service.login(form.value).subscribe({
+        next : (user)=>{
+          sessionStorage.setItem('isLogin', JSON.stringify(user));
           sessionStorage.setItem('TOKEN', JSON.stringify(user.accessToken));
           location.replace("/accueil");
-      }, error: (error: any) => {
-        if (error.status === 0) {
-          this.service.presentToastError("Impossible de se connecter au server, veuillez réessayer plus tard");
+        }, error: (error: any) => {
+          if (error.status === 0) {
+          this._notificationSvc.error("Erreur","Impossible de se connecter au server, veuillez réessayer plus tard")
         } else {
-          this.service.presentToastError(error?.error?.message);
+          this._notificationSvc.error("Erreur", `${error?.error?.message}`)
         }
       }
     

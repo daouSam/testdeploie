@@ -17,12 +17,6 @@ export class ServiceService {
 
   constructor(private http : HttpClient) { }
   
-  presentToast(message: any){
-    alert('en cours ...')
-  }
-  presentToastError(message: any){
-      alert('en cours ...')
-  }
 
   public login(user: any): Observable<any> {
     return this.http.post(this.apiAuth+"authentication", user);
@@ -240,13 +234,13 @@ ConfirmerAppelOffreToTrue(id :any){
   }
   ConfirmerAnnonceToTrue(id :any){
     return this.http.delete(this.url +"confirmeAnnonceToTrue/"+id);
-}
-confirmerAffaire(id :any){
-  return this.http.delete(this.url +"confirmeAffaireToTrue/"+id);
-}
-getAllUtilisateur(){
-  return this.http.get(this.url+"AllUtilisateur");
-}
+  }
+  confirmerAffaire(id :any){
+    return this.http.delete(this.url +"confirmeAffaireToTrue/"+id);
+  }
+  getAllUtilisateur(){
+    return this.http.get(this.url+"AllUtilisateur");
+  }
 addRating(productId: number, stars: number) {
     const ratingData = { stars }; // Créez un objet avec les données de l'évaluation
     return this.http.post(this.url +"user/ratings/"+productId,ratingData);
@@ -254,20 +248,20 @@ addRating(productId: number, stars: number) {
 
   updateProductRating(productId: number, userRating: number): Observable<any> {
     return this.http.post(this.url +"user/"+productId+"/ratings",userRating);
-}
-calculateAverageRating(idOffre : any){
-  return this.http.get(this.url +"user/"+idOffre+"/average-rating");
-}
-submitEvaluation(offreEmploiId: number, rating: any) {
-  return this.http.post(this.url +"user/"+offreEmploiId+"/evaluations",rating);
-}
-addEvaluationAppelOffre(appelOffreId: number, rating: any) {
-  return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAppelOffre",rating);
-}
-addEvaluationAffaire(appelOffreId: number, rating: any) {
-  return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAffaire",rating);
-}
-addEvaluationAnnonce(appelOffreId: number, rating: any) {
-  return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAnnonce",rating);
-}
+  }
+  calculateAverageRating(idOffre : any){
+    return this.http.get(this.url +"user/"+idOffre+"/average-rating");
+  }
+  submitEvaluation(offreEmploiId: number, rating: any) {
+    return this.http.post(this.url +"user/"+offreEmploiId+"/evaluations",rating);
+  }
+  addEvaluationAppelOffre(appelOffreId: number, rating: any) {
+    return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAppelOffre",rating);
+  }
+  addEvaluationAffaire(appelOffreId: number, rating: any) {
+    return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAffaire",rating);
+  }
+  addEvaluationAnnonce(appelOffreId: number, rating: any) {
+    return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAnnonce",rating);
+  }
 }

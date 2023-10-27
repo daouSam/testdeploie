@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NotificationService } from '../notifications/notification.service';
 
 
 interface OffreEmploi {
@@ -41,7 +42,9 @@ export class AccueilComponent implements OnInit {
   images: string[] = ['assets/img/OFFRES-EMPLOI.jpg','assets/img/Group 15.png'];
   ra :any
   currentImage: string = 'assets/img/Group 15.png';
-  constructor(private fb: FormBuilder,private service : ServiceService,
+  constructor(private fb: FormBuilder,
+    private service : ServiceService,
+    protected _notificationSvc: NotificationService
     ) { }
 
   transform(value: any, ...args: any[]) {
@@ -188,16 +191,17 @@ addRatingAppelOffre(appelOffreId: number) {
     this.service.addEvaluationAppelOffre(appelOffreId, newRating).subscribe({
       next: (response) => {
         this.AllAppelOffre()
-        this.service.presentToast("c'est noté")
+        this._notificationSvc.success("succès","c'est noté !")
         this.selectedStarsAppelOffre = 0; // Réinitialiser à "0" après l'ajout
       },
       error: (error) => {
-        this.service.presentToastError("Erreur de notation")
+        this._notificationSvc.error("échec","Erreur de notation !")
       }
     });
   }
 }
-// fo(){
-//   this.service.toast("bien");
-// }
+succes(){
+  this._notificationSvc.error("échec","Erreur de notation !")
+}
+
 }

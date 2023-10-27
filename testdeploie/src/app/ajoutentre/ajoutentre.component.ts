@@ -3,6 +3,7 @@ import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NotificationService } from '../notifications/notification.service';
 declare var tinymce: any;
 @Component({
   selector: 'app-ajoutentre',
@@ -20,8 +21,11 @@ export class AjoutentreComponent implements OnInit {
   public imgfile : any = File;
   listCategorie: any;
   path : any
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage) { }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    protected _notificationSvc: NotificationService) { }
     fields: any[] = []; // Tableau pour stocker les champs
   ngOnInit(): void {
     tinymce.init({
@@ -66,21 +70,21 @@ export class AjoutentreComponent implements OnInit {
     if (this.imgfile.type !== undefined && this.imgfile.type.startsWith('image/')) {
     }else{
       this.imgfile = undefined;
-      this.service.presentToastError("Erreur :  Le fichier photo doit être une image.")
-      }
+      this._notificationSvc.error("Erreur","Le fichier photo doit être une image !")
+    }
   }
-
+  
   async uploadSave(file1: any){
     if(file1){
       this.path = `entreprise/${file1.name}`
       const uploadTask = await this.storage.upload(this.path, file1)
-       this.stringl = await uploadTask.ref.getDownloadURL()
+      this.stringl = await uploadTask.ref.getDownloadURL()
     }
   }
   get registerFormControl() {
     return this.formgroup.controls;
   }
-
+  
   ajouterOffre(fg : FormGroup){
     this.loading=true
     this.submitted=true;
@@ -93,37 +97,37 @@ export class AjoutentreComponent implements OnInit {
       "id": this.id,
      
     };
-      if (this.formgroup.get('nom').valid && this.formgroup.get('ville').valid && this.formgroup.get('email').valid && this.formgroup.get('adresse').valid
-      && this.formgroup.get('contenu').valid && this.formgroup.get('personneContact').valid && this.formgroup.get('numeroFax').valid 
-      && this.formgroup.get('facebook').valid && this.formgroup.get('telephone').valid && this.formgroup.get('categorieEntreprise').valid
-      && this.formgroup.get('site').valid && this.formgroup.get('linkdin').valid ) {
-        if(this.user !== null){
+    if (this.formgroup.get('nom').valid && this.formgroup.get('ville').valid && this.formgroup.get('email').valid && this.formgroup.get('adresse').valid
+    && this.formgroup.get('contenu').valid && this.formgroup.get('personneContact').valid && this.formgroup.get('numeroFax').valid 
+    && this.formgroup.get('facebook').valid && this.formgroup.get('telephone').valid && this.formgroup.get('categorieEntreprise').valid
+    && this.formgroup.get('site').valid && this.formgroup.get('linkdin').valid ) {
+      if(this.user !== null){
       this.uploadSave(this.imgfile).then(() =>{
-          fg.value.logo = this.stringl
-          fg.value.path = this.path
+        fg.value.logo = this.stringl
+        fg.value.path = this.path
         this.service.addEntreprise(fg.value).subscribe((data)=>{
           if(data){
-            this.service.presentToast("Entreprise ajouter avec succès")
+            this._notificationSvc.success("succès","Entreprise ajouter avec succès !")
             location.replace("/ajoutEntre")
             this.loading=false
-        }else{ 
-          this.loading=false
-        }
+          }else{ 
+            this.loading=false
+          }
         }, err => {
-          this.service.presentToastError(err.error.message);
+          this._notificationSvc.error("Erreur",`${err.error.message} !`)
           this.loading=false
         })
       }, err => {
-        this.service.presentToastError("Erreur image")
+        this._notificationSvc.error("Erreur","Erreur image !")
         this.loading=false
       }
       )
     }else{
-      this.service.presentToastError("merci de vous connecter")
+      this._notificationSvc.error("Erreur","merci de vous connecter !")
       this.loading=false
     }
-    }else{
-      this.service.presentToastError("merci de renseigner les champs obligatoire")
+  }else{
+      this._notificationSvc.error("Erreur","merci de renseigner les champs obligatoire !")
       this.loading=false
     }
   }

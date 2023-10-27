@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-inscription',
@@ -18,7 +19,10 @@ export class InscriptionComponent implements OnInit {
   form: any;
   cand : any ="assets/img/utilisateur (1).png"
   empl: any ="assets/img/job-promotion (1).png"
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router) { }
+  constructor(
+    private service : ServiceService,
+    public formBuilder: FormBuilder,
+    protected _notificationSvc: NotificationService) { }
 
   ngOnInit(): void {
 
@@ -52,14 +56,14 @@ export class InscriptionComponent implements OnInit {
  
     this.service.addUtilisateur(fg.value).subscribe((data)=>{
       if(data){        
-        this.service.presentToast("Inscription effectuer avec succès");
+        this._notificationSvc.success("succès","Inscription effectuer avec succès");
         location.replace("/inscription");
       }
     }, err => {
-      this.service.presentToastError(err.error.message);
+      this._notificationSvc.error("Erreur",`${err.error.message} !`);
     })
-    }else{
-      this.service.presentToastError("merci de renseigner tous les champs")
+  }else{
+      this._notificationSvc.error("Erreur","merci de renseigner tous les champs");
     }
   }
   

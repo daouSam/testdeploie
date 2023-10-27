@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServiceService } from '../service.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NotificationService } from '../notifications/notification.service';
 declare var tinymce: any;
 @Component({
   selector: 'app-ajout-cv',
@@ -24,8 +25,13 @@ export class AjoutCVComponent implements OnInit {
   cvFile :any
   minDate: string;
   loading : boolean=false
-  constructor(private service : ServiceService,public formBuilder: FormBuilder,private router: Router,
-    private storage: AngularFireStorage) { this.minDate = new Date().toISOString().split('T')[0];}
+  constructor(private service : ServiceService,
+    public formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    protected _notificationSvc: NotificationService) {
+       this.minDate = new Date().toISOString().split('T')[0];
+    }
+
     fields: any[] = []; // Tableau pour stocker les champs
 
   
@@ -43,7 +49,6 @@ export class AjoutCVComponent implements OnInit {
     this.user = JSON.parse(user);
     if(this.user !== null){
       this.loginData=this.user
-      console.log(this.loginData)
     }
    this.id=this.loginData?.id;
     this.formgroup = this.formBuilder.group({
@@ -75,24 +80,22 @@ export class AjoutCVComponent implements OnInit {
     if (this.imgfile.type !== undefined && this.imgfile.type.startsWith('image/')) {
     }else{
       this.imgfile = undefined;
-      this.service.presentToastError("Erreur :  Le fichier photo doit être une image.")
-      }
+      this._notificationSvc.warning('Attention','Le fichier photo doit être une image !')
+    }
   }
   async uploadFile(event: any){
     this.file = event.target.files[0];
     if (this.file.type === 'application/pdf' || this.file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     } else {
       this.file = undefined;
-      this.service.presentToastError("Erreur : Le fichier doit être au format DOCX ou PDF.")
+      this._notificationSvc.warning('Attention','Le fichier doit être au format DOCX ou PDF !')
     }
   }
   async uploadsaveDoc(file: any) {
-    if (file) {
-    
+    if (file) {    
         this.path = `Documents/${file.name}`;
         const uploadTask = await this.storage.upload(this.path, file);
-        this.cvFile = await uploadTask.ref.getDownloadURL();
-      
+        this.cvFile = await uploadTask.ref.getDownloadURL();      
     }
   }
 
@@ -134,31 +137,31 @@ export class AjoutCVComponent implements OnInit {
         this.service.AddCv(fg.value).subscribe((data)=>{
           if(data){
             this.path=data
-            this.service.presentToast("Offre ajouter avec succès")
+            this._notificationSvc.success('succès','Offre ajouter avec succès !')
             location.replace("/ajoutCV")
             this.loading=false            
             
-        }
+          }
         }, err => {
-          this.service.presentToastError(err.error.message);
+          this._notificationSvc.error('Erreur',`${err.error.message} !`)
           this.loading=false
         })
       }, err => {
-        this.service.presentToastError("Erreur CV")
+        this._notificationSvc.error('Erreur','erreur CV !')
         this.loading=false
       })
-  
-      }, err => {
-        this.service.presentToastError("Erreur image")
+      
+    }, err => {
+        this._notificationSvc.error('Erreur','erreur image !')
         this.loading=false
       }
       )
     }else{
-      this.service.presentToastError("merci de vous connecter")
+      this._notificationSvc.error('Erreur','merci de vous connecter !')
       this.loading=false
     }
-    }else{
-      this.service.presentToastError("merci de renseigner les champs obligatoire")
+  }else{
+      this._notificationSvc.error('Erreur','merci de renseigner les champs obligatoire !')
       this.loading=false
     }
 
