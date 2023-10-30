@@ -22,7 +22,7 @@ export class AffaireadminComponent implements OnInit {
    activeImage : string | undefined
    carousel : any
    p: number = 1;
-   constructor(private service : ServiceService,private sanitizer: DomSanitizer) { }
+   constructor(private service : ServiceService) { }
  
    ngOnInit(): void {
      this.AllAffaire()
@@ -36,9 +36,10 @@ export class AffaireadminComponent implements OnInit {
  AllAffaire(){
    this.service.AllAffaire().subscribe({
      next : (data)=>{
-       this.listAffaire =data
-       this.listAffaireRecent = data
-       
+       this.listAffaire = data
+       this.listAffaire =this.listAffaire.slice().reverse()
+       this.listAffaireRecent = data       
+       this.listAffaireRecent = (this.listAffaireRecent || []).slice().reverse().slice(0, 3)       
      }
    })
  }

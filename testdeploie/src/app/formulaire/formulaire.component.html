@@ -162,7 +162,7 @@
 
                     <div class="input-field">
                         <label>Site <span style="color: rgb(117, 108, 108);">(facultatif)</span></label>
-                        <input type="text" formControlName="site" placeholder="http://"   >
+                        <input type="text" formControlName="site" placeholder="http://">
                         
                         <div *ngIf="formgroup.controls.site.invalid && (formgroup.controls.site.dirty || formgroup.controls.site.touched)"
                         class="text-danger">
@@ -170,14 +170,10 @@
                             <div style="font-size: 12px;" *ngIf="formgroup.controls.site.errors?.['required']">
                                Url site est invalid
                             </div>
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('site').hasError('pattern')"
-                       >
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('site').hasError('pattern')">
                             Le format url est incorrect.
                         </div>
-
-                    </div>
-
-                        
+                    </div>                     
 
                    
                     </div>
@@ -191,8 +187,7 @@
                             <div style="font-size: 12px;" *ngIf="formgroup.controls.urlFacebook.errors?.['required']">
                                Url Facebook est invalid
                             </div>
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('urlFacebook').hasError('pattern')"
-                       >
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('urlFacebook').hasError('pattern')">
                             Le format url est incorrect.
                         </div>
 
@@ -208,8 +203,7 @@
                             <div style="font-size: 12px;" *ngIf="formgroup.controls.urlTwitter.errors?.['required']">
                                Url Twitter est invalid
                             </div>
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('urlTwitter').hasError('pattern')"
-                       >
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('urlTwitter').hasError('pattern')">
                             Le format url est incorrect.
                         </div>
 
@@ -225,8 +219,7 @@
                             <div style="font-size: 12px;" *ngIf="formgroup.controls.urlLinkdin.errors?.['required']">
                                Url LinkedIn est invalid
                             </div>
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('urlLinkdin').hasError('pattern')"
-                       >
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('urlLinkdin').hasError('pattern')">
                             Le format url est incorrect.
                         </div>
 
@@ -239,9 +232,9 @@
                         <div *ngIf="formgroup.controls.logo.invalid && (formgroup.controls.logo.dirty || formgroup.controls.logo.touched) || submitted"
                         class="text-danger">
 
-                            <div style="font-size: 12px;" *ngIf="formgroup.controls.logo.errors?.['required']">
-                               logo est invalid
-                            </div>
+                        <div style="font-size: 12px;" *ngIf="formgroup.controls.logo.errors?.['required']">
+                            logo est invalid
+                        </div>
                          
 
                     </div>
@@ -250,10 +243,10 @@
             </div> 
         </div>
 
-        <div >          
+        <div>          
 
             <div class="details family">        
-                <button  type="submit"   style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
+                <button  type="submit" style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
                      <img *ngIf="loading===true" src="assets/img/Spinner-1s-200px (2).svg" width="40px" alt=""> Publier
                 </button>                    
                

@@ -33,7 +33,6 @@ export class EntreadminComponent implements OnInit {
      this.user = JSON.parse(user);
      if(this.user !== null){
        this.loginData=this.user
-       console.log(this.loginData)
        this.service.EntrepriseByUtilisateur(this.loginData.id).subscribe((data)=>{
           this.list =data
        })
@@ -46,9 +45,8 @@ export class EntreadminComponent implements OnInit {
    this.service.AllEntreprise().subscribe({
      next : (data)=>{
        this.listEntreprise =data
-       this.listOffreRecent =data
-       console.log(this.listEntreprise);
-       
+       this.listEntreprise = this.listEntreprise.slice().reverse()
+       this.listOffreRecent = (this.listOffreRecent || []).slice().reverse().slice(0, 3)       
      }
    })
  }
@@ -62,9 +60,7 @@ export class EntreadminComponent implements OnInit {
    }else{
      this.service.getAllOffreEntrepriseByCategorie(this.selectedCategory).subscribe({
        next :(data)=>{
-         this.listEntreprise  = data
-         console.log(this.listEntreprise);
-         
+         this.listEntreprise  = data         
        }
      })
    }
@@ -74,7 +70,6 @@ export class EntreadminComponent implements OnInit {
  GetCategorie(){
    this.service.getCategorieEntreprise().subscribe((data)=>{
      this.listCategorie=data
-     console.log(this.listCategorie)
    })
  }
  GetCategorieAppel(){
@@ -90,18 +85,18 @@ export class EntreadminComponent implements OnInit {
  }
  DeleteEntreprise(id: any) {
    
-  if(confirm('êtes vous sûr de supprimer ?'))
-  this.service.deleteAppelOffre(id).subscribe((data) => {
-     this.ngOnInit()
-   
+    if(confirm('êtes vous sûr de supprimer ?'))
+    this.service.deleteAppelOffre(id).subscribe((data) => {
+      this.ngOnInit()
+    
+    })
+  }
+  ConfirmerEntrepriseToTrue(id :any){
+  if(confirm('êtes vous sûr de Confirmer ?'))
+  this.service.ConfirmerEntrepriseToTrue(id).subscribe((data)=>{
+    this.ngOnInit()
+    this.AllEntreprise()
   })
-}
-ConfirmerEntrepriseToTrue(id :any){
- if(confirm('êtes vous sûr de Confirmer ?'))
- this.service.ConfirmerEntrepriseToTrue(id).subscribe((data)=>{
-   this.ngOnInit()
-   this.AllEntreprise()
- })
-}
+  }
 
 }

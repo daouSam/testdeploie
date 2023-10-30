@@ -27,7 +27,7 @@
                  
                         
                             <div class="col-12" style="margin-bottom: 10px;">
-                                <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listAffaire?.reverse() | paginate: { itemsPerPage: 5, currentPage: p }">
+                                <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listAffaire | paginate: { itemsPerPage: 5, currentPage: p }">
                                     <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
                                     <div class="col-md-6 mt-1">
                                         <h6 [routerLink]="'/detail/' + item.id"><a  style="color: #39569E;">{{item.opportunite}}</a></h6>
@@ -116,7 +116,7 @@
                     <div class="bg-light py-2 px-4 mb-3">
                         <h3 class="m-0">Recents</h3>
                     </div>
-                    <div class="d-flex mb-3" *ngFor="let item of listAffaireRecent?.slice(-3).reverse()">
+                    <div class="d-flex mb-3" *ngFor="let item of listAffaireRecent">
                         <img [src]="item.logo" style="width: 100px; ">
                         <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
                             <div class="mb-1" style="font-size: 13px;">
@@ -136,10 +136,7 @@
                                 <span>{{item.nom}}</span>
                             </div>
                         </div>
-                    </div>
-                  
-                   
-                    
+                    </div>                    
                  
                 </div>
                 <!-- Popular News End -->
