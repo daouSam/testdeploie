@@ -34,7 +34,9 @@ export class OffreemploiComponent implements OnInit {
    this.service.getAllOffreEmploiConfirmerTrue().subscribe({
      next : (data)=>{
        this.listOffreEmploi =data
+       this.listOffreEmploi = this.listOffreEmploi.slice().reverse()
        this.listOffreRecent = data       
+       this.listOffreRecent = this.listOffreRecent.slice(-3).reverse()       
      }
    })
  }
@@ -43,7 +45,9 @@ export class OffreemploiComponent implements OnInit {
    this.service.getAllAppelOffre().subscribe({
      next : (data)=>{
        this.listAppelOffre =data
+       this.listAppelOffre = this.listAppelOffre.slice().reverse()
        this.listAppelRecent = data
+       this.listAppelRecent = this.listAppelRecent.slice(-3).reverse()
      }
    })
  }
@@ -56,6 +60,7 @@ export class OffreemploiComponent implements OnInit {
      this.service.getAllOffreEmploiByCategorieTrue(this.selectedCategory).subscribe({
        next :(data)=>{
          this.listOffreEmploi  = data         
+         this.listOffreEmploi  = this.listOffreEmploi.slice().reverse()        
        }
      })
    }  
@@ -68,6 +73,7 @@ export class OffreemploiComponent implements OnInit {
      this.service.getAllAppelOffreByCategorie(this.selectedCategoryAppel).subscribe({
        next :(data)=>{
          this.listAppelOffre  = data         
+         this.listAppelOffre  = this.listAppelOffre.slice().reverse()         
        }
      })
    } 
@@ -75,13 +81,15 @@ export class OffreemploiComponent implements OnInit {
  }
  GetCategorie(){
    this.service.getCategorie().subscribe((data)=>{
-     this.listCategorie=data
+     this.listCategorie = data
+     this.listCategorie = this.listCategorie.slice().reverse()
    })
  }
 
  GetCategorieAppel(){
    this.service.getCategorieAppel().subscribe((data)=>{
-     this.listCategorieAppel=data
+     this.listCategorieAppel = data
+     this.listCategorieAppel = this.listCategorieAppel.slice().reverse()
    })
  }
 

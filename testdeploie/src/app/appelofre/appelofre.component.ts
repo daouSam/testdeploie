@@ -36,7 +36,9 @@ export class AppelofreComponent implements OnInit {
    this.service.getAllAppelOffreConfirmerTrue().subscribe({
      next : (data)=>{
        this.listAppelOffre =data
+       this.listAppelOffre =this.listAppelOffre.slice().reverse()
        this.listAppelRecent = data
+       this.listAppelRecent = this.listAppelRecent?.slice(-3).reverse()
      }
    })
  }
@@ -50,6 +52,7 @@ export class AppelofreComponent implements OnInit {
      this.service.getAllAppelOffreByCategorieTrue(this.selectedCategoryAppel).subscribe({
        next :(data)=>{
          this.listAppelOffre  = data         
+         this.listAppelOffre  = this.listAppelOffre.slice().reverse()         
        }
      })
    }
@@ -59,12 +62,14 @@ export class AppelofreComponent implements OnInit {
  }
  GetCategorie(){
    this.service.getCategorie().subscribe((data)=>{
-     this.listCategorie=data
+     this.listCategorie = data
+     this.listCategorie = this.listCategorie.slice().reverse()
    })
  }
  GetCategorieAppel(){
    this.service.getCategorieAppel().subscribe((data)=>{
-     this.listCategorieAppel=data
+     this.listCategorieAppel = data
+     this.listCategorieAppel = this.listCategorieAppel.slice().reverse()
    })
  }
  cleanHtml(html: string): string {
