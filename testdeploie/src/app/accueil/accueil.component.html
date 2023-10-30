@@ -43,7 +43,7 @@
                 <div class="position-relative overflow-hidden" style="height: 80px;">
                     <img class="img-fluid w-100 h-100" src="assets/img/Group 13.png" style="object-fit: cover;">
                     <a href="" class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none" style="font-size: 16px;text-align: center;">
-                        Creer vos compte 
+                        Créer vos compte 
                     </a>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                                     <div class="d-flex flex-row align-items-center">
-                                        <h6 class="text-success mr-1" style="font-size: 14px;">Publier le : {{item.dateCreation}}</h6>
+                                        <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{item.dateCreation}}</h6>
                                     </div>
                                     <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6>
                                     <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" style="font-weight: bold;" type="button">{{item.typeOffre}}</button><button class="btn btn-outline-primary btn-sm mt-2" type="button">Date de limite : <br> {{item.dateLimite}}</button></div>
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                                     <div class="d-flex flex-row align-items-center">
-                                        <h6 class="text-success mr-1" style="font-size: 14px;">Publier le : {{item.dateCreation}}</h6>
+                                        <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{item.dateCreation}}</h6>
                                     </div>
                                     <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6>
                                     <div class="d-flex flex-column mt-4">
@@ -221,7 +221,12 @@
                                 <span class="px-1">/</span>
                                 <span>le {{item.dateCreation}}</span>
                             </div>
-                            <a class="h6 m-0" href="" style="font-size: 13px;">{{item.nomOffre}}</a>
+                            <a class="h6 m-0" href="" style="font-size: 13px;
+                                width: 12rem;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            ">{{item.nomOffre}}</a>
                             <div class="mb-1" style="font-size: 13px;">
                                 <a href="">Postuler avant le </a>
                                 <span class="px-1">/</span>
@@ -242,7 +247,12 @@
                                 <span class="px-1">/</span>
                                 <span>{{item.dateCreation}}</span>
                             </div>
-                            <a class="h6 m-0" href="" style="font-size: 13px;">{{item.titre}}</a>
+                            <a class="h6 m-0" href="" style="font-size: 13px;
+                                width: 12rem;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            ">{{item.titre}}</a>
                             <div class="mb-1" style="font-size: 13px;">
                                 <a href="">Postuler avant le </a>
                                 <span class="px-1">/</span>
