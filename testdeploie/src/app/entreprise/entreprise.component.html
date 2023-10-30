@@ -20,7 +20,7 @@
                     <div class="col-12">                        
                         <div class="row" style="margin-bottom: 10px;">
                             <img style="display: block; margin: auto;" *ngIf="!listEntreprise" src="assets/img/Spinner-1s-287px.svg" alt="">
-                            <div class="col-xl-6 col-md-6" *ngFor="let item of listEntreprise?.reverse() | paginate: { itemsPerPage: 4, currentPage: p }">
+                            <div class="col-xl-6 col-md-6" *ngFor="let item of listEntreprise | paginate: { itemsPerPage: 4, currentPage: p }">
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="row align-items-center justify-content-center">

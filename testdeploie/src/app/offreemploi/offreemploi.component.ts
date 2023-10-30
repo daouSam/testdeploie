@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-offreemploi',
@@ -20,7 +19,7 @@ export class OffreemploiComponent implements OnInit {
    listOffreRecent: any;
    listAppelRecent: any;
    p: number = 1;
-   constructor(private service : ServiceService,private sanitizer: DomSanitizer) { }
+   constructor(private service : ServiceService) { }
  
    ngOnInit(): void {
      this.AllOffreEmploi()
@@ -33,10 +32,10 @@ export class OffreemploiComponent implements OnInit {
  AllOffreEmploi(){
    this.service.getAllOffreEmploiConfirmerTrue().subscribe({
      next : (data)=>{
-       this.listOffreEmploi =data
+       this.listOffreEmploi = data
        this.listOffreEmploi = this.listOffreEmploi.slice().reverse()
        this.listOffreRecent = data       
-       this.listOffreRecent = this.listOffreRecent.slice(-3).reverse()       
+       this.listOffreRecent = (this.listOffreRecent || []).slice().reverse().slice(0, 3);       
      }
    })
  }
@@ -44,17 +43,17 @@ export class OffreemploiComponent implements OnInit {
  AllAppelOffre(){
    this.service.getAllAppelOffre().subscribe({
      next : (data)=>{
-       this.listAppelOffre =data
+       this.listAppelOffre = data
        this.listAppelOffre = this.listAppelOffre.slice().reverse()
        this.listAppelRecent = data
-       this.listAppelRecent = this.listAppelRecent.slice(-3).reverse()
+       this.listAppelRecent = (this.listAppelRecent || []).slice().reverse().slice(0, 3);
      }
    })
  }
  
  onCategoryChange(event: any) {
    this.selectedCategory = event.target.value;
-   if(this.selectedCategory==this.tout){
+   if(this.selectedCategory == this.tout){
      this.AllOffreEmploi();
    }else{
      this.service.getAllOffreEmploiByCategorieTrue(this.selectedCategory).subscribe({
@@ -67,7 +66,7 @@ export class OffreemploiComponent implements OnInit {
  }
  onCategoryAppelChange(event: any) {
    this.selectedCategoryAppel = event.target.value;
-   if(this.selectedCategoryAppel==this.tout){
+   if(this.selectedCategoryAppel == this.tout){
      this.AllAppelOffre();
    }else{
      this.service.getAllAppelOffreByCategorie(this.selectedCategoryAppel).subscribe({
@@ -80,7 +79,7 @@ export class OffreemploiComponent implements OnInit {
    
  }
  GetCategorie(){
-   this.service.getCategorie().subscribe((data)=>{
+   this.service.getCategorie().subscribe((data) =>{
      this.listCategorie = data
      this.listCategorie = this.listCategorie.slice().reverse()
    })

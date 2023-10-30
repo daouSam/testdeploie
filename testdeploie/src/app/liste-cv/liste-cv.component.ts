@@ -65,7 +65,8 @@ export class ListeCVComponent implements OnInit {
    }else{
      this.service.getCvByCategorieTrue(this.selectedCategory).subscribe({
        next :(data)=>{
-         this.listCv  = data         
+         this.listCv  = data       
+         this.listCv  = this.listCv.slice().reverse()       
        }
      })
    }

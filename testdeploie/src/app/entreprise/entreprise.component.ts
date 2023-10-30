@@ -44,7 +44,8 @@ export class EntrepriseComponent implements OnInit {
  AllEntreprise(){
    this.service.AllEntrepriseByConfirmerTrue().subscribe({
      next : (data)=>{
-       this.listEntreprise =data       
+       this.listEntreprise = data       
+       this.listEntreprise = this.listEntreprise.slice().reverse()       
      }
    })
  }

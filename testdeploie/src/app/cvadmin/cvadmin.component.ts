@@ -33,6 +33,7 @@ export class CvadminComponent implements OnInit {
        this.loginData=this.user
        this.service.CVByUtilisateur(this.loginData.id).subscribe((data)=>{
           this.list =data          
+          this.listCv =this.listCv.slice().reverse()
        })
      }
    } 
@@ -41,20 +42,23 @@ export class CvadminComponent implements OnInit {
    this.service.AllCv().subscribe({
      next : (data)=>{
        this.listCv =data
-       this.listOffreRecent =data;       
-     }
-   })
- }
-
- 
- onCategoryChange(event: any) {
-   this.selectedCategory = event.target.value;
-   if(this.selectedCategory==this.tout){
-     this.AllCV();
-   }else{
-     this.service.getCvByCategorie(this.selectedCategory).subscribe({
-       next :(data)=>{
-         this.listCv  = data         
+       this.listCv =this.listCv.slice().reverse()
+       this.listOffreRecent = data;       
+       this.listOffreRecent = (this.listOffreRecent || []).slice().reverse().slice(0, 3);;       
+      }
+    })
+  }
+  
+  
+  onCategoryChange(event: any) {
+    this.selectedCategory = event.target.value;
+    if(this.selectedCategory == this.tout){
+      this.AllCV();
+    }else{
+      this.service.getCvByCategorie(this.selectedCategory).subscribe({
+        next :(data) => {
+          this.listCv  = data         
+          this.listCv = this.listCv.slice().reverse()
        }
      })
    } 
@@ -63,12 +67,12 @@ export class CvadminComponent implements OnInit {
 
  GetCategorie(){
    this.service.getCategorie().subscribe((data)=>{
-     this.listCategorie=data
+     this.listCategorie = data
    })
  }
  GetCategorieAppel(){
    this.service.getCategorieAppel().subscribe((data)=>{
-     this.listCategorieAppel=data
+     this.listCategorieAppel = data
    })
  }
  

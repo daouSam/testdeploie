@@ -34,6 +34,7 @@ export class AnnonceComponent implements OnInit {
      next : (data)=>{
        this.listAnnonce =data
        this.listAffaireRecent = data       
+       this.listAffaireRecent = this.listAffaireRecent.slice().reverse()       
      }
    })
  }
@@ -48,6 +49,7 @@ export class AnnonceComponent implements OnInit {
      this.service.getAnnonceByCategorie(this.selectedCategory).subscribe({
        next :(data)=>{
          this.listAnnonce  = data
+         this.listAnnonce  = this.listAnnonce.slice().reverse()
        }
      })
    }
@@ -55,7 +57,8 @@ export class AnnonceComponent implements OnInit {
 
  GetCategorie(){
    this.service.getCategorieAnnonce().subscribe((data)=>{
-     this.listCategorie=data
+     this.listCategorie = data
+     this.listCategorie = this.listCategorie.slice().reverse()
    })
  }
  cleanHtml(html: string): string {

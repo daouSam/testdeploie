@@ -87,7 +87,7 @@ AllOffreEmploi(){
       this.listOffreEmploi = data
       this.listOffreEmploi = this.listOffreEmploi.slice().reverse()
       this.listOffreRecent = data
-      this.listOffreRecent = this.listOffreRecent?.slice(-3).reverse()
+      this.listOffreRecent = (this.listOffreRecent || []).slice().reverse().slice(0, 3);
     }
   })
 }
@@ -98,7 +98,7 @@ AllAppelOffre(){
       this.listAppelOffre =data
       this.listAppelOffre = this.listAppelOffre.slice().reverse()
       this.listAppelRecent = data
-      this.listAppelRecent = this.listAppelRecent?.slice(-3).reverse()
+      this.listAppelRecent = (this.listAppelRecent || []).slice().reverse().slice(0, 3);
     }
   })
 }

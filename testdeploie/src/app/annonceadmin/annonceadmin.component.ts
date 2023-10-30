@@ -20,12 +20,11 @@ export class AnnonceadminComponent implements OnInit {
    listAffaireRecent: any;
    listAppelRecent: any;
    p: number = 1;
-   constructor(private service : ServiceService,private sanitizer: DomSanitizer) { }
+   constructor(private service : ServiceService) { }
  
    ngOnInit(): void {
      this.AllAffaire() 
-     this.GetCategorie()
- 
+     this.GetCategorie() 
    }
    
  
@@ -33,8 +32,10 @@ export class AnnonceadminComponent implements OnInit {
  AllAffaire(){
    this.service.AllAnnonce().subscribe({
      next : (data)=>{
-       this.listAnnonce =data
+       this.listAnnonce = data
+       this.listAnnonce = this.listAnnonce.slice().reverse()
        this.listAffaireRecent = data       
+       this.listAffaireRecent = (this.listAffaireRecent || []).slice().reverse().slice(0, 3);      
      }
    })
  }
@@ -49,6 +50,7 @@ export class AnnonceadminComponent implements OnInit {
      this.service.getAnnonceByCategorie(this.selectedCategory).subscribe({
        next :(data)=>{
          this.listAnnonce  = data
+         this.listAnnonce  = this.listAnnonce.slice().reverse()
        }
      })
    }
@@ -56,7 +58,8 @@ export class AnnonceadminComponent implements OnInit {
 
  GetCategorie(){
    this.service.getCategorieAnnonce().subscribe((data)=>{
-     this.listCategorie=data
+     this.listCategorie = data
+     this.listCategorie = this.listCategorie.slice().reverse()
    })
  }
 

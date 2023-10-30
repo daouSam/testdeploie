@@ -21,7 +21,7 @@
                     
                         <div class="row" style="margin-bottom: 10px;">
                             <img style="display: block; margin: auto;" *ngIf="!listCv" src="assets/img/Spinner-1s-287px.svg" alt="">
-                            <div class="col-xl-4 col-sm-6" *ngFor="let item of listCv?.reverse() | paginate: { itemsPerPage: 6, currentPage: p }">
+                            <div class="col-xl-4 col-sm-6" *ngFor="let item of listCv | paginate: { itemsPerPage: 6, currentPage: p }">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="dropdown float-end">
