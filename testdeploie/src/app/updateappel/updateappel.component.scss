@@ -51,21 +51,7 @@
     background-color: #fff;
     transition: 0.3s ease;
 }
-// .container form .form.second{
-//     opacity: 0;
-//     pointer-events: none;
-//     transform: translateX(100%);
-// }
-// form.secActive .form.second{
-//     opacity: 1;
-//     pointer-events: auto;
-//     transform: translateX(0);
-// }
-// form.secActive .form.first{
-//     opacity: 0;
-//     pointer-events: none;
-//     transform: translateX(-100%);
-// }
+
 .container form .title{
     display: block;
     margin-bottom: 8px;
@@ -96,13 +82,11 @@ form .fields1 .input-field{
     display: flex;
     width: calc(100% / 2 - 15px);
     flex-direction: column;
-    // margin: 4px 0;
 }
 form .fields1 .input-field1{
     display: flex;
     width: calc(100% / 1 - 15px);
     flex-direction: column;
-    // margin: 4px 0;
 }
 .input-field label{
     font-size: 12px;
@@ -158,9 +142,7 @@ form .fields1 .input-field1{
     font-weight: 400;
     color: #000000;
 }
-// form button:hover{
-//     background-color: #265df2;
-// }
+
 form button i,
 form .backBtn i{
     margin: 0 6px;
@@ -179,12 +161,7 @@ form .buttons{
     background: #ED1C24;
     color: #ffffff;
 }
-// .backBtn:hover{
- 
-//     // border: 1px solid #ED1C24;
-//     background: #ED1C24;
-//     color: #f8f8f8;
-// }
+
 button:hover{
     background-color: #ED1C24;
 }
@@ -247,11 +224,9 @@ input[type="file"] {
     form .fields .input-field{
         width: 100%;
     }
-    input[type="file"] {
-  
- 
+    input[type="file"] { 
         font-size: 5px;
-        }
+    }
     form .fields1 .input-field{
         width: 100%;
     }
