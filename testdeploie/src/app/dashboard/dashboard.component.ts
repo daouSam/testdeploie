@@ -49,8 +49,9 @@ export class DashboardComponent implements OnInit {
   AllOffreEmploi(){
     this.service.getAllOffreEmploi().subscribe({
       next : (data)=>{
-        this.listOffreEmploi =data
-        this.listOffreRecent = data        
+        this.listOffreEmploi = data
+        this.listOffreEmploi = this.listOffreEmploi.slice().reserve()
+        this.listOffreRecent = (this.listOffreRecent || []).slice().reverse().slice(0, 3)        
       }
     })
   }
@@ -58,8 +59,9 @@ export class DashboardComponent implements OnInit {
   AllAppelOffre(){
     this.service.getAllAppelOffre().subscribe({
       next : (data)=>{
-        this.listAppelOffre =data
-        this.listAppelRecent = data
+        this.listAppelOffre = data
+        this.listAppelOffre = this.listAppelOffre.slice().reserve()
+        this.listAppelRecent = (this.listAppelRecent || []).slice().reverse().slice(0, 3)
       }
     })
   }
@@ -72,6 +74,7 @@ export class DashboardComponent implements OnInit {
       this.service.getAllOffreEmploiByCategorie(this.selectedCategory).subscribe({
         next :(data)=>{
           this.listOffreEmploi  = data          
+          this.listOffreEmploi  = this.listOffreEmploi.slice().reverse()          
         }
       })
     }
@@ -83,7 +86,8 @@ export class DashboardComponent implements OnInit {
     }else{
       this.service.getAllAppelOffreByCategorie(this.selectedCategoryAppel).subscribe({
         next :(data)=>{
-          this.listAppelOffre  = data          
+          this.listAppelOffre  = data      
+          this.listAppelOffre = this.listAppelOffre.slice().reserve()
         }
       })
     }
