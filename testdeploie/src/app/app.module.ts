@@ -126,7 +126,6 @@ const authToken = accessToken;
       multi: true,
     }
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
