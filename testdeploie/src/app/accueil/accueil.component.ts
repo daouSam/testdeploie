@@ -22,9 +22,9 @@ export class AccueilComponent implements OnInit {
   selectedStars: number =0;
   selectedStarsAppelOffre: number =0;
   loading : boolean=false
- listOffreEmploi : any
- listAppelOffre : any
- selectedCategory: any;
+  listOffreEmploi : any
+  listAppelOffre : any
+  selectedCategory: any;
   listOffreEmploiSelect: any;
   listCategorie: any;
   tout :any ="tout"
@@ -84,8 +84,10 @@ export class AccueilComponent implements OnInit {
 AllOffreEmploi(){
   this.service.getAllOffreEmploiConfirmerTrue().subscribe({
     next : (data)=>{
-      this.listOffreEmploi =data
+      this.listOffreEmploi = data
+      this.listOffreEmploi = this.listOffreEmploi.slice().reverse()
       this.listOffreRecent = data
+      this.listOffreRecent = this.listOffreRecent?.slice(-3).reverse()
     }
   })
 }
@@ -94,7 +96,9 @@ AllAppelOffre(){
   this.service.getAllAppelOffreConfirmerTrue().subscribe({
     next : (data)=>{
       this.listAppelOffre =data
+      this.listAppelOffre = this.listAppelOffre.slice().reverse()
       this.listAppelRecent = data
+      this.listAppelRecent = this.listAppelRecent?.slice(-3).reverse()
     }
   })
 }
@@ -107,6 +111,7 @@ onCategoryChange(event: any) {
     this.service.getAllOffreEmploiByCategorieTrue(this.selectedCategory).subscribe({
       next :(data)=>{
         this.listOffreEmploi  = data        
+        this.listOffreEmploi  = this.listOffreEmploi.slice().reverse()       
       }
     })
   }
@@ -122,6 +127,7 @@ onCategoryAppelChange(event: any) {
     this.service.getAllAppelOffreByCategorieTrue(this.selectedCategoryAppel).subscribe({
       next :(data)=>{
         this.listAppelOffre  = data        
+        this.listAppelOffre  = this.listAppelOffre.slice().reverse()        
       }
     })
   }
@@ -131,12 +137,14 @@ onCategoryAppelChange(event: any) {
 }
 GetCategorie(){
   this.service.getCategorie().subscribe((data)=>{
-    this.listCategorie=data
+    this.listCategorie = data
+    this.listCategorie = this.listCategorie.slice().reverse()
   })
 }
 GetCategorieAppel(){
   this.service.getCategorieAppel().subscribe((data)=>{
-    this.listCategorieAppel=data
+    this.listCategorieAppel = data
+    this.listCategorieAppel = this.listCategorieAppel.slice().reverse()
   })
 }
 logOut(){
