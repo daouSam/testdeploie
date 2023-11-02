@@ -1,0 +1,113 @@
+<app-caroussel></app-caroussel>
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0" id="h3">Curriculum Vitae</h3>
+                            
+                            <select id="select" ngModel name="selectcat" (change)="onCategoryChange($event)" class="form-select">
+                                <option value="" >Choisir une Categorie</option>
+                                <option value="tout" >tout</option>
+                            
+                                <option *ngFor="let category of listCategorie" value="{{category.id}}">{{ category.nom }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                    
+                        <div class="row" style="margin-bottom: 10px;">
+                            <img style="display: block; margin: auto;" *ngIf="!listCv" src="assets/img/Spinner-1s-287px.svg" alt="">
+                            <div class="col-xl-4 col-sm-6" *ngFor="let item of listCv | paginate: { itemsPerPage: 6, currentPage: p }">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-end">
+                                            <a class="text-muted dropdown-toggle font-size-16"  role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-horizontal-rounded"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item">Edit</a><a class="dropdown-item" >Action</a><a class="dropdown-item" >Remove</a></div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div><img [src]="item.photo" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>
+                                            <div class="flex-1 ms-2">
+                                                <h6 class="font-size-10 mb-1"><a  class="text-dark">{{item.nom}}</a></h6>
+                                                
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="mt-3 pt-1">
+                                            <p  class="badge badge-soft-success " >{{item.titrepro}}</p>
+                                            <p style="font-size: 15px;" class="text-muted mb-0"><i class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary" style="font-size: 19px;" ></i> {{item.telephone}}</p>
+                                            <p style="font-size: 15px;" class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary" style="font-size: 19px;"></i> {{item.email}}</p>
+                                            <p style="font-size: 15px;" class="text-muted mb-0 mt-2"><i class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary" style="font-size: 19px;"></i> {{item.localisation}}</p>
+                                        </div>
+                                        <div class="d-flex gap-2 pt-4">
+                                            <button [routerLink]="'/detailcv/' + item.id" type="button" class="btn btn-success btn-sm w-50" style="margin-right: 4px;"> Voir Cv</button>
+                                             <a  class="btn btn-primary " [href]="item.fichier"> Telecharger</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> 
+                        <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> 
+                                     
+                                        
+                    
+                </div>
+                </div>
+                
+                <div class="mb-3 pb-3">
+                    <a href=""><img class="img-fluid w-100" src="assets/img/Group 12.png" alt=""></a>
+                </div>
+                
+                
+            </div>
+            
+            <div class="col-lg-4 pt-3 pt-lg-0">
+                <!-- Social Follow Start -->
+                <div class="pb-3">
+                    <div class="pb-3">
+                        <button routerLink="/ajoutCV" type="button" class="btn btn-success btn-lg btn-block"><small style="margin-right: 10px; font-size: 20px;"><i class="fa-solid fa-plus"></i></small> Publier mon CV</button>
+                    </div>
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Mon CV</h3>
+                    </div>            
+               
+                </div>
+                <!-- Ads Start -->
+                <div class="pb-3" *ngIf="list">
+                <div class="card" *ngFor="let item of list" >
+                    <div class="card-body">
+                        <div class="dropdown float-end">
+                            <a class="text-muted dropdown-toggle font-size-16"  role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-horizontal-rounded"></i></a>
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item">Edit</a><a class="dropdown-item" >Action</a><a class="dropdown-item" >Remove</a></div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div><img [src]="item.photo" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>
+                            <div class="flex-1 ms-2">
+                                <h6 class="font-size-10 mb-1"><a  class="text-dark">{{item.nom}}</a></h6>
+                                
+                            </div>
+                        </div>
+                    
+                        <div class="mt-3 pt-1">
+                            <p  class="badge badge-soft-success " >{{item.titrepro}}</p>
+                            <p style="font-size: 15px;" class="text-muted mb-0"><i class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary" style="font-size: 19px;" ></i> {{item.telephone}}</p>
+                            <p style="font-size: 15px;" class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary" style="font-size: 19px;"></i> {{item.email}}</p>
+                            <p style="font-size: 15px;" class="text-muted mb-0 mt-2"><i class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary" style="font-size: 19px;"></i> {{item.localisation}}</p>
+                        </div>
+                        <div class="d-flex gap-2 pt-4">
+                            <button [routerLink]="'/detailcv/' + item.id" type="button" class="btn btn-success btn-sm w-50" style="margin-right: 4px;"><i class="fa-solid fa-eye"></i> Voir Cv</button>
+                             <a  class="btn btn-primary " [href]="item.fichier"><i class="fa-solid fa-download"></i> Telecharger</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+
+ 

@@ -1,0 +1,217 @@
+<app-caroussel></app-caroussel>
+<div class="body">
+<div class="container">
+    <header>Publier votre entreprise</header>
+    <p> Avez-vous déja un compte ?<span style="color:rgb(59, 59, 218)"> <a routerLink="/inscription"> Connectez-vous</a> </span> pour publier.</p>
+    <form [formGroup]="formgroup" (ngSubmit)="ajouterOffre(formgroup)">
+           
+        <div>            
+            <div class="details personal">             
+
+                <div class="fields1">
+                    <div class="input-field">
+                        <label>Nom de l'entreprise</label>
+                        <input type="text" formControlName="nom" placeholder="Entrer le nom de l'entreprise" required>
+                        <div *ngIf="formgroup.controls.nom.invalid && (formgroup.controls.nom.dirty || formgroup.controls.nom.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.nom.errors?.['required']">
+                                nom de l'entreprise est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Ville</label>
+                        <input type="text" formControlName="ville" placeholder="Par exemple Bamako" required>
+                        <div *ngIf="formgroup.controls.ville.invalid && (formgroup.controls.ville.dirty || formgroup.controls.ville.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.ville.errors?.['required']">
+                                ville est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Adresse</label>
+                        <input type="text" formControlName="adresse" placeholder="Par exemple Bamako" required>
+                        <div *ngIf="formgroup.controls.adresse.invalid && (formgroup.controls.adresse.dirty || formgroup.controls.adresse.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.adresse.errors?.['required']">
+                                Adresse est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Categorie</label>
+                        <select required formControlName="categorieEntreprise">
+                            <option value="">Choisir la categorie</option>
+                            
+                            <option *ngFor="let item of listCategorie" [ngValue]="item">{{item.nom}}</option>
+
+                        </select>
+                        <div *ngIf="formgroup.controls.categorieEntreprise.invalid && (formgroup.controls.categorieEntreprise.dirty || formgroup.controls.categorieEntreprise.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.categorieEntreprise.errors?.['required']">
+                              categorie de l'offre est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                   
+               
+                    
+                    <div class="input-field1">
+                        <label>Produits ou services proposés</label>
+                        <editor
+                            id="mytextarea"
+                            formControlName="contenu"
+                            [init]="{ plugins: 'lists link image table code help wordcount' }"
+                        ></editor>
+                        <!-- <textarea id="mytextarea" formControlName="contenu" class="form-control"  rows="3"></textarea> -->
+                        <div *ngIf="formgroup.controls.contenu.invalid && (formgroup.controls.contenu.dirty || formgroup.controls.contenu.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.contenu.errors?.['required']">
+                                description de l'offre est obligatoire
+                            </div>
+
+                    </div>
+                    </div>                    
+                </div>
+            </div>
+
+            <div class="details ID">
+              
+
+                <div class="fields1">
+                    <div class="input-field">
+                        <label>Le nom de la personne à contacter</label>
+                        <input formControlName="personneContact" type="text" placeholder="Saisir le nom de l'entreprise" required>
+                        <div *ngIf="formgroup.controls.personneContact.invalid && (formgroup.controls.personneContact.dirty || formgroup.controls.personneContact.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.personneContact.errors?.['required']">
+                                Le nom de la personne est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Url du Site </label>
+                        <input formControlName="site" type="text" placeholder="https://"  pattern="^((https?|ftp):\/\/)?([^\s\/?\.#]+\.?)+(\/[^\s]*)?$">
+                        <div *ngIf="formgroup.controls.site.invalid && (formgroup.controls.site.dirty || formgroup.controls.site.touched)"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.site.errors?.['required']">
+                               Url site est invalid
+                            </div>
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('site').hasError('pattern')"
+                       >
+                            Le format url est incorrect.
+                        </div>
+
+                    </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Url Facebook </label>
+                        <input formControlName="facebook" type="text" placeholder="https://"  pattern="^((https?|ftp):\/\/)?([^\s\/?\.#]+\.?)+(\/[^\s]*)?$">
+                        <div *ngIf="formgroup.controls.facebook.invalid && (formgroup.controls.facebook.dirty || formgroup.controls.facebook.touched)"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.facebook.errors?.['required']">
+                               Url facebook est invalid
+                            </div>
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('facebook').hasError('pattern')"
+                       >
+                            Le format url est incorrect.
+                        </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Url Linkdin </label>
+                        <input formControlName="linkdin" type="text" placeholder="https://"  pattern="^((https?|ftp):\/\/)?([^\s\/?\.#]+\.?)+(\/[^\s]*)?$">
+                        <div *ngIf="formgroup.controls.linkdin.invalid && (formgroup.controls.linkdin.dirty || formgroup.controls.linkdin.touched)"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.linkdin.errors?.['required']">
+                               Url linkdin est invalid
+                            </div>
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('linkdin').hasError('pattern')"
+                       >
+                            Le format url est incorrect.
+                        </div>
+
+                    </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>E-mail </label>
+                        <input formControlName="email" type="text" placeholder="diawara@gmail.com" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <div *ngIf="formgroup.controls.email.invalid && (formgroup.controls.email.dirty || formgroup.controls.email.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.email.errors?.['required']">
+                                E-mail est obligatoire
+                            </div>
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('email').hasError('pattern')">
+                                Le format de l'email est incorrect.
+                            </div>
+
+                    </div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label>Numero de telephone </label>
+                        <input formControlName="telephone" type="number" placeholder="Saisir le numero de telephone" required>
+                        <div *ngIf="formgroup.controls.telephone.invalid && (formgroup.controls.telephone.dirty || formgroup.controls.telephone.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.telephone.errors?.['required']">
+                                Le numero de telephone est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Numero de Fax </label>
+                        <input formControlName="numeroFax" type="number" placeholder="Saisir le numero de numeroFax" required>
+                        <div *ngIf="formgroup.controls.numeroFax.invalid && (formgroup.controls.numeroFax.dirty || formgroup.controls.numeroFax.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.numeroFax.errors?.['required']">
+                                Le numero de Fax est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Logo de l'entreprise</label>
+                        <input formControlName="logo" type="file" size="20" (change)="uploadimg($event)" >
+                        
+                    </div>                    
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <div class="details family">
+                <div class="buttons">                
+                    <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
+                        <span class="btnText"> <img *ngIf="loading===true" src="assets/img/Spinner-1s-200px (2).svg" width="40px" alt=""> Publier</span>
+                    </button>
+                </div>                
+            </div> 
+        </div>
+    </form>
+</div>
+</div>
+<app-footer></app-footer>

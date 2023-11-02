@@ -1,0 +1,16 @@
+<div class="header">
+    <h2 mat-dialog-title>{{data.title}}</h2>
+</div>
+
+<div mat-dialog-content>
+    <p>{{datas.message}}</p>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button [mat-dialog-close]="false">
+        {{datas.cancelCaption}}
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+        {{datas.confirmCaption}}
+    </button>
+</div>

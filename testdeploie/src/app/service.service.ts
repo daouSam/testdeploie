@@ -7,6 +7,10 @@ import { Observable } from 'rxjs';
  
 })
 export class ServiceService {
+  //locale
+  //  url='http://localhost:8082/api/';
+  // apiAuth='http://localhost:8082/';
+
   //ancien
    url='https://offre-a14e8ed7172f.herokuapp.com/api/';
   apiAuth='https://offre-a14e8ed7172f.herokuapp.com/';

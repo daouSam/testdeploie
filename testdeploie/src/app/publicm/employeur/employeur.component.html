@@ -1,0 +1,20 @@
+<div class="con">
+</div>
+
+
+<form [formGroup]="userForm" (ngSubmit)="ajouter(userForm)">
+  <input formControlName="titre" type="text" placeholder="Saisir le nom de l'entreprise" required>
+  <div formArrayName="users">
+    <div *ngFor="let user of userForm.get('users').controls; let i = index">
+      <div [formGroupName]="i">
+        <input formControlName="telephone" type="number" placeholder="Saisir le numéro de téléphone" required>
+        <input formControlName="nomEntreprise" type="text" placeholder="Saisir le nom de l'entreprise" required>
+        <button type="button" (click)="supprimerUtilisateur(i)">x</button>
+      </div>
+    </div>
+  </div>
+  <button type="button" (click)="ajouterUtilisateur()">+</button>
+  <button type="submit">Ajouter</button>
+</form>
+<app-footer></app-footer>
+   

@@ -1,0 +1,149 @@
+<app-caroussel></app-caroussel>
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0" id="h3">ENTREPRISE</h3>
+                            <select id="select" ngModel name="selectcat" (change)="onCategoryChange($event)" class="form-select">
+                                <option value="" >Choisir une Categorie</option>
+                                <option value="tout" >tout</option>
+                            
+                                <option *ngFor="let category of listCategorie" value="{{category.id}}">{{ category.nom }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">                        
+                        <div class="row" style="margin-bottom: 10px;">
+                            <img style="display: block; margin: auto;" *ngIf="!listEntreprise" src="assets/img/Spinner-1s-287px.svg" alt="">
+                            <div class="col-xl-6 col-md-6" *ngFor="let item of listEntreprise | paginate: { itemsPerPage: 4, currentPage: p }">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-auto">
+                                                <img class="img-fluid rounded-circle" style="width:70px;" [src]="item.logo" alt="dashboard-user">
+                                            </div>
+                                            <div class="col">
+                                                <h5>{{item.nom}}</h5>
+                                                <span>{{item.email}}</span>
+                                            </div>
+                                        </div>
+                                        <ul class="task-list">
+                                            <li>
+                                                <i class="task-icon bg-c-green"></i>
+                                                <h6>Adresse<span class="float-right text-muted">(+223) {{item.telephone}}</span></h6>
+                                                <p class="text-muted">{{item.ville}},{{item.adresse}}</p>
+                                            </li>
+                                            <li>
+                                                <i class="task-icon bg-c-green"></i>
+                                                <h6>Personne a contacter<span class="float-right text-muted"></span></h6>
+                                                <p class="text-muted">{{item.personneContact}}</p>
+                                            </li>
+                                            <li>
+                                                <i class="task-icon bg-c-green"></i>
+                                                <h6>Secteur d'activité<span class="float-right text-muted"></span></h6>
+                                                <p class="text-center" style="color: #1de9b6; background-color:bisque; border-radius: 10px; font-weight: bold;">{{item.categorieEntreprise.nom}}</p>
+                                            </li>
+                                        </ul>
+                                        
+                                        <div class="text-center">                                           
+                                                
+                                            <div class="list-inline contacts-social mt-3 mb-3"> 
+                                                <a *ngIf="item?.facebook" title="Facebook" [href]="item?.facebook" class="list-inline-item bg-facebook text-white border-0"><i class="bx bxl-facebook"></i></a>
+                                                <a *ngIf="item?.site" title="Site entreprise" [href]="item?.site" class="list-inline-item bg-twitter text-white border-0"><i class="fa-solid fa-link"></i></a>
+                                                <a *ngIf="item?.linkdin" title="Linkdin" [href]="item?.linkdin" class="list-inline-item bg-linkedin text-white border-0"><i class="bx bxl-linkedin"></i></a>
+                                            </div>
+                                        
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> 
+                    </div>            
+
+                
+                </div>
+                
+                <div class="mb-3 pb-3">
+                    <a href=""><img class="img-fluid w-100" src="assets/img/Group 12.png" alt=""></a>
+                </div>
+                
+                
+            </div>
+            
+            <div class="col-lg-4 pt-3 pt-lg-0">
+                <!-- Social Follow Start -->
+                <div class="pb-3">
+                    <div class="pb-3">
+                        <button routerLink="/ajoutEntre" type="button" class="btn btn-success btn-lg btn-block"><small style="margin-right: 10px; font-size: 20px;"><i class="fa-solid fa-plus"></i></small> Publier mon Entreprise</button>
+                    </div>
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Mon entreprise</h3>
+                    </div>                   
+               
+                </div>
+                <!-- Ads Start -->
+                <div class="pb-3" *ngIf="list" >
+                   
+                <div class="card" *ngFor="let item of list">
+                    <div class="card-block">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-auto">
+                                <img class="img-fluid rounded-circle" style="width:70px;" [src]="item.logo" alt="dashboard-user">
+                            </div>
+                            <div class="col">
+                                <h5>{{item.nom}}</h5>
+                                <span>{{item.email}}</span>
+                            </div>
+                        </div>
+                        <ul class="task-list">
+                            <li>
+                                <i class="task-icon bg-c-green"></i>
+                                <h6>Adresse<span class="float-right text-muted">(+223) {{item.telephone}}</span></h6>
+                                <p class="text-muted">{{item.ville}},{{item.adresse}}</p>
+                            </li>
+                            <li>
+                                <i class="task-icon bg-c-green"></i>
+                                <h6>Personne a contacter<span class="float-right text-muted"></span></h6>
+                                <p class="text-muted">{{item.personneContact}}</p>
+                            </li>
+                            <li>
+                                <i class="task-icon bg-c-green"></i>
+                                <h6>Secteur d'activité<span class="float-right text-muted"></span></h6>
+                                <p class="text-center" style="color: #1de9b6; background-color:bisque; border-radius: 10px; font-weight: bold;">{{item.categorieEntreprise?.nom}}</p>
+                            </li>
+                        </ul>
+                        
+                        <div class="text-center">
+                            
+                                
+                            <div class="list-inline contacts-social mt-3 mb-3"> 
+                                <a *ngIf="item.facebook" title="Facebook" [href]="item.facebook" class="list-inline-item bg-facebook text-white border-0"><i class="bx bxl-facebook"></i></a>
+                                <a *ngIf="item.site" title="Site entreprise" [href]="item.site" class="list-inline-item bg-twitter text-white border-0"><i class="fa-solid fa-link"></i></a>
+                                <a *ngIf="item.linkdin" title="Linkdin" [href]="item.linkdin" class="list-inline-item bg-linkedin text-white border-0"><i class="bx bxl-linkedin"></i></a>
+                            </div>                                              
+                        
+                        </div>
+                            
+                    </div>
+                </div>
+                  
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <app-footer></app-footer>
+    <div class="container-fluid py-4 px-sm-3 px-md-5">
+        <p class="m-0 text-center">
+            &copy; <a class="font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.			
+			Designed by <a class="font-weight-bold" href="https://freewebsitecode.com">Free Website Code</a>
+        </p>
+    </div>
+
+ 

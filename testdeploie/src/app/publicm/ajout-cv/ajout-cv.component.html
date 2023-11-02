@@ -1,0 +1,197 @@
+<app-caroussel></app-caroussel>
+<div class="body">
+<div class="container">
+    <header>Publier votre Cv</header>
+    <p> Avez-vous déja un compte ?<span style="color:rgb(59, 59, 218)"> <a routerLink="/inscription"> Connectez-vous</a> </span> pour publier.</p>
+    <form [formGroup]="formgroup" (ngSubmit)="ajouterCv(formgroup)">
+           
+        <div >
+            
+            <div class="details personal">
+
+                <div class="fields1">
+                    <div class="input-field">
+                        <label>Votre nom complet</label>
+                        <input type="text" formControlName="nom" placeholder="nom complet" required>
+                        
+                    </div>
+                    <div class="input-field">
+                        <label>Localisation</label>
+                        <input type="text" formControlName="localisation" placeholder="Par exemple Bamako" required>
+                        
+                    </div>
+                    <div class="input-field">
+                        <label>E-mail </label>
+                        <input formControlName="email" type="text" placeholder="diawara@gmail.com" [value]="formgroup.get('email').value" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        
+                    </div>
+
+                    <div class="input-field">
+                        <label>Categorie d'offre d'emploi</label>
+                        <select formControlName="categorie" required >
+                            <option value="">Choisir une categorie</option>
+                            <option *ngFor="let item of listCategorie" [ngValue]="item">{{item.nom}}</option>
+                        </select>
+                        
+                    </div>
+                   
+               
+                    
+                    <div class="input-field1">
+                        <label>Contenu du CV</label>
+                        <editor
+                            id="mytextarea"
+                            formControlName="contenu"
+                            [init]="{ plugins: 'lists link image table code help wordcount' }"
+                        ></editor>
+                        <!-- <textarea id="mytextarea" formControlName="contenu" class="form-control"  rows="3"></textarea> -->
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="details ID">
+                
+
+                <div class="fields1">
+                    <div class="input-field">
+                        <label>Titre professionnel</label>
+                        <input formControlName="titrepro" type="text" placeholder="Saisir le nom de l'entreprise" required>
+                        
+                    </div>
+
+                    <div class="input-field">
+                        <label>Numero de telephone </label>
+                        <input formControlName="telephone" type="number" placeholder="Saisir le numero de telephone" required>
+                        <div *ngIf="formgroup.controls.telephone.invalid && (formgroup.controls.telephone.dirty || formgroup.controls.telephone.touched) || submitted"
+                        class="text-danger">
+
+                            <div style="font-size: 12px;" *ngIf="formgroup.controls.telephone.errors?.['required']">
+                                Le numero de telephone est obligatoire
+                            </div>
+
+                    </div>
+                    </div>
+
+             
+
+                 
+                    <div class="input-field">
+                        <label>Photo</label>
+                        <input formControlName="photo" type="file" size="20" (change)="uploadimg($event)" >
+                        
+                    </div>
+                 
+
+                    <div class="input-field">
+                        <label>Fichier CV </label>
+                        <input formControlName="fichier" type="file" size="20" (change)="uploadFile($event)" >
+                        
+                    </div>
+                    
+                    
+                </div>
+                <div formArrayName="formations" >
+                    <span class="title">Formation</span>
+                    <div *ngFor="let user of formgroup.get('formations').controls; let i = index">
+                      <div [formGroupName]="i">
+                        <div class="fields1">
+                        <div class="input-field">
+                            <label>Nom de l'etablissement</label>
+                        <input formControlName="nomEtablissement" type="text" placeholder="Saisir le nom de l'etablissement" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Diplôme</label>
+                        <input formControlName="diplome" type="text" placeholder="Diplôme" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Date de debut</label>
+                        <input type="date" formControlName="dateDebut" max="{{ minDate }}" placeholder="Entrer Date de debut" required>
+                     
+                    </div>
+                    <div class="input-field">
+                        <label>Date de fin</label>
+                        <input type="date" formControlName="dateFin" placeholder="Entrer Date de fin" required>
+                     
+                    </div>
+              
+                
+                </div>
+                
+                      </div>
+                      <a style="color: #ED1C24;" (click)="supprimerFormation(i)">x</a>
+                    </div>
+                  </div>
+                  <button type="button" (click)="ajouterFormation()">Ajouter une formation </button>
+                <div formArrayName="cvexperiences" >
+                    <span class="title">Experience</span>
+                    <div *ngFor="let users of formgroup.get('cvexperiences').controls; let l = index">
+                      <div [formGroupName]="l">
+                        <div class="fields1">
+                        <div class="input-field">
+                            <label>Employeur</label>
+                        <input formControlName="employeur" type="text" placeholder="Employeur" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Poste</label>
+                        <input formControlName="poste" type="text" placeholder="Poste" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Date de debut</label>
+                        <input type="date" formControlName="dateDebut" max="{{ minDate }}" placeholder="Entrer Date de debut" required>
+                     
+                    </div>
+                <div class="input-field">
+                    <label>Date de fin</label>
+                    <input formControlName="date" type="date" placeholder="Entrer Date de fin" required>
+                </div>
+                    
+                </div>
+                      </div>
+                      <a style="color: #ED1C24;" (click)="supprimerExperience(l)">x</a>
+                    </div>
+                  </div>
+                  <button type="button" (click)="ajouterExperience()">Ajouter une experience</button>
+
+                  <div formArrayName="urls" >
+                    <span class="title">URL</span>
+                    <div *ngFor="let users of formgroup.get('urls').controls; let l = index">
+                      <div [formGroupName]="l">
+                        <div class="fields1">
+                        <div class="input-field">
+                            <label>Nom url</label>
+                        <input formControlName="non" type="text" placeholder="google" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Url</label>
+                        <input formControlName="url" type="text" placeholder="google.com" required>
+                    </div>
+                  
+                </div>
+                      </div>
+                      <a style="color: #ED1C24;" (click)="supprimerUrl(l)">x</a>
+                    </div>
+                  </div>
+                  <button type="button" (click)="ajouterUrl()">Ajouter Url</button>
+            </div> 
+        </div>
+
+        <div >
+           
+
+            <div class="details family">
+               
+
+                <div class="buttons">
+                
+                    <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
+                        <span class="btnText"> <img *ngIf="loading===true" src="assets/img/Spinner-1s-200px (2).svg" width="40px" alt=""> Publier</span>
+                    </button>
+                </div>
+                
+            </div> 
+        </div>
+    </form>
+</div>
+</div>
+<app-footer></app-footer>
