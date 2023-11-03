@@ -42,9 +42,9 @@ import { SlideComponent } from '../slide/slide.component';
 import { CarousselComponent } from './caroussel/caroussel.component';
 import { SideComponent } from './side/side.component';
 import { EntrepriseComponent } from './entreprise/entreprise.component';
-import { RSocialComponent } from './r-social/r-social.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
+import { RsocialModule } from './r-social/r-social.module';
 
 @NgModule({
   declarations: [
@@ -79,8 +79,7 @@ import {MatRadioModule} from '@angular/material/radio';
     SideComponent,
     CarousselComponent,
     EntrepriseComponent,
-    PublicLayoutComponent,
-    RSocialComponent,
+    PublicLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +94,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatButtonModule,
     MatDialogModule,
     EditorModule,
-    MatRadioModule
+    MatRadioModule,
+    RsocialModule
   ],
   providers: []
 })

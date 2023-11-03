@@ -10,7 +10,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListeEntrepComponent } from './liste-entrep/liste-entrep.component';
+import { ListeEntrepComponent } from './admin/liste-entrep/liste-entrep.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MatToolbarModule} from "@angular/material/toolbar";

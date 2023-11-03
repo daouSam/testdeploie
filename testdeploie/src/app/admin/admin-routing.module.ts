@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { CvadminComponent } from '../cvadmin/cvadmin.component';
-import { EntreadminComponent } from '../entreadmin/entreadmin.component';
-import { AffaireadminComponent } from '../affaireadmin/affaireadmin.component';
-import { AnnonceadminComponent } from '../annonceadmin/annonceadmin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CvadminComponent } from './cvadmin/cvadmin.component';
+import { EntreadminComponent } from './entreadmin/entreadmin.component';
+import { AffaireadminComponent } from './affaireadmin/affaireadmin.component';
+import { AnnonceadminComponent } from './annonceadmin/annonceadmin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { UtilisateurComponent } from '../utilisateur/utilisateur.component';
 

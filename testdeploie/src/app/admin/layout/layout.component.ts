@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmetionService } from 'src/app/confirmation/confirmation.service';
 import { ServiceService } from 'src/app/service.service';
 
 @Component({
@@ -23,17 +25,18 @@ export class LayoutComponent implements OnInit {
   isToggled: boolean = false;
   texts: string[] = ['Barragnini', 'Warrignini'];
   currentText: string = '';
-  constructor(private service : ServiceService,) { }
+  
+  constructor(private service : ServiceService,
+    private router: Router,
+    private confirmationService: ConfirmetionService) { }
  
   ngOnInit(): void {
     this.currentText=this.texts[1]
     this.rotateTexts();
     const user: any | null = sessionStorage.getItem('isLogin');
     this.user = JSON.parse(user);
-    console.log(this.user);
     if (this.user !== null) {
       this.loginData=this.user
-      console.log(this.user);
     }
   
   }
@@ -50,12 +53,24 @@ export class LayoutComponent implements OnInit {
   }
 
   logOut(){
-    if(confirm('êtes-vous sûr de vouloir vous déconnecter ?'))
-    sessionStorage.removeItem('isLogin');
-    sessionStorage.removeItem('TOKEN');
-   
-    location.replace("/accueil")
+    this.confirmationService
+    .confirmDialog({
+      title: 'Déconnexion',
+      message: 'êtes-vous sûr de vouloir vous déconnecter ?',
+      confirmCaption: 'Oui',
+      cancelCaption: 'Non',
+    })
+    .subscribe((yes: boolean) => {   
+      if (yes) {
+        sessionStorage.removeItem('isLogin');
+        sessionStorage.removeItem('TOKEN');
+        this.ngOnInit()
+        this.router.navigate(["/home/accueil"])
+        }
+      }) 
   }
+
+
 
 
   

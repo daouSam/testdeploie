@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../service.service';
+import { ServiceService } from '../../service.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfirmetionService } from 'src/app/confirmation/confirmation.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,9 @@ export class DashboardComponent implements OnInit {
   isToggled: boolean = false;
   p: number = 1;
   
-  constructor(private service : ServiceService,private sanitizer: DomSanitizer) { }
+  constructor(private service : ServiceService,
+    private sanitizer: DomSanitizer,
+    private confirmationService: ConfirmetionService) { }
  
   ngOnInit(): void {
     
@@ -103,37 +106,76 @@ export class DashboardComponent implements OnInit {
     })
   }
   DeleteOffreEmploi(id: any) {
-   
-   if(confirm('êtes vous sûr de supprimer ?'))
-   this.service.deleteOffreEmploi(id).subscribe((data) => {
-      this.ngOnInit()
-      this.AllOffreEmploi()
-   })
+    this.confirmationService
+    .confirmDialog({
+      title: 'Suppprimer',
+      message: 'êtes vous sûr de supprimer ?',
+      confirmCaption: 'Supprimer',
+      cancelCaption: 'Annuler',
+    })
+    .subscribe((yes: boolean) => {   
+      if (yes) {
+        this.service.deleteOffreEmploi(id).subscribe((data) => {
+           this.ngOnInit()
+           this.AllOffreEmploi()
+        })
+      }
+    })
  }
  DeleteAppelOffre(id: any) {
-   
-   if(confirm('êtes vous sûr de supprimer ?'))
-   this.service.deleteAppelOffre(id).subscribe((data) => {
-      this.ngOnInit()
-      this.AllAppelOffre();
-   })
+  this.confirmationService
+  .confirmDialog({
+    title: 'Suppprimer',
+    message: 'êtes vous sûr de supprimer ?',
+    confirmCaption: 'Supprimer',
+    cancelCaption: 'Annuler',
+  })
+  .subscribe((yes: boolean) => {   
+    if (yes) {
+      this.service.deleteAppelOffre(id).subscribe((data) => {
+         this.ngOnInit()
+         this.AllAppelOffre();
+      })      
+    }
+  })
  }
  ConfirmerOffreEmploiToTrue(id :any){
-  if(confirm('êtes vous sûr de Confirmer ?'))
-  this.service.ConfirmerOffreEmploiToTrue(id).subscribe((data)=>{
-    this.ngOnInit()
-    this.AllOffreEmploi()
+  this.confirmationService
+  .confirmDialog({
+    title: 'Retirer',
+    message: 'êtes vous sûr de Retirer ?',
+    confirmCaption: 'Retirer',
+    cancelCaption: 'Annuler',
+  })
+  .subscribe((yes: boolean) => {   
+    if (yes) {
+      this.service.ConfirmerOffreEmploiToTrue(id).subscribe((data)=>{
+        this.ngOnInit()
+        this.AllOffreEmploi()
+      })      
+    }
   })
  }
  ConfirmerAppelOffreToTrue(id :any){
-  if(confirm('êtes vous sûr de Confirmer ?'))
-  this.service.ConfirmerAppelOffreToTrue(id).subscribe((data)=>{
-    this.ngOnInit()
-    this.AllAppelOffre();
+  this.confirmationService
+  .confirmDialog({
+    title: 'Confirmation',
+    message: 'êtes vous sûr de Confirmer ?',
+    confirmCaption: 'Confirmer',
+    cancelCaption: 'Annuler',
+  })
+  .subscribe((yes: boolean) => {   
+    if (yes) {
+      this.service.ConfirmerAppelOffreToTrue(id).subscribe((data)=>{
+        this.ngOnInit()
+        this.AllAppelOffre();
+      })      
+    }
   })
  }
+
  cleanHtml(html: string): string {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || '';
-}
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  }
 }
