@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../service.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../../notifications/notification.service';
+import { ConfirmetionService } from 'src/app/confirmation/confirmation.service';
 
 
 interface OffreEmploi {
@@ -44,6 +45,7 @@ export class AccueilComponent implements OnInit {
   currentImage: string = 'assets/img/Group 15.png';
   constructor(private fb: FormBuilder,
     private service : ServiceService,
+    private confirmationService: ConfirmetionService,
     protected _notificationSvc: NotificationService
     ) { }
 
@@ -70,9 +72,7 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  showSuccess() {
-    alert('en cours succès alert')
- }
+ 
   startCarousel() {
     let index = 0;
     setInterval(() => {
@@ -148,9 +148,19 @@ GetCategorieAppel(){
   })
 }
 logOut(){
-  if(confirm('êtes-vous sûr de vouloir vous déconnecter ?'))
-  sessionStorage.removeItem('isLogin');
-  sessionStorage.removeItem('TOKEN');
+  this.confirmationService
+    .confirmDialog({
+      title: 'Déconnexion',
+      message: 'êtes-vous sûr de vouloir vous déconnecter ?',
+      confirmCaption: 'Oui',
+      cancelCaption: 'Non',
+    })
+    .subscribe((yes: boolean) => {   
+      if (yes) {
+        sessionStorage.removeItem('isLogin');
+        sessionStorage.removeItem('TOKEN');
+      }
+    })
   
 }
 onStarClick(rating: number) {

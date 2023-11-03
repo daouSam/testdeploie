@@ -38,8 +38,8 @@
                                         </div>
                                         <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6> 
                                         <div class="d-flex flex-column mt-4">
-                                            <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id)"  type="button">Confirmer</button>
-                                            <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id)"  type="button">Retirer</button>
+                                            <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Confirmer')"  type="button">Confirmer</button>
+                                            <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Retirer')"  type="button">Retirer</button>
                                             <button  class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteOffreEmploi(item.id)">Supprimer</button>
                                         </div>
                                     </div>
@@ -90,8 +90,8 @@
                                     </div>
                                     <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6> 
                                     <div class="d-flex flex-column mt-4">
-                                        <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(item.id)" style="font-weight: bold;" type="button">Confirmer</button>
-                                        <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(item.id)" style="font-weight: bold;" type="button">Retirer</button>
+                                        <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(item.id, 'Confirmer')" style="font-weight: bold;" type="button">Confirmer</button>
+                                        <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(item.id, 'Retirer')" style="font-weight: bold;" type="button">Retirer</button>
                                         <button class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteAppelOffre(item.id)">Supprimer</button>
                                     </div>                                            
                                 </div>

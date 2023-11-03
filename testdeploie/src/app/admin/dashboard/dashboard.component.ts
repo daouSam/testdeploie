@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfirmetionService } from 'src/app/confirmation/confirmation.service';
+import { NotificationService } from 'src/app/notifications/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
   
   constructor(private service : ServiceService,
     private sanitizer: DomSanitizer,
-    private confirmationService: ConfirmetionService) { }
+    private confirmationService: ConfirmetionService,
+    protected _notificationSvc: NotificationService) { }
  
   ngOnInit(): void {
     
@@ -116,60 +118,66 @@ export class DashboardComponent implements OnInit {
     .subscribe((yes: boolean) => {   
       if (yes) {
         this.service.deleteOffreEmploi(id).subscribe((data) => {
-           this.ngOnInit()
-           this.AllOffreEmploi()
-        })
+          this._notificationSvc.success("succès","effre supprimer avec succès !")
+          this.ngOnInit()
+          this.AllOffreEmploi()
+        }, error => this._notificationSvc.error('ERREUR', "erreur lors de la suppression de l'offre"))
       }
     })
- }
- DeleteAppelOffre(id: any) {
-  this.confirmationService
-  .confirmDialog({
-    title: 'Suppprimer',
-    message: 'êtes vous sûr de supprimer ?',
-    confirmCaption: 'Supprimer',
-    cancelCaption: 'Annuler',
-  })
-  .subscribe((yes: boolean) => {   
-    if (yes) {
-      this.service.deleteAppelOffre(id).subscribe((data) => {
-         this.ngOnInit()
-         this.AllAppelOffre();
-      })      
-    }
-  })
- }
- ConfirmerOffreEmploiToTrue(id :any){
-  this.confirmationService
-  .confirmDialog({
-    title: 'Retirer',
-    message: 'êtes vous sûr de Retirer ?',
-    confirmCaption: 'Retirer',
-    cancelCaption: 'Annuler',
-  })
-  .subscribe((yes: boolean) => {   
-    if (yes) {
-      this.service.ConfirmerOffreEmploiToTrue(id).subscribe((data)=>{
-        this.ngOnInit()
-        this.AllOffreEmploi()
-      })      
-    }
-  })
- }
- ConfirmerAppelOffreToTrue(id :any){
-  this.confirmationService
-  .confirmDialog({
-    title: 'Confirmation',
-    message: 'êtes vous sûr de Confirmer ?',
-    confirmCaption: 'Confirmer',
-    cancelCaption: 'Annuler',
-  })
-  .subscribe((yes: boolean) => {   
-    if (yes) {
-      this.service.ConfirmerAppelOffreToTrue(id).subscribe((data)=>{
-        this.ngOnInit()
-        this.AllAppelOffre();
-      })      
+  }
+  DeleteAppelOffre(id: any) {
+    this.confirmationService
+    .confirmDialog({
+      title: 'Suppprimer',
+      message: 'êtes vous sûr de supprimer ?',
+      confirmCaption: 'Supprimer',
+      cancelCaption: 'Annuler',
+    })
+    .subscribe((yes: boolean) => {   
+      if (yes) {
+        this.service.deleteAppelOffre(id).subscribe((data) => {
+          this._notificationSvc.success("SUCCES","appel offre supprimer avec succès !")
+          this.ngOnInit()
+          this.AllAppelOffre();
+        }, error => this._notificationSvc.error('ERREUR', "erreur lors de la suppression de l'appel d'offre"))      
+      }
+    })
+  }
+  
+  ConfirmerOffreEmploiToTrue(id :any, titre: string){
+    this.confirmationService
+    .confirmDialog({
+      title: titre,
+      message: `êtes vous sûr de ${titre} ?`,
+      confirmCaption: `${titre}`,
+      cancelCaption: 'Annuler',
+    })
+    .subscribe((yes: boolean) => {   
+      if (yes) {
+        this.service.ConfirmerOffreEmploiToTrue(id).subscribe((data)=>{
+          this._notificationSvc.success("SUCCES",`Offre ${titre} avec succès !`)
+          this.ngOnInit()
+          this.AllOffreEmploi()
+        }, error => this._notificationSvc.error('ERREUR', `erreur lors de l'operation de ${titre}`))    
+      }
+    })
+  }
+
+  ConfirmerAppelOffreToTrue(id :any, titre: string){
+    this.confirmationService
+    .confirmDialog({
+      title: `${titre}`,
+      message: `êtes vous sûr de ${titre} ?`,
+      confirmCaption: `${titre}`,
+      cancelCaption: 'Annuler',
+    })
+    .subscribe((yes: boolean) => {   
+      if (yes) {
+        this.service.ConfirmerAppelOffreToTrue(id).subscribe((data)=>{
+          this._notificationSvc.success("SUCCES",`Appel d'offre ${titre} avec succès !`)
+          this.ngOnInit()
+          this.AllAppelOffre();  
+        }, error => this._notificationSvc.error('ERREUR', `erreur lors de l'operation de ${titre}`))    
     }
   })
  }
