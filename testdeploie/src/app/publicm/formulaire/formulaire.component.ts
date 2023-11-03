@@ -1,6 +1,6 @@
 import {Component,OnDestroy, OnInit } from '@angular/core';
 import { ServiceService } from '../../service.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { NotificationService } from '../../notifications/notification.service';
@@ -14,6 +14,7 @@ declare var tinymce: any;
 })
 export class FormulaireComponent implements OnInit, OnDestroy{
 
+  linkmail: boolean = true
   user: any;
   loading : boolean=false
   loginData: any;
@@ -39,13 +40,14 @@ export class FormulaireComponent implements OnInit, OnDestroy{
     }  
      
     ngOnInit(): void { 
-      // this.tinymceService.destroyEditor();
-      // this.tinymceService.initializeEditor('textarea#mytextarea')
       this.initInputFileData()
     }
     ngOnDestroy() {
     }
 
+    checkStatus(event:any){
+      this.linkmail = event.target.value === "Email";  
+    }
     moi(){
       this.uploadSave(this.imgfile).then(() =>{})
     }

@@ -93,8 +93,13 @@
                     </div>
                     </div>
                     <div class="input-field">
-                        <label>Email de candidature</label>
-                        <input type="text" formControlName="urlCandidature" placeholder="Saisir une adresse courriel ou une URL de site" required  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <label class="d-flex align-items-center">
+                            Adresse de la candidature  &nbsp;
+                            <input type="radio" name="cadilink" value="Email" (change)="checkStatus($event);" checked> Email  &nbsp;
+                            <input type="radio" name="cadilink" value="Site" (change)="checkStatus($event);"> Site
+                        </label>
+                        <input type="text" *ngIf="linkmail" formControlName="urlCandidature" placeholder="example@gmail.com" required  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <input type="text" *ngIf="!linkmail" formControlName="urlCandidature" placeholder="http(s)://" required  pattern="^(https?|ftp|http):\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([/?].*)?$">
                         <div *ngIf="formgroup.controls.urlCandidature.invalid && (formgroup.controls.urlCandidature.dirty || formgroup.controls.urlCandidature.touched) || submitted"
                         class="text-danger">
 
@@ -120,7 +125,7 @@
                     </div>
                     </div>
                     <div class="input-field">
-                        <label>Date de prise en fonction</label>
+                        <label>Date de prise en fonction (facultatif)</label>
                         <input type="date" formControlName="dateFonction" min="{{ minDate }}" placeholder="Entrer Date de prise en fonction" >
                       
                     </div>

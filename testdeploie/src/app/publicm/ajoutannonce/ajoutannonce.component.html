@@ -69,7 +69,12 @@
                     
                     <div class="input-field1">
                         <label>Contenu de l'offre</label>
-                        <textarea id="mytextarea" formControlName="contenu" class="form-control"  rows="3"></textarea>
+                        <editor
+                            id="mytextarea"
+                            formControlName="contenu"
+                            [init]="{ plugins: 'lists link image table code help wordcount' }"
+                        ></editor>
+                        <!-- <textarea id="mytextarea" formControlName="contenu" class="form-control"  rows="3"></textarea> -->
                         <div *ngIf="formgroup.controls.contenu.invalid && (formgroup.controls.contenu.dirty || formgroup.controls.contenu.touched) || submitted"
                         class="text-danger">
 

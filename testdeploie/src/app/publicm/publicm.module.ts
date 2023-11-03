@@ -44,7 +44,7 @@ import { SideComponent } from './side/side.component';
 import { EntrepriseComponent } from './entreprise/entreprise.component';
 import { RSocialComponent } from './r-social/r-social.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -94,7 +94,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    EditorModule
+    EditorModule,
+    MatRadioModule
   ],
   providers: []
 })

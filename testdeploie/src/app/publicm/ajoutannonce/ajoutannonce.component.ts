@@ -32,13 +32,13 @@ export class AjoutannonceComponent implements OnInit {
   
 
   ngOnInit(): void {
-    tinymce.init({
-      selector: 'textarea#mytextarea', // Sélecteur de l'élément textarea
-      plugins: 'autolink lists link', // Plugins que vous souhaitez activer
-      toolbar: 'undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | link | bullist numlist outdent indent | removeformat | subscript superscript | forecolor backcolor | fontsizeselect | code',
-      height: 300,
-      content_style: 'body { font-family: Arial, sans-serif; text-align: justify; }'
-    });
+    // tinymce.init({
+    //   selector: 'textarea#mytextarea', // Sélecteur de l'élément textarea
+    //   plugins: 'autolink lists link', // Plugins que vous souhaitez activer
+    //   toolbar: 'undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | link | bullist numlist outdent indent | removeformat | subscript superscript | forecolor backcolor | fontsizeselect | code',
+    //   height: 300,
+    //   content_style: 'body { font-family: Arial, sans-serif; text-align: justify; }'
+    // });
    this.GetCategorie()
     const user: any | null = sessionStorage.getItem('isLogin');
     this.user = JSON.parse(user);
