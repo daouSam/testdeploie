@@ -99,7 +99,7 @@
                             <input type="radio" name="cadilink" value="Site" (change)="checkStatus($event);"> Site
                         </label>
                         <input type="text" *ngIf="linkmail" formControlName="urlCandidature" placeholder="example@gmail.com" required  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                        <input type="text" *ngIf="!linkmail" formControlName="urlCandidature" placeholder="http(s)://" required  pattern="^(https?|ftp|http):\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([/?].*)?$">
+                        <input type="text" *ngIf="!linkmail" formControlName="urlCandidature" placeholder="http(s)://..." required  pattern="^(https?|ftp|http):\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([/?].*)?$">
                         <div *ngIf="formgroup.controls.urlCandidature.invalid && (formgroup.controls.urlCandidature.dirty || formgroup.controls.urlCandidature.touched) || submitted"
                         class="text-danger">
 

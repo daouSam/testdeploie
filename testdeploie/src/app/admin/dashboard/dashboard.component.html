@@ -17,35 +17,110 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12">                    
+                    <div class="col-12"> 
                         
-                            <div class="col-12" style="margin-bottom: 10px;">
-                            
-                                <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listOffreEmploi | paginate: { itemsPerPage: 5, currentPage: p }">
-                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
-                                    <div class="col-md-6 mt-1">
-                                        <h6 [routerLink]="'/detail/' + item.id"><a  style="color: #39569E;">{{item.nomOffre}}</a></h6>
-                                        <div class="d-flex flex-row">
-                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                        </div>
-                                        <div class="mt-1 mb-1 spec-1"><span>{{item.localisation}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
-                                        <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>
+                        
 
+                        <!-- <div class="col-12" style="margin-bottom: 10px;">
+                            
+                            <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listOffreEmploi | paginate: { itemsPerPage: 5, currentPage: p }">
+                                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
+                                <div class="col-md-6 mt-1">
+                                    <h6 [routerLink]="'/detail/' + item.id"><a  style="color: #39569E;">{{item.nomOffre}}</a></h6>
+                                    <div class="d-flex flex-row">
+                                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                                     </div>
-                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                        <div class="d-flex flex-row align-items-center">
-                                            <h6 class="text-success mr-1" style="font-size: 14px;">Publier le : {{item.dateCreation}}</h6>
-                                        </div>
-                                        <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6> 
-                                        <div class="d-flex flex-column mt-4">
-                                            <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Confirmer')"  type="button">Confirmer</button>
-                                            <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Retirer')"  type="button">Retirer</button>
-                                            <button  class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteOffreEmploi(item.id)">Supprimer</button>
-                                        </div>
+                                    <div class="mt-1 mb-1 spec-1"><span>{{item.localisation}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
+                                    <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>
+
+                                </div>
+                                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <h6 class="text-success mr-1" style="font-size: 14px;">Publier le : {{item.dateCreation}}</h6>
+                                    </div>
+                                    <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6> 
+                                    <div class="d-flex flex-column mt-4">
+                                        <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Confirmer')"  type="button">Confirmer</button>
+                                        <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Retirer')"  type="button">Retirer</button>
+                                        <button  class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteOffreEmploi(item.id)">Supprimer</button>
                                     </div>
                                 </div>
                             </div>
-                        <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> 
+                        </div>
+                    <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> -->
+
+
+
+
+
+                        <div class="example-container mat-elevation-z8">
+                            <mat-table #table [dataSource]="dataSource">
+                          
+                              <!-- Position Column -->
+                              <ng-container matColumnDef="logo">
+                                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <img class="img-fluid img-responsive rounded product-image" [src]="element.logo">
+                                </mat-cell>
+                              </ng-container>
+                          
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="nomOffre">
+                                <mat-header-cell *matHeaderCellDef> Offre </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <div>
+                                        <h6 [routerLink]="['/home/detail', element.id]"><a  style="color: #39569E;">{{element.nomOffre}}</a></h6>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>{{element.localisation}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">{{ cleanHtml(element.description) }}</p>
+    
+                                    </div>
+                                </mat-cell>
+                              </ng-container>
+                                                    
+                              <!-- Symbol Column -->
+                              <ng-container matColumnDef="dateCreation">
+                                <mat-header-cell *matHeaderCellDef> Date de publication </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{element.dateCreation}}</h6>
+                                    </div>
+                                </mat-cell>
+                              </ng-container>
+                              <!-- Symbol Column -->
+                              <ng-container matColumnDef="nomEntreprise">
+                                <mat-header-cell *matHeaderCellDef> Entreprise </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.nomEntreprise}} </mat-cell>
+                              </ng-container>
+                              <!-- Symbol Column -->
+                              <ng-container matColumnDef="confirmer">
+                                <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                                <mat-cell *matCellDef="let element" class="d-flex justify-content-between align-items-center">
+                                    <button *ngIf="element.confirmer===false" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(element.id, 'Confirmer')"  type="button">Confirmer</button>
+                                            <button *ngIf="element.confirmer===true" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(element.id, 'Retirer')"  type="button">Retirer</button>
+                                            <button  class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteOffreEmploi(element.id)">
+                                                <span class="material-icons">delete</span>
+                                            </button>
+                                </mat-cell>
+                              </ng-container>
+                          
+                              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                          
+                            <mat-paginator 
+                                #paginatorPageSize
+                                [pageSizeOptions]="pageSizes"
+                                showFirstLastButtons>
+                            </mat-paginator>
+                          </div>
                     </div>
                     
                 </div>
@@ -59,7 +134,7 @@
                         <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
                             <h3 class="m-0">Appels d'offres</h3>               
                                 
-                            <select id="select" ngModel name="selectcat" (change)="onCategoryAppelChange($event)" class="form-select">
+                            <select id="selectappel" ngModel name="selectcat" (change)="onCategoryAppelChange($event)" class="form-select">
                                 <option value="" >Choisir une Categorie</option>
                                 <option value="tout" >tout</option>
                             
@@ -71,7 +146,7 @@
                 
                     <div class="col-12">                 
                             
-                            <div class="col-12" style="margin-bottom: 10px;">                                    
+                            <!-- <div class="col-12" style="margin-bottom: 10px;">                                    
                                     
                                 <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listAppelOffre | paginate: { itemsPerPage: 6, currentPage: p }">
                                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
@@ -97,8 +172,78 @@
                                 </div>
                             </div>                                    
                             
-                        </div>
-                        <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> 
+                            </div>
+                    <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> -->
+                    <div class="example-container mat-elevation-z8 mb-4">
+                        <mat-table #table [dataSource]="dataSourceAppel">
+                      
+                          <!-- Position Column -->
+                          <ng-container matColumnDef="logo">
+                            <mat-header-cell *matHeaderCellDef> Logo </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <img class="img-fluid img-responsive rounded product-image" [src]="element.logo">
+                            </mat-cell>
+                          </ng-container>
+                      
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="titre">
+                            <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
+                            <mat-cell *matCellDef="let element"
+                             title="voir le détail" style="cursor: pointer;">
+                             <div>
+                                <h6 [routerLink]="['/home/detail', element.id]"><a  style="color: #39569E;">{{element.titre}}</a></h6>
+                                <div class="d-flex flex-row">
+                                    <div class="ratings mr-2">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-1 mb-1 spec-1"><span>{{element.ville}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
+                                <p class="text-justify text-truncate para mb-0">{{ cleanHtml(element.description) }}</p>
+
+                            </div>
+                            </mat-cell>
+                          </ng-container>
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="ville">
+                            <mat-header-cell *matHeaderCellDef> Lieu / Date </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="d-flex flex-column"> 
+                                <div class="mt-1 mb-1 spec-1"><span>{{element.ville}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{element.dateCreation}}</h6>
+                                </div>
+                            </mat-cell>
+                          </ng-container>
+                      
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="nomEntreprise">
+                            <mat-header-cell *matHeaderCellDef> Entreprise </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.nomEntreprise}} </mat-cell>
+                          </ng-container>
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="confirmer">
+                            <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="d-flex justify-content-between align-items-center">
+                                <button *ngIf="element.confirmer===false" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(element.id, 'Confirmer')" style="font-weight: bold;" type="button">Confirmer</button>
+                                <button *ngIf="element.confirmer===true" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(element.id, 'Retirer')" style="font-weight: bold;" type="button">Retirer</button>
+                                <button class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteAppelOffre(element.id)">
+                                    <span class="material-icons">delete</span>
+                                </button>
+                            </mat-cell>
+                          </ng-container>
+                      
+                          <mat-header-row *matHeaderRowDef="displayedColumnsAppel"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumnsAppel;"></mat-row>
+                        </mat-table>
+                      
+                        <mat-paginator 
+                            #paginatorPageSizeAppel
+                            [pageSizeOptions]="pageSizes"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                      </div> 
                         
                     </div>
                 </div>

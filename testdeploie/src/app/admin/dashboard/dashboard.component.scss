@@ -155,3 +155,13 @@ a.list-group-item:hover {
   .scrolling-text.show {
     opacity: 1;
   }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }

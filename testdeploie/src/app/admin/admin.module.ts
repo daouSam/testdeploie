@@ -14,6 +14,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TistiqueComponent } from '../tistique/tistique.component';
 import { UtilisateurComponent } from '../utilisateur/utilisateur.component';
 import { RsocialModule } from '../publicm/r-social/r-social.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -32,7 +35,10 @@ import { RsocialModule } from '../publicm/r-social/r-social.module';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    RsocialModule
+    RsocialModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule
   ]
 })
 export class AdminModule { }
