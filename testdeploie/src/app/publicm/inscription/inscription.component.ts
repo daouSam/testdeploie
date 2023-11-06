@@ -3,7 +3,6 @@ import { ServiceService } from '../../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../notifications/notification.service';
-import * as intlTelInput from 'intl-tel-input';
 
 @Component({
   selector: 'app-inscription',
@@ -26,16 +25,6 @@ export class InscriptionComponent implements OnInit {
     protected _notificationSvc: NotificationService) {}
 
   ngOnInit(): void {
-
-    const inputElement = document.querySelector('#phone');
-    if (inputElement) {
-      intlTelInput( inputElement, {
-        initialCountry: 'us',
-        separateDialCode: true,
-        utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.0/js/utils.js'
-      });
-    }
-
       this.formgroup = this.formBuilder.group({
       telephone1: ['', [Validators.required,]],
       telephone2: ['', [Validators.required,]],

@@ -106,8 +106,11 @@
                         <div style="font-size: 12px;" *ngIf="formgroup.controls.urlCandidature.errors?.['required']">
                             Url est obligatoire
                         </div>
-                        <div style="font-size: 12px;" *ngIf="formgroup.get('urlCandidature').hasError('pattern')">
+                        <div style="font-size: 12px;" *ngIf="formgroup.get('urlCandidature').hasError('pattern') && linkmail">
                             Le format de l'email est incorrect.
+                        </div>
+                        <div style="font-size: 12px;" *ngIf="formgroup.get('urlCandidature').hasError('pattern') && !linkmail">
+                            Le format du site est incorrect.
                         </div>
 
                     </div>
