@@ -46,6 +46,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
 import { RsocialModule } from './r-social/r-social.module';
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -79,7 +80,7 @@ import { RsocialModule } from './r-social/r-social.module';
     SideComponent,
     CarousselComponent,
     EntrepriseComponent,
-    PublicLayoutComponent
+    PublicLayoutComponent,
   ],
   imports: [
     CommonModule,

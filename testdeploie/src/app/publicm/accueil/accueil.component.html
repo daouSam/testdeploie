@@ -77,7 +77,7 @@
                             <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listOffreEmploi | paginate: { itemsPerPage: 5, currentPage: p }" >
                                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
                                 <div class="col-md-6 mt-1">
-                                    <h6  ><a [routerLink]="'/detail/' + item.id" style="color: #39569E;">{{item.nomOffre}}</a></h6>
+                                    <h6  ><a [routerLink]="['/home/detail', item.id]" style="color: #39569E;">{{item.nomOffre}}</a></h6>
                                     <div class="d-flex flex-row">
                                         <app-side [stars]="item.averageRating" />
                                         <div class="rating-selection">
@@ -131,10 +131,10 @@
                         <div class="col-12" style="margin-bottom: 10px;">
                             <img style="display: block; margin: auto;" *ngIf="!listAppelOffre" src="assets/img/Spinner-1s-287px.svg" alt="">
                             
-                            <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listAppelOffre | paginate: { itemsPerPage: 5, currentPage: p }" >
+                            <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listAppelOffre | paginate: { itemsPerPage: 5, currentPage: pt }" >
                                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
                                 <div class="col-md-6 mt-1">
-                                    <h6 ><a [routerLink]="'/detaiappel/' + item.id" style="color: #39569E;">{{item.titre}}</a></h6>
+                                    <h6 ><a [routerLink]="['home/detaiappel',item.id]" style="color: #39569E;">{{item.titre}}</a></h6>
                                     <div class="d-flex flex-row">
                                         <app-side [stars]="item.averageRating" />
                                         <div class="rating-selection">
@@ -163,7 +163,7 @@
                             </div>                              
                         
                         </div>
-                        <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls>
+                        <pagination-controls style="text-align: center;" (pageChange)="pt = $event"></pagination-controls>
                       
                     </div>
                 </div>

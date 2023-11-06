@@ -21,7 +21,6 @@ import { NotificationService } from './notifications/notification.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ComfirmationComponent } from './confirmation/confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NgxTinymceModule } from 'ngx-tinymce';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 const storage: any | null = sessionStorage.getItem('TOKEN');

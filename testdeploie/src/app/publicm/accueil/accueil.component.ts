@@ -38,6 +38,7 @@ export class AccueilComponent implements OnInit {
   stars: number = 0;
   data :any
   p: number = 1;
+  pt: number = 1;
   starsArray = Array;
   form: any;
   images: string[] = ['assets/img/OFFRES-EMPLOI.jpg','assets/img/Group 15.png'];
