@@ -45,6 +45,7 @@ import { EntrepriseComponent } from './entreprise/entreprise.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
 import { RsocialModule } from './r-social/r-social.module';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 
 @NgModule({
@@ -96,7 +97,8 @@ import { RsocialModule } from './r-social/r-social.module';
     MatDialogModule,
     EditorModule,
     MatRadioModule,
-    RsocialModule
+    RsocialModule,
+    NgxIntlTelInputModule
   ],
   providers: []
 })

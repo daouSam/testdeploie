@@ -95,8 +95,8 @@
                     <div class="input-field">
                         <label class="d-flex align-items-center">
                             Adresse de la candidature  &nbsp;
-                            <input type="radio" name="cadilink" value="Email" (change)="checkStatus($event);" checked> Email  &nbsp;
-                            <input type="radio" name="cadilink" value="Site" (change)="checkStatus($event);"> Site
+                            <input type="radio" name="cadilink" value="Email" id="emaill" (change)="checkStatus($event);" checked><label for="emaill"> Email</label>  &nbsp;
+                            <input type="radio" name="cadilink" value="Site" id="site" (change)="checkStatus($event);"> <label for="site"> Site</label>
                         </label>
                         <input type="text" *ngIf="linkmail" formControlName="urlCandidature" placeholder="example@gmail.com" required  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                         <input type="text" *ngIf="!linkmail" formControlName="urlCandidature" placeholder="http(s)://..." required  pattern="^(https?|ftp|http):\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([/?].*)?$">

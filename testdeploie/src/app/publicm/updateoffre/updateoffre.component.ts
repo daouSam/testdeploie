@@ -59,7 +59,7 @@ export class UpdateoffreComponent implements OnInit {
       urlLinkdin: ['', [ Validators.pattern('^$|^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$')]],
       logo: ['', []],
       categorie: ['', Validators.required]
-  },);
+    });
   }
   moi(){
     this.uploadSave(this.imgfile).then(() =>{})

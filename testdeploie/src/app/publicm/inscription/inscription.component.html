@@ -76,55 +76,70 @@
                           </div>
                         </div>
   
-                      </div>
-    
-                     
+                      </div>                 
     
                         <div class="input-field">
                             <label>Numero de telephone </label>
+                            <!-- <ngx-intl-tel-input
+                              [cssClass]="'form-control'"
+                              [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                              [enableAutoCountrySelect]="false"
+                              [enablePlaceholder]="true"
+                              [searchCountryFlag]="true"
+                              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                              [selectFirstCountry]="false"
+                              [selectedCountryISO]="CountryISO.Mali"
+                              [minlength]="6"
+                              [maxLength]="15"
+                              [phoneValidation]="false"
+                              [separateDialCode]="true"
+                              formControlName="telephone1"
+                            ></ngx-intl-tel-input> -->
                             <input formControlName="telephone1" type="tel"  id="phone" placeholder="Saisir le numero de telephone" required>
-                            <div *ngIf="formgroup.controls.telephone1.invalid && (formgroup.controls.telephone1.dirty || formgroup.controls.telephone1.touched) || submitted"
-                            class="text-danger">
-    
-                                <div style="font-size: 12px;" *ngIf="formgroup.controls.telephone1.errors?.['required']">
-                                    Le numero de telephone est obligatoire
-                                </div>
-    
+                              <div *ngIf="formgroup.get('telephone1').invalid && (formgroup.get('telephone1').touched || submitted)"
+                              class="text-danger">
+                              <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1').errors?.required">
+                                Le numéro de téléphone est obligatoire
+                              </div>    
                         </div>
                         </div>
                         
                         <div class="input-field">
                           <label>Deuxième numero de telephone </label>
+                          <!-- <ngx-intl-tel-input
+                              [cssClass]="'form-control'"
+                              [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                              [enableAutoCountrySelect]="false"
+                              [enablePlaceholder]="true"
+                              [searchCountryFlag]="true"
+                              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                              [selectFirstCountry]="false"
+                              [selectedCountryISO]="CountryISO.Mali"
+                              [minlength]="6"
+                              [maxLength]="15"
+                              [phoneValidation]="false"
+                              formControlName="telephone2"
+                            ></ngx-intl-tel-input> -->
                           <input formControlName="telephone2" type="number" placeholder="Saisir le numero de telephone" required>
-                          <div *ngIf="formgroup.controls.telephone2.invalid && (formgroup.controls.telephone2.dirty || formgroup.controls.telephone2.touched) || submitted"
-                          class="text-danger">
-  
-                              <div style="font-size: 12px;" *ngIf="formgroup.controls.telephone2.errors?.['required']">
-                                  Le numero de telephone est obligatoire
-                              </div>
-  
-                      </div>
-                      </div>
-    
-                      
-                    </div>
-    
+                          <div *ngIf="formgroup.get('telephone2').invalid && (formgroup.get('telephone2').touched || submitted)"
+                              class="text-danger">
+                            <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1').errors?.required">
+                              Le numéro de téléphone est obligatoire
+                            </div>
+                          </div>
+                    </div>                    
+                  </div>    
                 </div> 
-            </div>
+            </div>    
+            <div>               
     
-            <div >
-               
-    
-                <div class="details family">
-                   
-    
-                    <div class="buttons">
-                    
-                        <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
-                            <span class="btnText">Soumettre</span>
-                        </button>
-                    </div>
-                </div> 
+            <div class="details family">    
+                <div class="buttons">                
+                  <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
+                      <span class="btnText">Soumettre</span>
+                  </button>
+                </div>
+              </div> 
             </div>
         </form>
         </div>

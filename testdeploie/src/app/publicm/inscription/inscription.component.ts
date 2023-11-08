@@ -3,6 +3,7 @@ import { ServiceService } from '../../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../notifications/notification.service';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-inscription',
@@ -10,6 +11,13 @@ import { NotificationService } from '../../notifications/notification.service';
   styleUrls: ['./inscription.component.scss']
 })
 export class InscriptionComponent implements OnInit {
+
+
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.Qatar];
+
+
   formgroup :any;
   donne :any
   type : any ="USER"
@@ -19,6 +27,8 @@ export class InscriptionComponent implements OnInit {
   form: any;
   cand : any ="assets/img/utilisateur (1).png"
   empl: any ="assets/img/job-promotion (1).png"
+  telephone2: string|number|null;
+ telephone1: string|number|null;
   constructor(
     private service : ServiceService,
     public formBuilder: FormBuilder,
@@ -27,13 +37,10 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
       this.formgroup = this.formBuilder.group({
       telephone1: ['', [Validators.required,]],
-      telephone2: ['', [Validators.required,]],
-  
+      telephone2: ['', [Validators.required,]],  
       localite: ['',[Validators.required]],
-      nom: ['',[Validators.required,Validators.minLength(4)]],
-   
-       email: ['',[Validators.required]],
-
+      nom: ['',[Validators.required,Validators.minLength(4)]],   
+      email: ['',[Validators.required]],
       password: ['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
     
   },);
@@ -46,7 +53,9 @@ export class InscriptionComponent implements OnInit {
     return this.form.controls;
   }
   ajouterUtilisateur(fg : FormGroup){
+    
     this.submitted=true;
+    console.log(fg.value);
     let styl : boolean =false
 
     if (this.formgroup.valid) {
@@ -68,9 +77,9 @@ export class InscriptionComponent implements OnInit {
   }
   
   employeur(){
- this.role=[{"id" : 1}]
- this.cand ="assets/img/utilisateur (2).png"
- this.empl ="assets/img/job-promotion.png"
+    this.role=[{"id" : 1}]
+    this.cand ="assets/img/utilisateur (2).png"
+    this.empl ="assets/img/job-promotion.png"
   }
   candidat(){
     this.role=[{"id" : 2}]
