@@ -3,7 +3,7 @@ import { ServiceService } from '../../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../notifications/notification.service';
-import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+import { CountryISO, SearchCountryField } from '@kovach/ngx-intl-tel-input';
 
 @Component({
   selector: 'app-inscription',
@@ -12,10 +12,9 @@ import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 })
 export class InscriptionComponent implements OnInit {
 
-
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
-  preferredCountries: CountryISO[] = [CountryISO.Qatar];
+  preferredCountries: CountryISO[] = [CountryISO.Mali];
 
 
   formgroup :any;
@@ -37,12 +36,11 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
       this.formgroup = this.formBuilder.group({
       telephone1: ['', [Validators.required,]],
-      telephone2: ['', [Validators.required,]],  
+      telephone2: [''],  
       localite: ['',[Validators.required]],
       nom: ['',[Validators.required,Validators.minLength(4)]],   
       email: ['',[Validators.required]],
-      password: ['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
-    
+      password: ['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]]    
   },);
 
   }
@@ -55,25 +53,34 @@ export class InscriptionComponent implements OnInit {
   ajouterUtilisateur(fg : FormGroup){
     
     this.submitted=true;
+    let userSigUp: SigInUser = {
+      email: fg.value.email,
+      localite: fg.value.localite,
+      nom: fg.value.nom,
+      password: fg.value.password,
+      telephone1: fg.value.telephone1.e164Number,
+      telephone2: fg.value.telephone2?.e164Number
+    }
     console.log(fg.value);
+    console.log(userSigUp);
     let styl : boolean =false
 
-    if (this.formgroup.valid) {
-      
-      styl=true
-    fg.value.roles=this.role
+ if (this.formgroup.valid) {
+   
+   styl=true
+ fg.value.roles=this.role
  
-    this.service.addUtilisateur(fg.value).subscribe((data)=>{
-      if(data){        
-        this._notificationSvc.success("succès","Inscription effectuer avec succès");
-        location.replace("/inscription");
-      }
-    }, err => {
-      this._notificationSvc.error("Erreur",`${err.error.message} !`);
-    })
-  }else{
-      this._notificationSvc.error("Erreur","merci de renseigner tous les champs");
-    }
+ this.service.addUtilisateur(userSigUp).subscribe((data)=>{
+   if(data){        
+     this._notificationSvc.success("succès","Inscription effectuer avec succès");
+     location.replace("/inscription");
+   }
+ }, err => {
+   this._notificationSvc.error("Erreur",`${err.error.message} !`);
+ })
+ }else{
+   this._notificationSvc.error("Erreur","merci de renseigner tous les champs");
+ }
   }
   
   employeur(){
@@ -87,4 +94,13 @@ export class InscriptionComponent implements OnInit {
     this.empl ="assets/img/job-promotion (1).png"
   }
 
+}
+
+interface SigInUser {
+  email: string
+  localite: string
+  nom: string
+  password: string
+  telephone1: string
+  telephone2?: string
 }

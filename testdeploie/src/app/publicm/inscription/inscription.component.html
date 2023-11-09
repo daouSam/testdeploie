@@ -80,8 +80,8 @@
     
                         <div class="input-field">
                             <label>Numero de telephone </label>
-                            <!-- <ngx-intl-tel-input
-                              [cssClass]="'form-control'"
+                            <ngx-intl-tel-input
+                              [cssClass]="'custom'"
                               [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
                               [enableAutoCountrySelect]="false"
                               [enablePlaceholder]="true"
@@ -89,13 +89,12 @@
                               [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
                               [selectFirstCountry]="false"
                               [selectedCountryISO]="CountryISO.Mali"
-                              [minlength]="6"
                               [maxLength]="15"
-                              [phoneValidation]="false"
-                              [separateDialCode]="true"
+                              [phoneValidation]="true"
+                              name="telephone1"
                               formControlName="telephone1"
-                            ></ngx-intl-tel-input> -->
-                            <input formControlName="telephone1" type="tel"  id="phone" placeholder="Saisir le numero de telephone" required>
+                            ></ngx-intl-tel-input>
+                            <!-- <input formControlName="telephone1" type="tel"  id="phone" placeholder="Saisir le numero de telephone" required> -->
                               <div *ngIf="formgroup.get('telephone1').invalid && (formgroup.get('telephone1').touched || submitted)"
                               class="text-danger">
                               <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1').errors?.required">
@@ -106,21 +105,21 @@
                         
                         <div class="input-field">
                           <label>Deuxième numero de telephone </label>
-                          <!-- <ngx-intl-tel-input
-                              [cssClass]="'form-control'"
-                              [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
-                              [enableAutoCountrySelect]="false"
-                              [enablePlaceholder]="true"
-                              [searchCountryFlag]="true"
-                              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-                              [selectFirstCountry]="false"
-                              [selectedCountryISO]="CountryISO.Mali"
-                              [minlength]="6"
-                              [maxLength]="15"
-                              [phoneValidation]="false"
-                              formControlName="telephone2"
-                            ></ngx-intl-tel-input> -->
-                          <input formControlName="telephone2" type="number" placeholder="Saisir le numero de telephone" required>
+                          <ngx-intl-tel-input
+                            [cssClass]="'custom'"
+                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="true"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="CountryISO.Mali"
+                            [maxLength]="15"
+                            [phoneValidation]="true"
+                            name="telephone2"
+                            formControlName="telephone2"
+                          ></ngx-intl-tel-input>
+                          <!-- <input formControlName="telephone2" type="number" placeholder="Saisir le numero de telephone" required> -->
                           <div *ngIf="formgroup.get('telephone2').invalid && (formgroup.get('telephone2').touched || submitted)"
                               class="text-danger">
                             <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1').errors?.required">

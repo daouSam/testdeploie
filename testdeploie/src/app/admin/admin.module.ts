@@ -17,6 +17,8 @@ import { RsocialModule } from '../publicm/r-social/r-social.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { CategorieListComponent } from './categorie-list/categorie-list.component';
+import { CategorieAddEditComponent } from './categorie-add-edit/categorie-add-edit.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -26,7 +28,9 @@ import { MatIconModule } from '@angular/material/icon';
     AnnonceadminComponent,
     LayoutComponent,
     TistiqueComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    CategorieListComponent,
+    CategorieAddEditComponent
   ],
   imports: [
     CommonModule,

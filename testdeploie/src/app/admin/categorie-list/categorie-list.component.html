@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 list-group">
+            <form [formGroup]="categoryForm">
+                <div class="mb-3">
+                  <label for="categorie">Sélectionnez une catégorie pour afficher la liste correspondante</label>
+                  <select class="form-select" id="categorie" formControlName="categorie">
+                    <option value="appel">Catégorie Appel d'Offre</option>
+                    <option value="offre">Catégorie Offres d'Emploie</option>
+                    <option value="entreprise">Catégorie D'Entreprise</option>
+                    <option value="annonce">Catégorie D'Annonce</option>
+                    <option value="affaire">Catégorie D'Affaire</option>
+                  </select>
+                </div>
+              </form>
+            <button class="btn btn-primary" [routerLink]="['/admin/categorie/add']">new catégorie</button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action active">
+              {{nomCategorie}}
+            </a>
+            <div class="rowa">
+                <div class="d-flex" *ngFor="let item of categorie">
+                    <a
+                     class="list-group-item list-group-item-action"
+                     >{{item.nom}}</a>
+                     <a class="btn list-group-item list-group-item-action col-1" (click)="edit(item.id)"><i class="fas fa-edit"></i></a>
+                     <a class="btn list-group-item list-group-item-action col-1"(click)="deletec(item.id)"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>

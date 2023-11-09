@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="panel-group" id="accordion">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#multiple-options">
+                        Catégorie d'Appel d'Offres
+                    </a>
+                </h4>
+            </div>
+            <div id="multiple-options" class="panel-collapse collapse" [ngClass]="{'in' : activeTab == '#multiple-options'}">
+                <div class="panel-body">
+                    <h1>Appel Offre</h1>
+                    <form #formof="ngForm">
+                        <div class="mb-3 col-4">
+                            <label for="appel" class="form-label">Nom de la catégorie</label>
+                            <input type="text" class="form-control mb-3" id="appel" name="nom" ngModel placeholder="Entrez le nom de la catégorie" required>
+                            <button class="btn btn-primary" [disabled]="!formof.valid" (click)="addCatApplOffre(formof)">ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#CustomizationTooltip" >
+                        Catégorie offre d'emploie
+                    </a>
+                </h4>
+            </div>
+            <div id="CustomizationTooltip" class="panel-collapse collapse" [ngClass]="{'in' : activeTab == '#CustomizationTooltip'}">
+                <div class="panel-body">
+            <h1>Offre d'Emploie</h1>
+            <form #formem="ngForm">
+                <div class="mb-3 col-4">
+                    <label for="offre" class="form-label">Nom de la catégorie</label>
+                    <input type="text" class="form-control mb-3" id="offre" name="nom" ngModel placeholder="Entrez le nom de la catégorie" required>
+                    <button class="btn btn-primary" [disabled]="!formem.valid" (click)="addCatOffre(formem)">ajouter</button>
+                </div>
+            </form>
+          </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#customizedOrdering">
+                        Catégorie Entreprise
+                    </a>
+                </h4>
+            </div>
+            <div id="customizedOrdering" class="panel-collapse collapse" [ngClass]="{'in' : activeTab == '#customizedOrdering'}">
+                <div class="panel-body">
+            <h1>Entreprise</h1>
+            <form #formen="ngForm">
+                <div class="mb-3 col-4">
+                    <label for="entreprise" class="form-label">Nom de la catégorie</label>
+                    <input type="text" class="form-control mb-3" id="entreprise" name="nom" ngModel placeholder="Entrez le nom de la catégorie" required>
+                    <button class="btn btn-primary" [disabled]="!formen.valid" (click)="addCatEntreprise(formen)">ajouter</button>
+                </div>
+            </form>
+          </div>
+            </div>
+        </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#CustomizationSearching">
+                        Catégorie d'Annonce
+                    </a>
+                </h4>
+            </div>
+            <div id="CustomizationSearching" class="panel-collapse collapse" [ngClass]="{'in' : activeTab == '#CustomizationSearching'}">
+                <div class="panel-body">
+                <h1>Annonce</h1>
+                <form #forman="ngForm">
+                    <div class="mb-3 col-4">
+                        <label for="annonce" class="form-label">Nom de la catégorie</label>
+                        <input type="text" class="form-control mb-3" id="annonce" name="nom" ngModel placeholder="Entrez le nom de la catégorie" required>
+                        <button class="btn btn-primary" [disabled]="!forman.valid" (click)="addCatAnnonce(forman)">ajouter</button>
+                    </div>
+                </form>
+          </div>
+        </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#SampleInputValidation">
+                        Catégorie d'Affaire
+                    </a>
+                </h4>
+            </div>
+            <div id="SampleInputValidation" class="panel-collapse collapse" [ngClass]="{'in' : activeTab == '#SampleInputValidation'}">
+                <div class="panel-body">        
+                <h1>Affaire</h1>
+                <form #forma="ngForm">
+                    <div class="mb-3 col-4">
+                        <label for="affaire" class="form-label">Nom de la catégorie</label>
+                        <input type="text" class="form-control mb-3" id="affaire" name="nom" ngModel placeholder="Entrez le nom de la catégorie" required>
+                        <button class="btn btn-primary" [disabled]="!forma.valid" (click)="addCatAffaire(forma)">ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+

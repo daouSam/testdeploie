@@ -51,6 +51,41 @@ export class ServiceService {
   getCategorieAnnonce(){
     return this.http.get(this.url+"user/AllCategorieAnnonce");
   }
+  // suppe categore
+  delCategorieOffre(id: any){
+    return this.http.delete(this.url+"DeleteCategorie/"+id);
+  }
+  delCategorieAppel(id: any){
+    return this.http.delete(this.url+"DeleteCategorieAppel/"+id);
+  }
+  delCategorieEntreprise(id: any){
+    return this.http.delete(this.url+"DeleteCategorieEntreprise/"+id);
+  }
+  delCategorieAffaire(id: any){
+    return this.http.delete(this.url+"DeleteCategorieAffaire/"+id);
+  }
+  delCategorieAnnonce(id: any){
+    return this.http.delete(this.url+"DeleteCategorieAnnonce/"+id);
+  }
+  //end delete cate
+  
+  // add categore
+  addCategorieOffre(data: any){
+    return this.http.post(this.url+"user/AddCategorie", data);
+  }
+  addCategorieAppel(data: any){
+    return this.http.post(this.url+"user/AddCategorieAppel", data);
+  }
+  addCategorieEntreprise(data: any){
+    return this.http.post(this.url+"user/AddCategorieEntreprise", data);
+  }
+  addCategorieAffaire(data: any){
+    return this.http.post(this.url+"user/AddCategorieAffaire", data);
+  }
+  addCategorieAnnonce(data: any){
+    return this.http.post(this.url+"user/AddCategorieAnnonce", data);
+  }
+  //end add cate
 
   getAllOffreEmploi(){
     return this.http.get(this.url+"AllOffremploi");
