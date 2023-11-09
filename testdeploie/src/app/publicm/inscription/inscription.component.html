@@ -3,7 +3,7 @@
   <div class="container">    
     <header style="margin-top: 10px;">Inscription</header>
         
-        <form [formGroup]="formgroup"   (ngSubmit)="ajouterUtilisateur(formgroup)">               
+        <form [formGroup]="formgroup"   (ngSubmit)="ajouterUtilisateur()">               
             <div >                
                 <div class="details personal">                  
     
@@ -11,10 +11,10 @@
                       <div class="input-field">
                         <label>Nom d'utilisateur</label>
                         <input type="text" formControlName="nom" placeholder="Entrer votre nom complet" required>
-                        <div *ngIf="formgroup.controls.nom.invalid && (formgroup.controls.nom.dirty || formgroup.controls.nom.touched) || submitted"
+                        <div *ngIf="formgroup.controls['nom'].invalid && (formgroup.controls['nom'].dirty || formgroup.controls['nom'].touched) || submitted"
                         class="text-danger">
 
-                          <div style="font-size: 12px;" *ngIf="formgroup.controls.nom.errors?.['required']">
+                          <div style="font-size: 12px;" *ngIf="formgroup.controls['nom'].errors?.['required']">
                               nom est obligatoire
                           </div>
 
@@ -23,10 +23,10 @@
                     <div class="input-field">
                       <label>Localité</label>
                       <input type="text" formControlName="localite" placeholder="Entrer votre localité" required>
-                      <div *ngIf="formgroup.controls.localite.invalid && (formgroup.controls.localite.dirty || formgroup.controls.localite.touched) || submitted"
+                      <div *ngIf="formgroup.controls['localite'].invalid && (formgroup.controls['localite'].dirty || formgroup.controls['localite'].touched) || submitted"
                       class="text-danger">
 
-                        <div style="font-size: 12px;" *ngIf="formgroup.controls.localite.errors?.['required']">
+                        <div style="font-size: 12px;" *ngIf="formgroup.controls['localite'].errors?.['required']">
                             localité est obligatoire
                         </div>
 
@@ -45,13 +45,13 @@
                     <div class="input-field">
                       <label>E-mail </label>
                       <input formControlName="email" type="text" placeholder="diawara@gmail.com" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                      <div *ngIf="formgroup.controls.email.invalid && (formgroup.controls.email.dirty || formgroup.controls.email.touched) || submitted"
+                      <div *ngIf="formgroup.controls['email'].invalid && (formgroup.controls['email'].dirty || formgroup.controls['email'].touched) || submitted"
                       class="text-danger">
 
-                        <div style="font-size: 12px;" *ngIf="formgroup.controls.email.errors?.['required']">
+                        <div style="font-size: 12px;" *ngIf="formgroup.controls['email'].errors?.['required']">
                             E-mail est obligatoire
                         </div>
-                        <div style="font-size: 12px;" *ngIf="formgroup.get('email').hasError('pattern')">
+                        <div style="font-size: 12px;" *ngIf="formgroup.get('email')?.hasError('pattern')">
                             Le format de l'email est incorrect.
                         </div>
 
@@ -60,17 +60,17 @@
                         <div class="input-field">
                           <label>Mot de passe</label>
                           <input formControlName="password" type="password" placeholder="Entrer mot de passe" required>
-                          <div *ngIf="formgroup.controls.password.invalid && (formgroup.controls.password.dirty || formgroup.controls.password.touched) || submitted"
+                          <div *ngIf="formgroup.controls['password'].invalid && (formgroup.controls['password'].dirty || formgroup.controls['password'].touched) || submitted"
                           class="text-danger">
   
-                          <div style="font-size: 12px;" *ngIf="formgroup.controls.password.errors?.['required']">
+                          <div style="font-size: 12px;" *ngIf="formgroup.controls['password'].errors?.['required']">
                             mot de passe est obligatoire
                           </div>
-                          <div style="font-size: 12px;" *ngIf="formgroup.controls.password.errors?.['minlength']">
+                          <div style="font-size: 12px;" *ngIf="formgroup.controls['password'].errors?.['minlength']">
 
                             le mot de passe doit être au moins 4 caractère
                           </div>
-                          <div style="font-size: 12px;" *ngIf="formgroup.controls.password.errors?.['maxlength']">
+                          <div style="font-size: 12px;" *ngIf="formgroup.controls['password'].errors?.['maxlength']">
 
                             La longueur du mot de passe est limitée à un maximum de 10 caractères
                           </div>
@@ -94,10 +94,10 @@
                               name="telephone1"
                               formControlName="telephone1"
                             ></ngx-intl-tel-input> -->
-                            <input formControlName="telephone1" type="tel"  id="phone" placeholder="Saisir le numero de telephone" required>
-                              <div *ngIf="formgroup.get('telephone1').invalid && (formgroup.get('telephone1').touched || submitted)"
+                            <input formControlName="telephone1" type="tel"  id="phone" placeholder="74 - 00 - 00 - 00" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                              <div *ngIf="formgroup.get('telephone1')?.invalid && (formgroup.get('telephone1')?.touched || submitted)"
                               class="text-danger">
-                              <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1').errors?.required">
+                              <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1')?.errors?.['required']">
                                 Le numéro de téléphone est obligatoire
                               </div>    
                         </div>
@@ -119,13 +119,7 @@
                             name="telephone2"
                             formControlName="telephone2"
                           ></ngx-intl-tel-input> -->
-                          <input formControlName="telephone2" type="number" placeholder="Saisir le numero de telephone" required>
-                          <div *ngIf="formgroup.get('telephone2').invalid && (formgroup.get('telephone2').touched || submitted)"
-                              class="text-danger">
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('telephone1').errors?.required">
-                              Le numéro de téléphone est obligatoire
-                            </div>
-                          </div>
+                          <input formControlName="telephone2" type="tel" placeholder="74 - 00 - 00 - 00">
                     </div>                    
                   </div>    
                 </div> 
@@ -134,7 +128,7 @@
     
             <div class="details family">    
                 <div class="buttons">                
-                  <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;" >
+                  <button class="backBtn" type="submit"  style="background-color: #ED1C24; border: 1px solid #ED1C24; color: #ffffff;">
                       <span class="btnText">Soumettre</span>
                   </button>
                 </div>

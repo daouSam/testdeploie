@@ -17,68 +17,60 @@ export class InscriptionComponent implements OnInit {
   // preferredCountries: CountryISO[] = [CountryISO.Mali];
 
 
-  formgroup :any;
+  formgroup: FormGroup;
   donne :any
   type : any ="USER"
-  styl : boolean =false
+  styl : boolean = false
   submitted = false;
   role : any[] =[{"id" : 1}]
   form: any;
   cand : any ="assets/img/utilisateur (1).png"
   empl: any ="assets/img/job-promotion (1).png"
   telephone2: string|number|null;
- telephone1: string|number|null;
+  telephone1: string|number|null;
+  
   constructor(
     private service : ServiceService,
+    private router: Router,
     public formBuilder: FormBuilder,
     protected _notificationSvc: NotificationService) {}
 
   ngOnInit(): void {
       this.formgroup = this.formBuilder.group({
-      telephone1: ['', [Validators.required,]],
-      telephone2: [''],  
-      localite: ['',[Validators.required]],
-      nom: ['',[Validators.required,Validators.minLength(4)]],   
-      email: ['',[Validators.required]],
-      password: ['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]]    
-  },);
+      'telephone1': ['', Validators.required],
+      'telephone2': [''],  
+      'localite': ['',Validators.required],
+      'nom': ['',[Validators.required,Validators.minLength(4)]],   
+      'email': ['',[Validators.required]],
+      'password': ['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]]    
+  });
 
   }
   get f() {
     return this.formgroup.controls;
   }
-  get fa() {
-    return this.form.controls;
-  }
-  ajouterUtilisateur(fg : FormGroup){
+  
+  ajouterUtilisateur(){
     
-    this.submitted=true;
+    this.submitted = true;
     let userSigUp: SigInUser = {
-      email: fg.value.email,
-      localite: fg.value.localite,
-      nom: fg.value.nom,
-      password: fg.value.password,
-      telephone1: fg.value.telephone1,
-      telephone2: fg.value.telephone2
+      email: this.formgroup.value.email,
+      localite: this.formgroup.value.localite,
+      nom: this.formgroup.value.nom,
+      password: this.formgroup.value.password,
+      telephone1: this.formgroup.value.telephone1,
+      telephone2: this.formgroup.value.telephone2
     }
-    let styl : boolean =false
+    let styl : boolean = false     
+    styl = true
+    this.formgroup.value.roles = this.role    
+    this.service.addUtilisateur(userSigUp).subscribe((data)=>{    
+    this._notificationSvc.success("succès","Inscription effectuer avec succès");
+    this.router.navigate(["/home/inscription"]);  
+    }, err => {
+      this._notificationSvc.error("Erreur",`${err.error.message} !`);
+    })      
 
- if (this.formgroup.valid) {
-   
-   styl=true
- fg.value.roles=this.role
- 
- this.service.addUtilisateur(userSigUp).subscribe((data)=>{
-   if(data){        
-     this._notificationSvc.success("succès","Inscription effectuer avec succès");
-     location.replace("/inscription");
-   }
- }, err => {
-   this._notificationSvc.error("Erreur",`${err.error.message} !`);
- })
- }else{
-   this._notificationSvc.error("Erreur","merci de renseigner tous les champs");
- }
   }
   
   employeur(){
@@ -86,6 +78,7 @@ export class InscriptionComponent implements OnInit {
     this.cand ="assets/img/utilisateur (2).png"
     this.empl ="assets/img/job-promotion.png"
   }
+  
   candidat(){
     this.role=[{"id" : 2}]
     this.cand ="assets/img/utilisateur (1).png"
