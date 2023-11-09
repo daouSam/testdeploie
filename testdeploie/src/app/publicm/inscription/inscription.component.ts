@@ -3,7 +3,7 @@ import { ServiceService } from '../../service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../notifications/notification.service';
-import { CountryISO, SearchCountryField } from '@kovach/ngx-intl-tel-input';
+// import { CountryISO, SearchCountryField } from '@kovach/ngx-intl-tel-input';
 
 @Component({
   selector: 'app-inscription',
@@ -12,9 +12,9 @@ import { CountryISO, SearchCountryField } from '@kovach/ngx-intl-tel-input';
 })
 export class InscriptionComponent implements OnInit {
 
-  SearchCountryField = SearchCountryField;
-  CountryISO = CountryISO;
-  preferredCountries: CountryISO[] = [CountryISO.Mali];
+  // SearchCountryField = SearchCountryField;
+  // CountryISO = CountryISO;
+  // preferredCountries: CountryISO[] = [CountryISO.Mali];
 
 
   formgroup :any;
@@ -58,11 +58,9 @@ export class InscriptionComponent implements OnInit {
       localite: fg.value.localite,
       nom: fg.value.nom,
       password: fg.value.password,
-      telephone1: fg.value.telephone1.e164Number,
-      telephone2: fg.value.telephone2?.e164Number
+      telephone1: fg.value.telephone1,
+      telephone2: fg.value.telephone2
     }
-    console.log(fg.value);
-    console.log(userSigUp);
     let styl : boolean =false
 
  if (this.formgroup.valid) {
