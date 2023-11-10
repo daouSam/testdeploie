@@ -78,7 +78,7 @@
                 <a href="" *ngIf="user==null"   class="nav-item nav-link " routerLinkActive="active" data-toggle="modal" data-target="#myModal"> <span><i class="fa fa-user" aria-hidden="true"></i></span> Connexion</a>
                 <a href="" *ngIf="donne=='ADMIN' && user!=null"   class="nav-item nav-link " routerLinkActive="active" routerLink="/admin"> <span><i class="fa fa-user" aria-hidden="true"></i></span> ADMIN</a>               
             </div>
-            <div class="nav-item dropdown" *ngIf="user==null" style="border: 1px solid #ED1C24;" >
+            <div class="nav-item dropdown" *ngIf="user==null" style="border: 1px solid #3498DB;" >
                 
                 <a    class="nav-link dropdown-toggle active" style="font-weight: bold;"   data-toggle="dropdown">Publier</a>
 
@@ -88,7 +88,7 @@
                   
                 </div>
             </div>
-            <div class="nav-item dropdown" *ngIf="user!=null" style="border: 1px solid #ED1C24; cursor: pointer;" >
+            <div class="nav-item dropdown" *ngIf="user!=null" style="border: 1px solid #3498DB; cursor: pointer;" >
                 <a  class="nav-link dropdown-toggle active" style="font-weight: bold; cursor: pointer;"   data-toggle="dropdown">{{loginData?.nom}}</a>
 
                 <div class="dropdown-menu rounded-0 m-0">

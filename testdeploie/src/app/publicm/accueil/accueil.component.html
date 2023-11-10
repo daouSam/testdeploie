@@ -77,7 +77,7 @@
                             <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listOffreEmploi | paginate: { itemsPerPage: 5, currentPage: p }" >
                                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
                                 <div class="col-md-6 mt-1">
-                                    <h6  ><a [routerLink]="['/home/detail', item.id]" style="color: #39569E;">{{item.nomOffre}}</a></h6>
+                                    <h5 ><a [routerLink]="['/home/detail', item.id]" style="color: #39569E; text-decoration: none;">{{item.nomOffre}}</a></h5>
                                     <div class="d-flex flex-row">
                                         <app-side [stars]="item.averageRating" />
                                         <div class="rating-selection">
@@ -142,7 +142,7 @@
                                             <select [(ngModel)]="selectedStarsAppelOffre" (change)="addRatingAppelOffre(item.id)">
                                                 <option value="0" selected>Noté</option>
                                                 <option *ngFor="let option of [1, 2, 3, 4, 5]" [value]="option">{{ option }} étoile{{ option > 1 ? 's' : '' }}</option>
-                                                </select>
+                                            </select>
                                             
                                         </div>
                                     </div>

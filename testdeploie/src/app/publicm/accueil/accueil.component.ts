@@ -44,7 +44,7 @@ export class AccueilComponent implements OnInit {
   images: string[] = ['assets/img/OFFRES-EMPLOI.jpg','assets/img/Group 15.png'];
   ra :any
   currentImage: string = 'assets/img/Group 15.png';
-  constructor(private fb: FormBuilder,
+    constructor(private fb: FormBuilder,
     private service : ServiceService,
     private confirmationService: ConfirmetionService,
     protected _notificationSvc: NotificationService
