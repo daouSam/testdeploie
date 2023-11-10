@@ -22,12 +22,17 @@ export class DetailComponent implements OnInit {
   donnee : any;
   activeTabId = 1;
   listOffreEmploi: any;
-   constructor(private service : ServiceService,private route: ActivatedRoute) { }
+  isMail: boolean = true
+
+   constructor(
+    private service : ServiceService,
+    private route: ActivatedRoute) { }
  
-   ngOnInit(): void {
+    ngOnInit(): void {
      this.id = this.route.snapshot.params['id'];
      this.service.OffreEmploiById(this.id).subscribe((data)=>{ 
       this.list=data
+      this.list.urlCandidature.includes('http') ? this.isMail = false : this.isMail = true;
       this.service.getAllOffreEmploiByCategorie(this.list.categorie.id).subscribe({
         next :(data)=>{
           this.listOffreEmploi  = data          
@@ -38,7 +43,7 @@ export class DetailComponent implements OnInit {
        this.loginData=JSON.parse(localStorage["isLogin"]);
      }
      
-   }
+  }
   
    
 }

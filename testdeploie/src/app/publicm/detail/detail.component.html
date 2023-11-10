@@ -201,7 +201,8 @@
           </div>
           <h4 class="mb-2">Pour postuler envoyer votre candidature par mail à:</h4>
         
-          <a [href]="'mailto:' + list?.urlCandidature">{{list?.urlCandidature}}</a>
+          <a *ngIf="isMail" [href]="'mailto:' + list?.urlCandidature">{{list?.urlCandidature}}</a>
+          <a *ngIf="!isMail" [href]="list?.urlCandidature" target="_blank">{{list?.urlCandidature}}</a>
         </div>
       </div>
     </div>
