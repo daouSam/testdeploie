@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="panel-group" id="accordion">
+    <div class="panel-group" id="accordion" *ngIf="isAddMode">
 
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#multiple-options">
+                    <a data-toggle="collapse" class="btn" id="appel" data-parent="#accordion" href="#multiple-options">
                         Catégorie d'Appel d'Offres
                     </a>
                 </h4>
@@ -26,7 +26,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#CustomizationTooltip" >
+                    <a data-toggle="collapse" class="btn" id="offre" data-parent="#accordion" href="#CustomizationTooltip" >
                         Catégorie offre d'emploie
                     </a>
                 </h4>
@@ -48,7 +48,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#customizedOrdering">
+                    <a data-toggle="collapse" class="btn" id="entreprise" data-parent="#accordion" href="#customizedOrdering">
                         Catégorie Entreprise
                     </a>
                 </h4>
@@ -70,7 +70,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#CustomizationSearching">
+                    <a data-toggle="collapse" class="btn" id="annonce" data-parent="#accordion" href="#CustomizationSearching">
                         Catégorie d'Annonce
                     </a>
                 </h4>
@@ -92,7 +92,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#SampleInputValidation">
+                    <a data-toggle="collapse" class="btn" id="affaire" data-parent="#accordion" href="#SampleInputValidation">
                         Catégorie d'Affaire
                     </a>
                 </h4>
@@ -110,6 +110,15 @@
             </div>
         </div>
         </div>
+    </div>
+    <div class="panel-group" *ngIf="!isAddMode">
+        <form #form="ngForm">
+            <div class="col-6 mb-3">
+              <label for="nom" class="form-label">nom de la catégorie </label>
+              <input type="text" id="nom" class="form-control mb-3" name="nom" [(ngModel)]="formData.nom" required>
+              <button [disabled]="form.invalid" (click)="onSubmitEdit()">Modifier la catégorie</button>
+            </div>      
+          </form>
     </div>
 </div>
 

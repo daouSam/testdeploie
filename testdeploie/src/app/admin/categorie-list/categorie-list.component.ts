@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmetionService } from 'src/app/confirmation/confirmation.service';
+import { typeCategorie } from 'src/app/models/consign';
 import { NotificationService } from 'src/app/notifications/notification.service';
 import { ServiceService } from 'src/app/service.service';
 
@@ -13,9 +15,12 @@ export class CategorieListComponent implements OnInit{
   categoryForm: FormGroup;
   nomCategorie: string = 'Catégorie différent catégorie'
   categorie: any;
+  orderObj: any
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
      private serviceCat: ServiceService,
      protected _notificationSvc: NotificationService,
      private confirmationService: ConfirmetionService) {
@@ -25,26 +30,7 @@ export class CategorieListComponent implements OnInit{
 
     this.categoryForm.get('categorie')?.valueChanges.subscribe({
       next: (value) => {
-        switch (value) {
-          case 'appel':
-            this.getCatAppel()
-            break;
-            case 'offre':
-              this.getCatOffre()
-              break;
-            case 'entreprise':
-              this.getCatEntreprise()
-              break;
-            case 'annonce':
-              this.getCatAnnonce()
-              break;
-            case 'affaire':
-              this.getCatAffaire()
-              break;
-            default:
-              this._notificationSvc.warning("WARRNING","vous devez séléctioner une catégorie !")
-              break;
-            }
+        this.choixcategr(value)
           },
           error: (error) => {
             this._notificationSvc.warning("WARRNING","vous devez séléctioner une catégorie !")
@@ -53,8 +39,31 @@ export class CategorieListComponent implements OnInit{
       },
     });
   }
+
   ngOnInit(): void {
-    this.getCatAppel()
+      this.getCatAppel()
+  }
+  choixcategr(types: any) {
+    switch (types) {
+      case 'appel':
+        this.getCatAppel()
+        break;
+        case 'offre':
+          this.getCatOffre()
+          break;
+        case 'entreprise':
+          this.getCatEntreprise()
+          break;
+        case 'annonce':
+          this.getCatAnnonce()
+          break;
+        case 'affaire':
+          this.getCatAffaire()
+          break;
+        default:
+          this._notificationSvc.warning("WARRNING","vous devez séléctioner une catégorie !")
+          break;
+      }
   }
 
   edit(id: any){
@@ -62,6 +71,7 @@ export class CategorieListComponent implements OnInit{
       id: id,
       types: this.categoryForm.value.categorie
     } 
+    this.router.navigate(['/admin/categorie/add'], { queryParams: consign });
   }
   
   deletec(id: any){
@@ -205,7 +215,4 @@ export class CategorieListComponent implements OnInit{
 
   }
 
-interface typeCategorie{
-  id: string
-  types: string
-}
+

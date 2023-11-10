@@ -303,4 +303,54 @@ addRating(productId: number, stars: number) {
   addEvaluationAnnonce(appelOffreId: number, rating: any) {
     return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAnnonce",rating);
   }
+
+  getCatOffreById(id: any){
+    return this.http.get(this.url+"user/CategorieById/" + id)
+  }
+
+  getCatAppelById(id: any){
+    return this.http.get(this.url+"user/CategorieAppelById/" + id)
+    
+  }
+
+  getCatEntrepriseById(id: any){
+    return this.http.get(this.url+"user/CategorieEntrepriseById/" + id)
+    
+  }
+  
+  getCatAnnonceById(id: any){
+    return this.http.get(this.url+"user/CategorieAnnonceById/" + id)
+    
+  }
+  
+  getCatAffaireById(id: any){
+    return this.http.get(this.url+"user/CategorieAffaireById/" + id)
+    
+  }
+
+  // update all categorie
+  updateCatOffreById(id: any, data: any){
+    return this.http.put(this.url+"user/UpdateCategorie/"+ id, data)
+    
+  }
+  
+  updateCatAppelById(id: any, data: any){
+    return this.http.put(this.url+"UpdateCategorieAppel/"+ id, data)
+    
+  }
+  
+  updateCatEntrepriseById(id: any, data: any){
+    return this.http.put(this.url+"user/UpdateCategorieEntreprise/"+ id, data)
+    
+  }
+  
+  updateCatAnnonceById(id: any, data: any){
+    return this.http.put(this.url+"user/UpdateCategorieAnnonce/"+ id, data)
+    
+  }
+  
+  updateCatAffaireById(id: any, data: any){
+    return this.http.put(this.url+"user/UpdateCategorieAffaire/"+ id, data)
+
+  }
 }
