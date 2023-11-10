@@ -18,41 +18,6 @@
                         </div>
                     </div>
                     <div class="col-12"> 
-                        
-                        
-
-                        <!-- <div class="col-12" style="margin-bottom: 10px;">
-                            
-                            <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listOffreEmploi | paginate: { itemsPerPage: 5, currentPage: p }">
-                                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
-                                <div class="col-md-6 mt-1">
-                                    <h6 [routerLink]="'/detail/' + item.id"><a  style="color: #39569E;">{{item.nomOffre}}</a></h6>
-                                    <div class="d-flex flex-row">
-                                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    </div>
-                                    <div class="mt-1 mb-1 spec-1"><span>{{item.localisation}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
-                                    <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>
-
-                                </div>
-                                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <h6 class="text-success mr-1" style="font-size: 14px;">Publier le : {{item.dateCreation}}</h6>
-                                    </div>
-                                    <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6> 
-                                    <div class="d-flex flex-column mt-4">
-                                        <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Confirmer')"  type="button">Confirmer</button>
-                                        <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" style="font-weight: bold;" (click)="ConfirmerOffreEmploiToTrue(item.id, 'Retirer')"  type="button">Retirer</button>
-                                        <button  class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteOffreEmploi(item.id)">Supprimer</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> -->
-
-
-
-
-
                         <div class="example-container mat-elevation-z8">
                             <mat-table #table [dataSource]="dataSource">
                           
@@ -144,36 +109,7 @@
                         </div>
                     </div>
                 
-                    <div class="col-12">                 
-                            
-                            <!-- <div class="col-12" style="margin-bottom: 10px;">                                    
-                                    
-                                <div class="row p-2 bg-white border rounded mt-2" *ngFor="let item of listAppelOffre | paginate: { itemsPerPage: 6, currentPage: p }">
-                                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
-                                <div class="col-md-6 mt-1">
-                                    <h6 [routerLink]="'/detail/' + item.id"><a  style="color: #39569E;">{{item.titre}}</a></h6>
-                                    <div class="d-flex flex-row">
-                                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    </div>
-                                    <div class="mt-1 mb-1 spec-1"><span>{{item.ville}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
-                                    <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>        
-
-                                </div>
-                                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <h6 class="text-success mr-1" style="font-size: 14px;">Publier le : {{item.dateCreation}}</h6>
-                                    </div>
-                                    <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6> 
-                                    <div class="d-flex flex-column mt-4">
-                                        <button *ngIf="item.confirmer===false" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(item.id, 'Confirmer')" style="font-weight: bold;" type="button">Confirmer</button>
-                                        <button *ngIf="item.confirmer===true" class="btn btn-primary btn-sm" (click)="ConfirmerAppelOffreToTrue(item.id, 'Retirer')" style="font-weight: bold;" type="button">Retirer</button>
-                                        <button class="btn btn-danger btn-sm mt-2" style="font-weight: bold;" type="button" (click)="DeleteAppelOffre(item.id)">Supprimer</button>
-                                    </div>                                            
-                                </div>
-                            </div>                                    
-                            
-                            </div>
-                    <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> -->
+                <div class="col-12">
                     <div class="example-container mat-elevation-z8 mb-4">
                         <mat-table #table [dataSource]="dataSourceAppel">
                       
@@ -304,22 +240,10 @@
                                 <span class="px-1">/</span>
                                 <span>{{item.dateLimite}}</span>
                             </div>
-                        </div>
-                        
-                    </div>                
-                    
-                </div>
-                
+                        </div>                        
+                    </div>                    
+                </div>                
             </div>
         </div>
     </div>
-
 </div>
-
-
-
-       
-  
-
-    
-

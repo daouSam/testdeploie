@@ -94,16 +94,16 @@
     }
   }
   body{background:#eee}
-.ratings i{font-size: 16px;color: red}
-.strike-text{color: red;text-decoration: line-through}
-.product-image{width: 100%}
-.dot{height: 7px;width: 7px;margin-left: 6px;margin-right: 6px;margin-top: 3px;background-color: blue;border-radius: 50%;display: inline-block}
-.spec-1{color: #938787;font-size: 15px}
-h5{font-weight: 400}
-.para{font-size: 16px}
-#select{
+    .ratings i{font-size: 16px;color: #3498DB}
+    .strike-text{color: red;text-decoration: line-through}
+    .product-image{width: 100%}
+    .dot{height: 7px;width: 7px;margin-left: 6px;margin-right: 6px;margin-top: 3px;background-color: blue;border-radius: 50%;display: inline-block}
+    .spec-1{color: #938787;font-size: 15px}
+    h5{font-weight: 400}
+    .para{font-size: 16px}
+    #select{
     width: 200px; padding: 5px; border-radius: 5px; border: 1px solid rgb(122, 120, 120);
-}
+  }
 
 @media (max-width: 750px) {
     #select{
