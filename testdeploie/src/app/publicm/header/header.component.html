@@ -112,22 +112,41 @@
                 <div>
                     <img style="display: block; margin: auto; width: 200px; margin-bottom: 10px;" src="assets/img/log-removebg-preview.png" alt="">
                 </div>
-                <form #loginForm="ngForm"  (ngSubmit)="connexion(loginForm)">
+                <form #loginForm="ngForm">
                 <div class="form-group">                   
                     <span class="input-icon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control"  name="email" ngModel
-                    placeholder="email"   #login="ngModel" required [ngClass]="{'is-invalid': login.invalid && login.touched}" >
+                    <input type="email" class="form-control"  name="email" ngModel
+                    placeholder="email@gmail.com" #login="ngModel" required [ngClass]="{'is-invalid': login.invalid && login.touched}">
                 </div>
                 <div class="form-group">
                     <span class="input-icon"><i class="fas fa-key"></i></span>
-                    <input type="password" class="form-control" placeholder="Password" name="password" ngModel placeholder="Mot de passe" pattern="[a-z0-9._%+-]{2,20}" #password="ngModel" required [ngClass]="{'is-invalid': password.invalid && password.touched}">
-                    
+                    <input type="password" class="form-control" placeholder="mot de passe" name="password" ngModel pattern="[a-z0-9._%+-]{2,20}" #password="ngModel" required [ngClass]="{'is-invalid': password.invalid && password.touched}">                    
                 </div>
                 <div class="form-group checkbox">
                 </div>
-                <a href="" class="forgot-pass">Forgot Password?</a>
-                <button class="btn" type="submit">Login</button>
+                <a (click)="forgotPassd()" class="forgot-pass">Forgot Password ?</a>
+                <button data-toggle="modal" id="btnforgot" data-target="#myModalemail" style="display: none;"></button>
+                <button class="btn" (click)="connexion(loginForm)">Login</button>
                 <p style="margin-top: 10px; margin-bottom: -2px;" data-dismiss="modal" aria-label="Close">Avez-vous un compte ? <a routerLink="/home/inscription">Creer un compte</a></p>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalemail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content clearfix">
+            <button type="button" class="close" id="btnclosemail" data-dismiss="modal" aria-label="Close" style="display: none;"></button>
+            <div class="modal-body">
+                <h3 class="title">Entrer votre email</h3>
+                <form #forgetEmail="ngForm">
+                <div class="form-group">                   
+                    <span class="input-icon"><i class="fa fa-mail"></i></span>
+                    <input type="email" class="form-control"  name="email" ngModel
+                    placeholder="email" #email="ngModel" required [ngClass]="{'is-invalid': email.invalid && email.touched}" >
+                </div>
+                <button class="btn" (click)="connexionemail(forgetEmail)">Envoyer</button>
             </form>
             </div>
         </div>

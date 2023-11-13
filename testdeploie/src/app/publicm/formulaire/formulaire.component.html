@@ -25,7 +25,7 @@
                     
                     <div class="input-field">
                         <label>Votre adresse e-mail</label>
-                        <input type="text" formControlName="email" placeholder="diawara@gmail.com" [value]="formgroup.get('email').value" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <input type="text" formControlName="email" placeholder="example@gmail.com" [value]="formgroup.get('email').value" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                         <div *ngIf="formgroup.controls.email.invalid && (formgroup.controls.email.dirty || formgroup.controls.email.touched) || submitted"
                         class="text-danger">
 

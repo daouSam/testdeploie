@@ -28,6 +28,7 @@ import { OffreemploiComponent } from './offreemploi/offreemploi.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateappelComponent } from './updateappel/updateappel.component';
 import { UpdateoffreComponent } from './updateoffre/updateoffre.component';
+import { EmailUserComponent } from './email-user/email-user.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'accueil', component: AccueilComponent},
       { path: 'detail/:id', component: DetailComponent},
       { path: 'login', component: LoginComponent},
+      { path: 'email-user', component: EmailUserComponent},
       { path: 'inscription', component: InscriptionComponent},
       { path: 'formulaire', component: FormulaireComponent},
       { path: 'Ajoutappel', component: AjoutappelComponent},

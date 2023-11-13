@@ -12,6 +12,48 @@ import { ConfirmetionService } from '../../confirmation/confirmation.service';
 })
 export class HeaderComponent implements OnInit {
 
+  connexionemail(form2: NgForm) {
+    console.log(form2.value);
+    
+    const btnclosemail = document.getElementById('btnclosemail');
+    if(form2.status=="INVALID"){
+      this._notificationSvc.error('Erreur','merci de renseigner tous le champ !')
+    }else{
+      this.service.forgotPassd(form2.value).subscribe(                  
+        
+        (response) => {
+          // Gérer la réponse ici, response est le corps de la réponse HTTP
+          console.log(response);
+        },
+        (error) => {
+          form2.reset()
+          // Gérer les erreurs ici
+          if (error?.status == 200) {
+            btnclosemail?.click()
+            this._notificationSvc.success('SUCCES','verifier votre email, nous avons initialiser votre mot de passe !')
+            
+          }else {
+            btnclosemail?.click()
+            this._notificationSvc.error('ERREUR','il y a eu un erreur lors de l\'initialisation de votre mot de passe !')
+          }
+        }
+      )
+    }
+  }
+  forgotPassd() {
+    const btnclose = document.getElementById('btnclose');
+    const btnforgot = document.getElementById('btnforgot');   
+    btnclose?.addEventListener('click', () => {
+
+    });
+    setTimeout(() => {
+        btnclose?.click();
+        setTimeout(() => {
+            btnforgot?.click();
+        }, 1000);
+    });
+  }
+
   texts: string[] = ['Barragnini', 'Warrignini'];
   currentText: string = '';
   title = "D'Coders Angular Tutorials";

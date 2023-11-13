@@ -45,6 +45,7 @@ import { EntrepriseComponent } from './entreprise/entreprise.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
 import { RsocialModule } from './r-social/r-social.module';
+import { EmailUserComponent } from './email-user/email-user.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { RsocialModule } from './r-social/r-social.module';
     CarousselComponent,
     EntrepriseComponent,
     PublicLayoutComponent,
+    EmailUserComponent,
   ],
   imports: [
     CommonModule,
