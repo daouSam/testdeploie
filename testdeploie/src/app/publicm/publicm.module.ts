@@ -46,6 +46,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
 import { RsocialModule } from './r-social/r-social.module';
 import { EmailUserComponent } from './email-user/email-user.component';
+import { LoadingComponent } from '../models/loading';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { EmailUserComponent } from './email-user/email-user.component';
     EntrepriseComponent,
     PublicLayoutComponent,
     EmailUserComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

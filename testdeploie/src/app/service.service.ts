@@ -8,16 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class ServiceService {
   //locale
-   url='http://localhost:8082/api/';
-  apiAuth='http://localhost:8082/';
+  //  url='http://localhost:8082/api/';
+  // apiAuth='http://localhost:8082/';
 
   //ancien
   //  url='https://offre-a14e8ed7172f.herokuapp.com/api/'; 
   // apiAuth='https://offre-a14e8ed7172f.herokuapp.com/';
 
   //nouveau
-  // url='https://offre-back-end-f9e5deb17b73.herokuapp.com/api/';
-  // apiAuth='https://offre-back-end-f9e5deb17b73.herokuapp.com/';
+  url='https://offre-back-end-f9e5deb17b73.herokuapp.com/api/';
+  apiAuth='https://offre-back-end-f9e5deb17b73.herokuapp.com/';
 
   constructor(private http : HttpClient) { }
   
