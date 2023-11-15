@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('TOKEN', JSON.stringify(user.accessToken));
           location.replace("/accueil");
         }, error: (error: any) => {
+          console.log(error);
+          
           if (error.status === 0) {
           this._notificationSvc.error("Erreur","Impossible de se connecter au server, veuillez réessayer plus tard")
         } else {

@@ -2,10 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin.guard';
 
-
-import { CarousselComponent } from './publicm/caroussel/caroussel.component';
-
-
 const routes: Routes = [
   {
     path: 'home', loadChildren: () => import('./publicm/publicm.module')

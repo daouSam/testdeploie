@@ -26,11 +26,11 @@ export class AdminGuard implements CanActivate {
     const user: any | null  = sessionStorage.getItem('isLogin')
     this.user = JSON.parse(user);
     if(this.user!==null){
-    this.role=this.user?.roles
-    this.role.forEach((role: any) => {
-      this.donne=role
-    });
-  }
+      this.role=this.user?.roles
+      this.role.forEach((role: any) => {
+        this.donne=role
+      });
+    }
     if(this.donne =="ADMIN" ){
       return true
     }else {

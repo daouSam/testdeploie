@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Changpassd } from './models/Changpassd';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,6 @@ export class ServiceService {
   //locale
   //  url='http://localhost:8082/api/';
   // apiAuth='http://localhost:8082/';
-
-  //ancien
-  //  url='https://offre-a14e8ed7172f.herokuapp.com/api/'; 
-  // apiAuth='https://offre-a14e8ed7172f.herokuapp.com/';
 
   //nouveau
   url='https://offre-back-end-f9e5deb17b73.herokuapp.com/api/';
@@ -281,7 +278,7 @@ ConfirmerAppelOffreToTrue(id :any){
     return this.http.get(this.url+"AllUtilisateur");
   }
 addRating(productId: number, stars: number) {
-    const ratingData = { stars }; // Créez un objet avec les données de l'évaluation
+    const ratingData = { stars };
     return this.http.post(this.url +"user/ratings/"+productId,ratingData);
   }
 
@@ -353,7 +350,12 @@ addRating(productId: number, stars: number) {
     return this.http.put(this.url+"user/UpdateCategorieAffaire/"+ id, data)
 
   }
+
   forgotPassd(email: any){
     return this.http.post(this.url+"user/forgotPassword", email);
+  }
+
+  changePassword(changePassd: Changpassd){
+    return this.http.post(this.url+"user/changePassword", changePassd);
   }
 }

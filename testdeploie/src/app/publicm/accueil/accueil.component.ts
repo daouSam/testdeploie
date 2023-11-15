@@ -197,7 +197,7 @@ addRating(offreEmploiId: number) {
     this.service.submitEvaluation(offreEmploiId, newRating).subscribe({
       next: (response) => {
         this.AllOffreEmploi();
-        this.selectedStars = 0; // Réinitialiser à "0" après l'ajout
+        this.selectedStars = 0;
       },
       error: (error) => {
       }

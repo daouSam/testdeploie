@@ -116,10 +116,9 @@
                         <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
                           
                             <h3 class="m-0" id="h3">Appels d'offres</h3>
-                            <select id="select" ngModel name="selectcat" (change)="onCategoryAppelChange($event)" class="form-select">
+                            <select id="selectappel" ngModel name="selectcat" (change)="onCategoryAppelChange($event)" class="form-select">
                                 <option value="" >Choisir une Categorie</option>
-                                <option value="tout" >tout</option>
-                            
+                                <option value="tout" >tout</option>                            
                                 <option *ngFor="let category of listCategorieAppel" value="{{category.id}}">{{ category.nom }}</option>
                             </select>
                         

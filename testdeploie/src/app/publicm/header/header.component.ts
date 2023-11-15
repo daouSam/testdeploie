@@ -14,12 +14,10 @@ export class HeaderComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  connexionemail(form2: NgForm) {
-    console.log(form2.value);
-    
+  connexionemail(form2: NgForm) {    
     const btnclosemail = document.getElementById('btnclosemail');
     if(form2.status=="INVALID"){
-      this._notificationSvc.error('Erreur','merci de renseigner tous le champ !')
+      this._notificationSvc.error('Erreur','merci de renseigner le champ email !')
     }else{
       this.isLoading = true
       btnclosemail?.click()
@@ -33,7 +31,7 @@ export class HeaderComponent implements OnInit {
           if (error?.status == 200) {
             this._notificationSvc.success('SUCCES','Verifier votre email, nous avons ré-initialiser votre mot de passe.')            
           }else {
-            this._notificationSvc.error('ERREUR','il y a eu un erreur lors de l\'initialisation de votre mot de passe !')
+            this._notificationSvc.error('ERREUR',`${error.error}`)
           }
         }
       )
@@ -85,7 +83,7 @@ export class HeaderComponent implements OnInit {
     connexion(form: NgForm){
       const btnclose = document.getElementById('btnclose');
       if(form.status=="INVALID"){
-        this._notificationSvc.error('Erreur','merci de renseigner tous les champs !')
+        this._notificationSvc.error('Erreur','merci de renseigner les champs !')
       }else{
         this.service.login(form.value).subscribe({
           next : (user)=>{
@@ -98,7 +96,7 @@ export class HeaderComponent implements OnInit {
             if (error.status === 0) {
               this._notificationSvc.error('Erreur','Impossible de se connecter au server, veuillez réessayer plus tard !')
             } else {
-              this._notificationSvc.error('Erreur',`${error?.error?.message} !`)
+              this._notificationSvc.error('Erreur',`${error?.error?.message}, mot de passe | email incorrect `)
             }
         }
       
