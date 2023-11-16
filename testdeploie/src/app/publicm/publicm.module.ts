@@ -47,7 +47,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import { RsocialModule } from './r-social/r-social.module';
 import { EmailUserComponent } from './email-user/email-user.component';
 import { LoadingComponent } from '../models/loading';
-
+import { OffreCompoComponent } from './offre-compo/offre-compo.component';
+import { AppelCompoComponent } from './appel-compo/appel-compo.component';
+import { RecentAppelComponent } from './recent-appel/recent-appel.component';
+import { RecentOffreComponent } from './recent-offre/recent-offre.component';
+import { PubOffreComponent } from './pub-offre/pub-offre.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +88,12 @@ import { LoadingComponent } from '../models/loading';
     EntrepriseComponent,
     PublicLayoutComponent,
     EmailUserComponent,
-    LoadingComponent
+    LoadingComponent,
+    OffreCompoComponent,
+    AppelCompoComponent,
+    RecentAppelComponent,
+    RecentOffreComponent,
+    PubOffreComponent
   ],
   imports: [
     CommonModule,

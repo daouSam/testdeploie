@@ -1,9 +1,9 @@
-#select{
+#selectappel{
     width: 200px; padding: 5px; border-radius: 5px; border: 1px solid rgb(122, 120, 120);
 }
 
 @media (max-width: 750px) {
-    #select{
+    #selectappel{
         width: 120px; 
     }
     #h3{
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 550px) {
-    #select{
+    #selectappel{
         width: 120px; 
     }
     #h3{
@@ -20,7 +20,7 @@
     }
 }
 @media (max-width: 300px) {
-    #select{
+    #selectappel{
         width: 60px; 
     }
     #h3{
@@ -28,7 +28,7 @@
     }
 }
 @media (max-width: 200px) {
-    #select{
+    #selectappel{
         width: 50px; 
     }
     #h3{
@@ -38,7 +38,7 @@
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 100%; /* Ajustez la hauteur du carousel selon vos besoins */
+    height: 100%;
     overflow: hidden;
   }
   
@@ -97,9 +97,20 @@
     transform: scale(1.05); /* Légèrement agrandir l'élément */
     transition: all 0.2s ease-in-out;
   } 
+
+  .rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
   
+  }
   
+  .rating-list li:hover,
+  .rating-list li:hover ~ li, .rating-list li.selected {
+    color: #ffd700;
+  }
   
-  
-  
-  
+  .rating-list {
+    display: inline-block;
+    list-style: none;
+  }

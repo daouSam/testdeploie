@@ -56,184 +56,23 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                            <h3 class="m-0" id="h3">Offres d'emplois</h3>                           
-                          
-                            <select id="select" ngModel name="selectcat" (change)="onCategoryChange($event)" class="form-select">
-                                <option value="" >Choisir une Categorie</option>
-                                <option value="tout" >tout</option>
-                            
-                                <option *ngFor="let category of listCategorie" value="{{category.id}}">{{ category.nom }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12">        
-                        
-                        <div class="col-12" style="margin-bottom: 10px;">
-                            
-                            <img style="display: block; margin: auto;" *ngIf="!listOffreEmploi" src="assets/img/Spinner-1s-287px.svg" alt="">
-                            <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listOffreEmploi | paginate: { itemsPerPage: 5, currentPage: p }" >
-                                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
-                                <div class="col-md-6 mt-1">
-                                    <h5 ><a [routerLink]="['/home/detail', item.id]" style="color: #39569E; text-decoration: none;">{{item.nomOffre}}</a></h5>
-                                    <div class="d-flex flex-row">
-                                        <app-side [stars]="item.averageRating" />
-                                        <div class="rating-selection">
-                                        
-                                            <select [(ngModel)]="selectedStars" (change)="addRating(item.id)">
-                                                <option value="0" selected>Noté</option>
-                                                <option *ngFor="let option of [1, 2, 3, 4, 5]" [value]="option">{{ option }} étoile{{ option > 1 ? 's' : '' }}</option>
-                                                </select>                                              
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mt-1 mb-1 spec-1"><span>{{item.localisation}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
-                                    <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>
-                                </div>
-                                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{item.dateCreation}}</h6>
-                                    </div>
-                                    <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6>
-                                    <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" style="font-weight: bold;" type="button">{{item.typeOffre}}</button><button class="btn btn-outline-primary btn-sm mt-2" type="button">Date de limite : <br> {{item.dateLimite}}</button></div>
-                                </div>
-                            </div>       
-                        </div>
-                        <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls>                          
-                           
-                    </div>
-                  
-                </div>
-                
+                <app-offre-compo></app-offre-compo>
+
                 <div class="mb-3 pb-3">
                     <a href=""><img class="img-fluid w-100" src="assets/img/Group 12.png" alt=""></a>
                 </div>
                 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                          
-                            <h3 class="m-0" id="h3">Appels d'offres</h3>
-                            <select id="selectappel" ngModel name="selectcat" (change)="onCategoryAppelChange($event)" class="form-select">
-                                <option value="" >Choisir une Categorie</option>
-                                <option value="tout" >tout</option>                            
-                                <option *ngFor="let category of listCategorieAppel" value="{{category.id}}">{{ category.nom }}</option>
-                            </select>
-                        
-                        </div>
-                    </div>
-               
-                    <div class="col-12">                 
-                           
-                        <div class="col-12" style="margin-bottom: 10px;">
-                            <img style="display: block; margin: auto;" *ngIf="!listAppelOffre" src="assets/img/Spinner-1s-287px.svg" alt="">
-                            
-                            <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listAppelOffre | paginate: { itemsPerPage: 5, currentPage: pt }" >
-                                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
-                                <div class="col-md-6 mt-1">
-                                    <h6 ><a [routerLink]="['home/detaiappel',item.id]" style="color: #39569E;">{{item.titre}}</a></h6>
-                                    <div class="d-flex flex-row">
-                                        <app-side [stars]="item.averageRating" />
-                                        <div class="rating-selection">
-                                        
-                                            <select [(ngModel)]="selectedStarsAppelOffre" (change)="addRatingAppelOffre(item.id)">
-                                                <option value="0" selected>Noté</option>
-                                                <option *ngFor="let option of [1, 2, 3, 4, 5]" [value]="option">{{ option }} étoile{{ option > 1 ? 's' : '' }}</option>
-                                            </select>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="mt-1 mb-1 spec-1"><span>{{item.ville}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
-                                    
-                                    <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>
-                                </div>
-                                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{item.dateCreation}}</h6>
-                                    </div>
-                                    <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6>
-                                    <div class="d-flex flex-column mt-4">
-                                        <button class="btn btn-primary btn-sm" style="font-weight: bold;" type="button">{{item.categorieAppel.nom}}</button>
-                                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">Date de limite : <br> {{item.dateLimite}}</button>
-                                    </div>
-                                </div>
-                            </div>                              
-                        
-                        </div>
-                        <pagination-controls style="text-align: center;" (pageChange)="pt = $event"></pagination-controls>
-                      
-                    </div>
-                </div>
+                <app-appel-compo></app-appel-compo>
             </div>
             
             <div class="col-lg-4 pt-3 pt-lg-0">
-                <!-- solcial -->
-                    <app-r-social></app-r-social>
-                <!-- solcial -->
-                <div class="pb-3">
-                    <div class="bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Publicité</h3>
-                    </div>
-                   
-                </div>
-                <div class="mb-3 pb-3">
-                    <a href=""><img class="img-fluid" src="assets/img/news-500x280-4.jpg" alt=""></a>
-                </div>
-                <div class="pb-3">
-                    <div class="bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Recents Offres</h3>
-                    </div>
-                    
-                    <div class="d-flex mb-3" *ngFor="let item of listOffreRecent">
-                        <img [src]="item.logo" style="width: 100px;">
-                        <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
-                            <div class="mb-1" style="font-size: 13px;">
-                                <a href="">{{item.localisation}}</a>
-                                <span class="px-1">/</span>
-                                <span>le {{item.dateCreation}}</span>
-                            </div>
-                            <a class="h6 m-0" href="" style="font-size: 13px;
-                                width: 12rem;
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                            ">{{item.nomOffre}}</a>
-                            <div class="mb-1" style="font-size: 13px;">
-                                <a href="">Postuler avant le </a>
-                                <span class="px-1">/</span>
-                                <span>{{item.dateLimite}}</span>
-                            </div>
-                        </div>
-                    </div>
+                <app-r-social></app-r-social>
 
-                    <div class="bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Recents Appels d'Offres</h3>
-                    </div>
+                <app-pub-offre></app-pub-offre>
 
-                    <div class="d-flex mb-3" *ngFor="let item of listAppelRecent">
-                        <img [src]="item.logo" style="width: 100px;">
-                        <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
-                            <div class="mb-1" style="font-size: 13px;">
-                                <a href="">{{item.ville}}</a>
-                                <span class="px-1">/</span>
-                                <span>{{item.dateCreation}}</span>
-                            </div>
-                            <a class="h6 m-0" href="" style="font-size: 13px;
-                                width: 12rem;
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                            ">{{item.titre}}</a>
-                            <div class="mb-1" style="font-size: 13px;">
-                                <a href="">Postuler avant le </a>
-                                <span class="px-1">/</span>
-                                <span>{{item.dateLimite}}</span>
-                            </div>
-                        </div>
-                    </div>
-                 
+                <div class="pb-3">
+                    <app-recent-offre></app-recent-offre>
+                    <app-recent-appel></app-recent-appel>                 
                 </div>
             </div>
         </div>

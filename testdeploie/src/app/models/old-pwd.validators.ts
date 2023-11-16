@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 export class OldPwdValidators {
     

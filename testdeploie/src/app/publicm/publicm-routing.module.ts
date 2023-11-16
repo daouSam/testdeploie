@@ -36,6 +36,7 @@ const routes: Routes = [
     children: [
       { path: '', component: AccueilComponent},
       { path: 'accueil', component: AccueilComponent},
+      { path: 'accueil/:id', component: AccueilComponent},
       { path: 'detail/:id', component: DetailComponent},
       { path: 'login', component: LoginComponent},
       { path: 'email-user', component: EmailUserComponent},

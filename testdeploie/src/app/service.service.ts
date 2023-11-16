@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Changpassd } from './models/Changpassd';
+import { Offresemploi } from './models/offre';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +38,7 @@ export class ServiceService {
     return this.http.get(this.url+"user/AllCategorie");
   }
   getCategorieAppel(){
-    return this.http.get(this.url+"user/AllCategorieAppel");
+    return this.http.get<any[]>(this.url+"user/AllCategorieAppel");
   }
   getCategorieEntreprise(){
     return this.http.get(this.url+"user/AllCategorieEntreprise");
@@ -90,8 +91,8 @@ export class ServiceService {
   getAllOffreEmploiConfirmerFalse(){
     return this.http.get(this.url+"AllOffremploiByConfirmerFalse");
   }
-  getAllOffreEmploiConfirmerTrue(){
-    return this.http.get(this.url+"user/AllOffremploiByConfirmerTrue");
+  getAllOffreEmploiConfirmerTrue(): Observable <Offresemploi[]>{
+    return this.http.get<Offresemploi[]>(this.url+"user/AllOffremploiByConfirmerTrue");
   }
   getAllAppelOffre(){
     return this.http.get(this.url+"AllAppelOffre");
@@ -100,21 +101,21 @@ export class ServiceService {
     return this.http.get(this.url+"AllAppelOffreByConfirmerFalse");
   }
   getAllAppelOffreConfirmerTrue(){
-    return this.http.get(this.url+"user/AllAppelOffreByConfirmerTrue");
+    return this.http.get<any[]>(this.url+"user/AllAppelOffreByConfirmerTrue");
   }
   getAllOffreEmploiByCategorie(idCategorie : any){
     return this.http.get(this.url+"user/AllOffremploiByCategorie/"+idCategorie);
     
   }
   getAllOffreEmploiByCategorieTrue(idCategorie : any){
-    return this.http.get(this.url+"user/AllOffremploiByCategorieTrue/"+idCategorie);
+    return this.http.get<any[]>(this.url+"user/AllOffremploiByCategorieTrue/"+idCategorie);
     
   }
   getAllAppelOffreByCategorie(idCategorieAppel : any){
     return this.http.get(this.url+"user/findAppelOffreByCategorie/"+idCategorieAppel);
   }
   getAllAppelOffreByCategorieTrue(idCategorieAppel : any){
-    return this.http.get(this.url+"user/findAppelOffreByCategorieTrue/"+idCategorieAppel);
+    return this.http.get<any[]>(this.url+"user/findAppelOffreByCategorieTrue/"+idCategorieAppel);
   }
   OffreEmploiById(idOffre : any){
     return this.http.get(this.url+"user/OffremploiById/"+idOffre);

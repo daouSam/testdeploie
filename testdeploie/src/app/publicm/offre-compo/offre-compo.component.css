@@ -97,9 +97,20 @@
     transform: scale(1.05); /* Légèrement agrandir l'élément */
     transition: all 0.2s ease-in-out;
   } 
+
+  .rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
   
+  }
   
+  .rating-list li:hover,
+  .rating-list li:hover ~ li, .rating-list li.selected {
+    color: #ffd700;
+  }
   
-  
-  
-  
+  .rating-list {
+    display: inline-block;
+    list-style: none;
+  }

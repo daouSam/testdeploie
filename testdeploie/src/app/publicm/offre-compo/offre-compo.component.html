@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+            <h3 class="m-0">Offres d'emplois</h3>    
+            <select id="select" ngModel name="selectcat" (change)="onCategoryChange($event)" class="form-select">
+                <option value="" >Choisir une Categorie</option>
+                <option value="tout" >tout</option>
+            
+                <option *ngFor="let category of listCategorie" value="{{category.id}}">{{ category.nom }}</option>
+            </select>
+           
+        </div>
+    </div>
+
+    <div class="col-12">                        
+        <div class="col-12" style="margin-bottom: 10px;">                            
+            <img style="display: block; margin: auto;" *ngIf="!listOffreEmploi" src="assets/img/Spinner-1s-287px.svg" alt="">
+            <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listOffreEmploi | paginate : pagingConfig; let i = index">
+                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
+                <div class="col-md-6 mt-1">
+                    <h5 ><a [routerLink]="['/home/detail', item.id]" style="color: #39569E; text-decoration: none;">{{item.nomOffre}}</a></h5>
+                    <div class="d-flex flex-row">
+                        <ul class="list-inline rating-list" 
+                            *ngFor="let star of stars" style="display: inline-block"  style="display: inline-block" >
+                                <li  #namebutton  (click)="countStar(item.id, star)"
+                                    [ngClass]="{'selected': (star <= item.averageRating)}">
+                                <i class="fa fa-star"></i>
+                        </ul>
+                       
+                    </div>
+                    
+                    <div class="mt-1 mb-1 spec-1"><span>{{item.localisation}}<br></span><span class="dot"></span><span></span><span class="dot"></span><span><br></span></div>
+                    <p class="text-justify text-truncate para mb-0">{{ cleanHtml(item.description) }}</p>
+                </div>
+                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                    <div class="d-flex flex-row align-items-center">
+                        <h6 class="text-success mr-1" style="font-size: 12px;">Publier le : {{item.dateCreation}}</h6>
+                    </div>
+                    <h6 class="text-success" >Par : <span style="color: rgb(80, 80, 235);">{{item.nomEntreprise}}</span></h6>
+                    <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" style="font-weight: bold;" type="button">{{item.typeOffre}}</button><button class="btn btn-outline-primary btn-sm mt-2" type="button">Date de limite : <br> {{item.dateLimite}}</button></div>
+                </div>
+            </div>       
+        </div>
+        <div class="d-flex justify-content-center">
+            <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+          </div>           
+    </div>
+</div>

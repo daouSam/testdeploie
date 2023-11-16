@@ -26,7 +26,6 @@
     "@auth0/angular-jwt": "^5.1.2",
     "@tinymce/tinymce-angular": "^7.0.0",
     "angular2-notifications": "^16.0.1",
-    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
     "firebase": "^10.5.2",
     "google-libphonenumber": "^3.2.33",

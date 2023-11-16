@@ -22,6 +22,9 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ComfirmationComponent } from './confirmation/confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { enableRipple } from '@syncfusion/ej2-base';
+
+enableRipple(true);
 
 const storage: any | null = sessionStorage.getItem('TOKEN');
 const accessToken = JSON.parse(storage);
