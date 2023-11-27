@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -10,6 +10,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./affaire.component.scss']
 })
 export class AffaireComponent implements OnInit {
+
+  stars: number[] = [1, 2, 3, 4, 5];
+  selectedValue: number;
+  count = 6;
+  @ViewChild('namebutton') namebutton: ElementRef;
+
   selectedStars: number =0;
   listAffaire : any
   listAppelOffre : any
@@ -82,9 +88,10 @@ export class AffaireComponent implements OnInit {
   return doc.body.textContent || '';
 }
 
-addRating(affaireId: number) {
-  if (this.selectedStars !== 0) {
-    const newRating = { stars: this.selectedStars };
+countStar(affaireId:number, star: number) {
+  this.selectedValue = star;
+  console.log('Value of star', star);
+  const newRating = { stars: star };
     this.service.addEvaluationAffaire(affaireId, newRating).subscribe({
       next: (response) => {
         this.AllAffaire()
@@ -94,7 +101,6 @@ addRating(affaireId: number) {
       }
     });
   }
-}
 }
 
 

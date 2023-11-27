@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -8,7 +8,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./annonce.component.scss']
 })
 export class AnnonceComponent implements OnInit {
-  selectedStars: number =0;
+
+  stars: number[] = [1, 2, 3, 4, 5];
+  selectedValue: number;
+  count = 6;
+  @ViewChild('namebutton') namebutton: ElementRef;
+
   listAnnonce : any
   listAppelOffre : any
   selectedCategory: any;
@@ -65,17 +70,17 @@ export class AnnonceComponent implements OnInit {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   return doc.body.textContent || '';
 }
-addRating(affaireId: number) {
-  if (this.selectedStars !== 0) {
-    const newRating = { stars: this.selectedStars };
+countStar(affaireId:number, star: number) {
+  this.selectedValue = star;
+  console.log('Value of star', star);
+  const newRating = { stars: star };
     this.service.addEvaluationAnnonce(affaireId, newRating).subscribe({
       next: (response) => {
         this.Annonce()
-        this.selectedStars = 0; // Réinitialiser à "0" après l'ajout
+        this.selectedValue = 0; // Réinitialiser à "0" après l'ajout
       },
       error: (error) => {
       }
     });
   }
-}
 }

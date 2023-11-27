@@ -88,8 +88,23 @@ body{
   .item-hover:hover {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    background-color: #f5f5f5; /* Couleur de fond lorsque survolé */
-    transform: scale(1.05); /* Légèrement agrandir l'élément */
+    background-color: #f5f5f5;
+    transform: scale(1.05);
     transition: all 0.2s ease-in-out;
   } 
+  .rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;  
+  }
+  
+  .rating-list li:hover,
+  .rating-list li:hover ~ li, .rating-list li.selected {
+    color: #ffd700;
+  }
+  
+  .rating-list {
+    display: inline-block;
+    list-style: none;
+  }
   

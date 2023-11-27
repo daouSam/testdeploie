@@ -36,11 +36,11 @@
                                 </td>
                                 <td *ngFor="let role of item.roles"><span class="badge badge-soft-danger mb-0">{{role.name}}</span></td>
                                 <td>{{item.email}}</td>
-                                <td>112</td>
+                                <td><span *ngIf="item.banniru == false">... </span><span *ngIf="item.banniru == true" style="color: red;">bannir</span></td>
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                            <a class="btn" (click)="delUser(item)" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
                                             <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>

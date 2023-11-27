@@ -11,8 +11,10 @@ import { ConfirmetionService } from '../../confirmation/confirmation.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  [x: string]: any;
 
   isLoading: boolean = false;
+  public showPassword = false;
 
   connexionemail(form2: NgForm) {    
     const btnclosemail = document.getElementById('btnclosemail');
@@ -126,6 +128,13 @@ export class HeaderComponent implements OnInit {
             this.ngOnInit()
         }
       })   
+    }
+
+    togglePasswordVisibility() {
+      const passd: Element = document.getElementById('id_password')!
+      const type = passd.getAttribute('type') === 'password' ? 'text' : 'password';
+      passd.setAttribute('type', type);
+      this.showPassword = !this.showPassword
     }
   
   }

@@ -15,6 +15,7 @@ export class DetailppelComponent implements OnInit {
   img1 :any
   loginData :any ="non"
   listAppelOffre: any;
+  isMail: boolean = true;
   
    constructor(private service : ServiceService,private route: ActivatedRoute) { }
  
@@ -22,6 +23,7 @@ export class DetailppelComponent implements OnInit {
      this.id = this.route.snapshot.params['id'];
      this.service.AppelOffreById(this.id).subscribe((data)=>{
       this.list=data
+      this.list.courrier.includes('http') ? this.isMail = false : this.isMail = true;
       this.service.getAllAppelOffreByCategorie(this.list?.categorieAppel?.id).subscribe({
         next :(data)=>{
           this.listAppelOffre  = data          

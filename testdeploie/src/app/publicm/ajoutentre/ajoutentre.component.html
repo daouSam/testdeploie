@@ -126,11 +126,10 @@
                         <div *ngIf="formgroup.controls.facebook.invalid && (formgroup.controls.facebook.dirty || formgroup.controls.facebook.touched)"
                         class="text-danger">
 
-                            <div style="font-size: 12px;" *ngIf="formgroup.controls.facebook.errors?.['required']">
-                               Url facebook est invalid
-                            </div>
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('facebook').hasError('pattern')"
-                       >
+                        <div style="font-size: 12px;" *ngIf="formgroup.controls.facebook.errors?.['required']">
+                            Url facebook est invalid
+                        </div>
+                        <div style="font-size: 12px;" *ngIf="formgroup.get('facebook').hasError('pattern')">
                             Le format url est incorrect.
                         </div>
 
@@ -142,11 +141,10 @@
                         <div *ngIf="formgroup.controls.linkdin.invalid && (formgroup.controls.linkdin.dirty || formgroup.controls.linkdin.touched)"
                         class="text-danger">
 
-                            <div style="font-size: 12px;" *ngIf="formgroup.controls.linkdin.errors?.['required']">
-                               Url linkdin est invalid
-                            </div>
-                            <div style="font-size: 12px;" *ngIf="formgroup.get('linkdin').hasError('pattern')"
-                       >
+                        <div style="font-size: 12px;" *ngIf="formgroup.controls.linkdin.errors?.['required']">
+                            Url linkdin est invalid
+                        </div>
+                        <div style="font-size: 12px;" *ngIf="formgroup.get('linkdin').hasError('pattern')">
                             Le format url est incorrect.
                         </div>
 

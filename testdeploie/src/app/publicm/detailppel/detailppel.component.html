@@ -4,7 +4,9 @@
       <div class="bg-white py-2 px-4 mb-3">
           <div class="row" style="display: flex; justify-content: space-between;">
           <h6 class="m-0" style="font-weight: bold;">APPEL D'OFFRE</h6>
-          <button class="bt" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-paper-plane" aria-hidden="true"></i> Postuler</button>
+          <a class="btn" [href]="'mailto:' + list?.courrier"><i class="fa fa-paper-plane" aria-hidden="true"></i> Postuler</a>
+          <a *ngIf="isMail" class="btn" [href]="'mailto:' + list?.courrier"><i class="fa fa-paper-plane" aria-hidden="true"></i> Postuler</a>
+          <a *ngIf="!isMail" class="btn" [href]="list?.courrier" target="_blank"><i class="fa fa-paper-plane" aria-hidden="true"></i> Postuler</a>
           </div>
       </div>      
       <section class="py-5">
@@ -13,15 +15,14 @@
       <aside class="col-lg-6">
         <div class="border rounded-6 mb-6 d-flex justify-content-center">
           <a data-fslightbox="mygalley" class="rounded-6" target="_blank" data-type="image">
-            <img style="max-width: 100%; max-height: 100vh; min-width: 100%;" class="rounded-8 fit" [src]="list?.logo" />
+            <img style="max-width: 100px; max-height: 100vh; min-width: 50%;" class="rounded-8 fit" [src]="list?.logo"/>
           </a>
         </div>     
       </aside>
       <main class="col-lg-6">
         <div class="ps-lg-3">
           <h4 class="title text-dark">
-            {{list?.titre}} <br /> à {{list?.ville}}
-           
+            {{list?.titre}} <br /> à {{list?.ville}}           
           </h4>
           <div class="d-flex flex-row my-3">
             <div class="text-warning mb-1 me-2">
@@ -36,15 +37,13 @@
             </div>
             <span class="text-muted" style="margin-right:5px; margin-left: 5px;">  Par </span>
             <span class="text-success ms-2">{{list?.nomEntreprise}}</span><span class="text-muted" style="margin-right:5px; margin-left: 5px;">  postuler avant le  </span><span class="text-success ms-2">{{list?.dateLimite}}</span>
-          </div> 
-
+          </div>
           <hr />
-
-         <div class="row" style="display: flex; justify-content: space-around;">
-          <a  class="btn btn-success shadow-0"> {{list?.categorieAppel?.nom}} </a>
-          <a  class="btn btn-danger shadow-0" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-paper-plane" aria-hidden="true"></i> Postuler</a>
-        </div>
-        
+          <div class="row" style="display: flex; justify-content: space-around;">
+            <a  class="btn btn-success shadow-0" style="background-color: #95A5A6;" > {{list?.categorieAppel?.nom}} </a>
+            <a *ngIf="isMail" class="btn btn-success" [href]="'mailto:' + list?.courrier">Postuler</a>
+            <a *ngIf="!isMail" class="btn btn-success" [href]="list?.courrier" target="_blank">Postuler</a>
+          </div>        
         </div>
       </main>
     </div>
@@ -139,8 +138,7 @@
                 <tr>
                   <th class="py-2" style="font-size: 14px;">Email:</th>
                   <td class="py-2" style="font-size: 12px;">{{list?.utilisateur?.email}}</td>
-                </tr>
-                
+                </tr>                
               </table>
             </div>
           </div>
@@ -167,26 +165,6 @@
 
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header ftco-degree-bg">
-          <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <div class="modal-body pt-md-0 pb-md-5 text-center">
-          <h2>POSTULER</h2>
-          <div class="icon d-flex align-items-center justify-content-center">
-            <img src="assets/img/email.svg" alt="" class="img-fluid">
-          </div>
-          <h4 class="mb-2">Pour postuler envoyer votre candidature par mail à:</h4>
-        
-          <a [href]="list?.courrier">{{list?.courrier}}</a>
         </div>
       </div>
     </div>

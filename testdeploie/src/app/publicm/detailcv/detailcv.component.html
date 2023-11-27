@@ -3,14 +3,13 @@
     <div class="row">
         <div class="col-lg-4 col-xl-4">
             <div class="card-box text-center">
-                <img [src]="list?.photo" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
-    
+                <img [src]="list?.photo" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">    
                 <h4 class="mb-0">{{list?.nom}}</h4>
                 <p class="text-muted">@{{list?.titrepro}}</p>
-                 <a class="btn btn-danger btn-xs waves-effect mb-2 waves-light" [href]="list?.fichier"><i class="fa-solid fa-download"></i> Telecharger CV</a>
+                 <a class="btn btn-xs waves-effect mb-2 waves-light" style="background-color: #95A5A6;" [href]="list?.fichier"><i class="fa-solid fa-download"></i> Telecharger CV</a>
     
                 <div class="text-left mt-3">
-                    <h6 class="font-13 text-uppercase">A PROPOS DE MOI :</h6>
+                    <h6 class="font-13 text-uppercase">A PROPOS DE MOI : </h6>
                   
                     <div class="text-muted font-13 mb-3" [innerHTML]="list?.contenu"></div>
                     <p class="text-muted mb-2 font-13"><strong>Nom complet :</strong> <span class="ml-2">{{list?.nom}}</span></p>
@@ -44,32 +43,22 @@
         <div class="col-lg-8 col-xl-8">
             <div class="card-box">
                 <ul class="nav nav-pills navtab-bg">
-                    <li class="nav-item">
-                        <a [href]="list?.fichier" data-toggle="tab" aria-expanded="true" class="nav-link ml-0 active">
-                            <i class="fa-solid fa-download"></i> Telecharger CV
-                        </a>
+                    <li class="nav-item">                        
                     </li>
-                </ul>
-    
-                <div class="tab-content">
-                    
-                    <div class="tab-pane show active" id="about-me">
-    
+                </ul>    
+                <div class="tab-content">                    
+                    <div class="tab-pane show active" id="about-me">    
                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
-                            Experience</h5>
-    
+                            Experience</h5>    
                         <ul class="list-unstyled timeline-sm">
                             <li class="timeline-sm-item" *ngFor="let item of experiences">
                                 <span class="timeline-sm-date">{{item.dateDebut | date:'yyyy'}} - {{item.dateFin | date:'yyyy'}}</span>
                                 <h5 class="mt-0 mb-1">{{item.poste}}</h5>
                                 <p>{{item.employeur}}</p>    
-                            </li>
-                            
+                            </li>                            
                         </ul>
-
                         <h5 class="mb-4 text-uppercase"><i class="fa-solid fa-graduation-cap"></i>
-                            Formation</h5>
-    
+                            Formation</h5>    
                         <ul class="list-unstyled timeline-sm">
                             <li class="timeline-sm-item" *ngFor="let item of formations">
                                 <span class="timeline-sm-date">{{item.dateDebut | date:'yyyy'}} - {{item.dateFin | date:'yyyy'}}</span>
@@ -82,8 +71,7 @@
     
                     <div class="tab-pane" id="settings">
                         <form>
-                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-account-circle mr-1"></i> Personal Info</h5>
-                            
+                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-account-circle mr-1"></i> Personal Info</h5>                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
