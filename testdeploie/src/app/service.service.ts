@@ -10,12 +10,12 @@ import { Offresemploi } from './models/offre';
 })
 export class ServiceService {
   //locale
-   url='http://localhost:8082/api/';
-  apiAuth='http://localhost:8082/';
+  //  url='http://localhost:8082/api/';
+  // apiAuth='http://localhost:8082/';
 
   //nouveau
-  // url='https://offre-back-end-f9e5deb17b73.herokuapp.com/api/';
-  // apiAuth='https://offre-back-end-f9e5deb17b73.herokuapp.com/';
+  url='https://offre-back-end-f9e5deb17b73.herokuapp.com/api/';
+  apiAuth='https://offre-back-end-f9e5deb17b73.herokuapp.com/';
 
   constructor(private http : HttpClient) { }
   
@@ -284,6 +284,10 @@ ConfirmerAppelOffreToTrue(id :any){
     return this.http.put(this.url+"bannirUtilisateur", idU);
   }
 
+  deleteUtilisateur(idU: any){
+    return this.http.delete(this.url+"DeleteUtilisateur/"+idU);
+  }
+
   addRating(productId: number, stars: number) {
     const ratingData = { stars };
     return this.http.post(this.url +"user/ratings/"+productId,ratingData);
@@ -305,7 +309,7 @@ ConfirmerAppelOffreToTrue(id :any){
     return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAffaire",rating);
   }
   addEvaluationAnnonce(appelOffreId: number, rating: any) {
-    return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAnnonce",rating);
+    return this.http.post(this.url +"user/"+appelOffreId+"/evaluationsAnnonce", rating);
   }
 
   getCatOffreById(id: any){

@@ -89,6 +89,15 @@ export class HeaderComponent implements OnInit {
       }else{
         this.service.login(form.value).subscribe({
           next : (user)=>{
+            console.log(user.id);
+            console.log(user);
+            
+            if (user.id === null) {
+              this._notificationSvc.warning('ATTENTION','Vous n\'êtes pas autorisé à acceder à cet site !')
+              form.reset()
+              btnclose?.click()
+              return
+            }
             sessionStorage.setItem('isLogin', JSON.stringify(user));
             sessionStorage.setItem('TOKEN', JSON.stringify(user.accessToken));
             form.reset()

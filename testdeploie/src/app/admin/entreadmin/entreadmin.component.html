@@ -16,10 +16,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12">        
-      
-                        
-                            <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-12">                        
+                        <div class="row" style="margin-bottom: 10px;">
                             <div class="col-xl-6 col-md-6" *ngFor="let item of listEntreprise | paginate: { itemsPerPage: 4, currentPage: p }">
                                 <div class="card">
                                     <div class="card-block">
@@ -72,51 +70,18 @@
                             
                         </div>
                         <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> 
-                    </div>       
-                                     
-                  
-
-                
+                    </div>                 
                 </div>
                 
                 <div class="mb-3 pb-3">
                     <a href=""><img class="img-fluid w-100" src="assets/img/Group 12.png" alt=""></a>
-                </div>
-                
+                </div>                
                 
             </div>
             
             <div class="col-lg-4 pt-3 pt-lg-0">
                 <!-- Social Follow Start -->
-                <div class="pb-3">
-                    <div class="bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Suivez-nous</h3>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #39569E;">
-                            <small class="fab fa-facebook-f mr-2"></small><small>12,345 Fans</small>
-                        </a>
-                        <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #52AAF4;">
-                            <small class="fab fa-twitter mr-2"></small><small>12,345 Followers</small>
-                        </a>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #0185AE;">
-                            <small class="fab fa-linkedin-in mr-2"></small><small>12,345 Connects</small>
-                        </a>
-                        <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #C8359D;">
-                            <small class="fab fa-instagram mr-2"></small><small>12,345 Followers</small>
-                        </a>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #DC472E;">
-                            <small class="fab fa-youtube mr-2"></small><small>12,345 Subscribers</small>
-                        </a>
-                        <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #1AB7EA;">
-                            <small class="fab fa-vimeo-v mr-2"></small><small>12,345 Followers</small>
-                        </a>
-                    </div>
-                </div>
+                <app-r-social></app-r-social>
                 <!-- Social Follow End -->
                 <div class="pb-3">
                     <div class="bg-light py-2 px-4 mb-3">
@@ -137,8 +102,7 @@
                                 <span>{{item.telephone}}</span>
                             </div>
                         </div>
-                    </div>         
-                 
+                    </div>                
                 </div>
             </div>
         </div>
