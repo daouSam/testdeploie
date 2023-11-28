@@ -59,7 +59,8 @@ export class InscriptionComponent implements OnInit {
       nom: this.formgroup.value.nom,
       password: this.formgroup.value.password,
       telephone1: this.formgroup.value.telephone1,
-      telephone2: this.formgroup.value.telephone2
+      telephone2: this.formgroup.value.telephone2,
+      roles: [[{"id" : 1}]]
     }
     let styl : boolean = false     
     styl = true
@@ -94,4 +95,5 @@ interface SigInUser {
   password: string
   telephone1: string
   telephone2?: string
+  roles?: any
 }

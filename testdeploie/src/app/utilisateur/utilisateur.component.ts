@@ -26,6 +26,8 @@ export class UtilisateurComponent implements OnInit {
     listUtilisateur() {
       this.service.getAllUtilisateur().subscribe((data)=>{
         this.list=data
+        console.log(data);
+        
         this.taille=this.list.length
       })
     }
