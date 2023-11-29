@@ -60,14 +60,14 @@ export class InscriptionComponent implements OnInit {
       password: this.formgroup.value.password,
       telephone1: this.formgroup.value.telephone1,
       telephone2: this.formgroup.value.telephone2,
-      roles: [[{"id" : 1}]]
+      roles: this.role
     }
     let styl : boolean = false     
     styl = true
     this.formgroup.value.roles = this.role    
     this.service.addUtilisateur(userSigUp).subscribe((data)=>{    
     this._notificationSvc.success("succès","Inscription effectuer avec succès");
-    this.router.navigate(["/home/inscription"]);  
+    this.router.navigate(["/home/"]); 
     }, err => {
       this._notificationSvc.error("Erreur",`${err.error.message} !`);
     })      
