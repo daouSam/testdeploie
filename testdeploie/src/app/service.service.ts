@@ -10,7 +10,7 @@ import { Offresemploi } from './models/offre';
 })
 export class ServiceService {
   //locale
-  //  url='http://localhost:8082/api/';
+  // url='http://localhost:8082/api/';
   // apiAuth='http://localhost:8082/';
 
   //nouveau
