@@ -16,7 +16,9 @@
         <div class="col-12" style="margin-bottom: 10px;">                            
             <img style="display: block; margin: auto;" *ngIf="!listOffreEmploi" src="assets/img/Spinner-1s-287px.svg" alt="">
             <div class="row p-2 bg-white border rounded mt-2 item-hover" *ngFor="let item of listOffreEmploi | paginate : pagingConfig; let i = index">
-                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="item.logo"></div>
+                <div class="col-md-3 mt-1">
+                    <img class="img-fluid img-responsive rounded product-image" [src]="item.logo" (click)="detailbyid(item.id)">
+                </div>
                 <div class="col-md-6 mt-1">
                     <h5 ><a [routerLink]="['/home/detail', item.id]" style="color: #39569E; text-decoration: none;">{{item.nomOffre}}</a></h5>
                     <div class="d-flex flex-row">
@@ -49,4 +51,5 @@
             </pagination-controls>
           </div>           
     </div>
+
 </div>

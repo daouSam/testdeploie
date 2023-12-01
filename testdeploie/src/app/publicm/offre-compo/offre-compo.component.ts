@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Offresemploi } from 'src/app/models/offre';
 import { PagingConfig } from 'src/app/models/paging.config';
 import { ServiceService } from 'src/app/service.service';
@@ -10,6 +11,9 @@ import { ServiceService } from 'src/app/service.service';
 })
 export class OffreCompoComponent implements OnInit {
 
+  detailbyid(arg0: number) {
+    this.router.navigate(['/home/detail', arg0])
+  }
 
   stars: number[] = [1, 2, 3, 4, 5];
   selectedValue: number;
@@ -33,7 +37,7 @@ export class OffreCompoComponent implements OnInit {
   tout :any ="tout"
   config: { currentPage: number; itemsPerPage: number; };
   
-  constructor(private service : ServiceService) {}
+  constructor(private service : ServiceService, private router: Router) {}
     
   ngOnInit(): void {
     this.allOffreEmploi()
@@ -47,7 +51,7 @@ export class OffreCompoComponent implements OnInit {
   
   allOffreEmploi(){
     this.service.getAllOffreEmploiConfirmerTrue().subscribe({
-      next : (data) => {
+      next : (data) => {        
         this.listOffreEmploi = data
         this.listOffreEmploi = this.listOffreEmploi.slice().reverse()
         this.pagingConfig.totalItems = data.length;   
@@ -95,19 +99,16 @@ export class OffreCompoComponent implements OnInit {
   }
   countStar(offreEmploiId:number, star: number) {
     this.selectedValue = star;
-    console.log('Value of star', star);
     const newRating = { stars: star };
     console.log(newRating);
     
     this.service.submitEvaluation(offreEmploiId, newRating).subscribe({
       next: (response) => {
-        console.log('Value of star ok', star);
-        this.allOffreEmploi();
-        
+        this.allOffreEmploi();        
         this.selectedStars = 0;
       },
       error: (error) => {
-        console.log('Value of star error', star);
+
       }
     });
   }

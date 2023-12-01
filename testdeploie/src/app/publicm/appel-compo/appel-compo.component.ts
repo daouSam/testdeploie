@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/service.service';
 
 @Component({
@@ -7,6 +8,9 @@ import { ServiceService } from 'src/app/service.service';
   styleUrls: ['./appel-compo.component.css']
 })
 export class AppelCompoComponent implements OnInit{
+detailbyidap(arg0: any) {
+ this.router.navigate(["/home/detaiappel", arg0])
+}
 
 
   stars: number[] = [1, 2, 3, 4, 5];
@@ -19,7 +23,7 @@ export class AppelCompoComponent implements OnInit{
   listCategorieAppel: any[] = [];
   selectedCategoryAppel: any;
   p: number = 1;
-  constructor(private service : ServiceService) { }
+  constructor(private service : ServiceService, private router: Router) { }
 
   ngOnInit(): void {   
     this.allAppelOffre()
